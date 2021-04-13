@@ -34,7 +34,7 @@
 					<li <?php if($pag=="Subkriteria" || $pag=="subkriteria") echo 'class="active opened active multiple-expanded" '; ?>><?= anchor('Subkriteria','<span class=entypo-menu> Subkriteria</span>'); ?></li>
 				</ul>
 			</li>
-			<li <?php if($pag=="sekolah" || $pag=="Sekolah") echo 'class="active opened active" '; ?>><?= anchor('Sekolah','<i class=entypo-clipboard></i><span> Calon Pembeli</span>'); ?></li>
+			<li <?php if($pag=="pembeli" || $pag=="Pembeli") echo 'class="active opened active" '; ?>><?= anchor('Pembeli','<i class=entypo-clipboard></i><span> Calon Pembeli</span>'); ?></li>
 			<li <?php if($pag=="Alternatif" || $pag=="alternatif" || $page=="Banding" || $page=="banding" || $page=="Hasil" || $page=="hasil") echo 'class="active opened active multiple-expanded" '; ?>>
 				<a href="ui-panels.html">
 					<i class="entypo-book"></i>

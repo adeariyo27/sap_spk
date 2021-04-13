@@ -3,10 +3,10 @@
         <br>
         <form action="<?php echo $action; ?>" method="post">
     	    <div class="form-group">
-                <label for="varchar">Nama Sekolah</label>
-                <input type="input-group minimal" class="form-control" name="nama_sekolah" id="nama_sekolah" value="<?php echo $nama_sekolah; ?>" />
-                    <?php if( form_error('nama_sekolah') == true ) : ?>
-                      <div class="form-text text-danger"><b><?= form_error('nama_sekolah') ?></b></div> 
+                <label for="varchar">Nama Pembeli</label>
+                <input type="input-group minimal" class="form-control" name="nama_pembeli" id="nama_pembeli" value="<?php echo $nama_pembeli; ?>" />
+                    <?php if( form_error('nama_pembeli') == true ) : ?>
+                      <div class="form-text text-danger"><b><?= form_error('nama_pembeli') ?></b></div> 
                     <?php endif; ?>
             </div>
     	    <div class="form-group">
@@ -17,10 +17,10 @@
                     <?php endif; ?>
             </div>
     	    <div class="form-group">
-                <label for="alamat_sekolah">Alamat Sekolah</label>
-                <textarea class="form-control" rows="3" name="alamat_sekolah" id="alamat_sekolah"><?php echo $alamat_sekolah; ?></textarea>
-                    <?php if( form_error('alamat_sekolah') == true ) : ?>
-                      <div class="form-text text-danger"><b><?= form_error('alamat_sekolah') ?></b></div> 
+                <label for="alamat_pembeli">Alamat Pembeli</label>
+                <textarea class="form-control" rows="3" name="alamat_pembeli" id="alamat_pembeli"><?php echo $alamat_pembeli; ?></textarea>
+                    <?php if( form_error('alamat_pembeli') == true ) : ?>
+                      <div class="form-text text-danger"><b><?= form_error('alamat_pembeli') ?></b></div> 
                     <?php endif; ?>
             </div>
     	    <div class="form-group">
@@ -45,7 +45,7 @@
                       <div class="form-text text-danger"><b><?= form_error('no_telpon') ?></b></div> 
                     <?php endif; ?>
             </div>
-    	    <input type="hidden" name="id_sekolah" value="<?php echo $id_sekolah; ?>" /> 
+    	    <input type="hidden" name="id_pembeli" value="<?php echo $id_pembeli; ?>" /> 
     	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
-    	    <a href="<?php echo site_url('sekolah') ?>" class="btn btn-default">Batal</a>
+    	    <a href="<?php echo site_url('pembeli') ?>" class="btn btn-default">Batal</a>
 	   </form>

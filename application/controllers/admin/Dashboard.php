@@ -13,7 +13,7 @@ class Dashboard extends CI_Controller {
 		$this->load->model('Ion_auth_model', 'm');
 		$this->load->model('Kriteria_model', 'km');
 		$this->load->model('Subkriteria_model', 'skm');
-		$this->load->model('Sekolah_model', 'sm');
+		$this->load->model('Pembeli_model', 'sm');
 	}
 
 	public function index()
@@ -31,7 +31,7 @@ class Dashboard extends CI_Controller {
 		else
 		{
 			$data['jumlah_users'] = $this->m->jumlah()->result();
-			$data['jumlah_sekolah'] = $this->sm->get_all();
+			$data['jumlah_pembeli'] = $this->sm->get_all();
 			$data['jumlah_kriteria'] = $this->km->jumlah()->result();
 			$data['jumlah_subkriteria'] = $this->skm->jumlah()->result();
 			$this->template->load('template/backend/dashboard', 'backend/dashboard', $data);

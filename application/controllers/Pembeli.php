@@ -3,12 +3,12 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Sekolah extends CI_Controller
+class Pembeli extends CI_Controller
 {
     function __construct()
     {
         parent::__construct();
-        $this->load->model('Sekolah_model');
+        $this->load->model('Pembeli_model');
         $this->load->library('Form_validation');
         $this->load->library('Ion_auth');
         ceklogin();
@@ -20,48 +20,48 @@ class Sekolah extends CI_Controller
         $start = intval($this->input->get('start'));
         
         if ($q <> '') {
-            $config['base_url'] = base_url() . 'sekolah/?q=' . urlencode($q);
-            $config['first_url'] = base_url() . 'sekolah/?q=' . urlencode($q);
+            $config['base_url'] = base_url() . 'pembeli/?q=' . urlencode($q);
+            $config['first_url'] = base_url() . 'pembeli/?q=' . urlencode($q);
         } else {
-            $config['base_url'] = base_url() . 'sekolah/';
-            $config['first_url'] = base_url() . 'sekolah/';
+            $config['base_url'] = base_url() . 'pembeli/';
+            $config['first_url'] = base_url() . 'pembeli/';
         }
 
         $config['per_page'] = 10;
         $config['page_query_string'] = TRUE;
-        $config['total_rows'] = $this->Sekolah_model->total_rows($q);
-        $sekolah = $this->Sekolah_model->get_limit_data($config['per_page'], $start, $q);
+        $config['total_rows'] = $this->Pembeli_model->total_rows($q);
+        $pembeli = $this->Pembeli_model->get_limit_data($config['per_page'], $start, $q);
 
         $this->load->library('pagination');
         $this->pagination->initialize($config);
 
         $data = array(
-            'sekolah_data' => $sekolah,
+            'pembeli_data' => $pembeli,
             'q' => $q,
             'pagination' => $this->pagination->create_links(),
             'total_rows' => $config['total_rows'],
             'start' => $start,
         );
-        $this->template->load('template/backend/dashboard', 'sekolah/sekolah_list', $data);
+        $this->template->load('template/backend/dashboard', 'pembeli/pembeli_list', $data);
     }
 
     public function read($id) 
     {
-        $row = $this->Sekolah_model->get_by_id($id);
+        $row = $this->Pembeli_model->get_by_id($id);
         if ($row) {
             $data = array(
-		'id_sekolah' => $row->id_sekolah,
-		'nama_sekolah' => $row->nama_sekolah,
+		'id_pembeli' => $row->id_pembeli,
+		'nama_pembeli' => $row->nama_pembeli,
 		'nama_kepsek' => $row->nama_kepsek,
-		'alamat_sekolah' => $row->alamat_sekolah,
+		'alamat_pembeli' => $row->alamat_pembeli,
 		'visi' => $row->visi,
 		'misi' => $row->misi,
 		'no_telpon' => $row->no_telpon,
 	    );
-            $this->template->load('template/backend/dashboard', 'sekolah/sekolah_read', $data);
+            $this->template->load('template/backend/dashboard', 'pembeli/pembeli_read', $data);
         } else {
             $this->session->set_flashdata('gagal', 'Record Not Found');
-            redirect(site_url('sekolah'));
+            redirect(site_url('pembeli'));
         }
     }
 
@@ -69,16 +69,16 @@ class Sekolah extends CI_Controller
     {
         $data = array(
             'button' => 'Tambah Data',
-            'action' => site_url('sekolah/create_action'),
-	    'id_sekolah' => set_value('id_sekolah'),
-	    'nama_sekolah' => set_value('nama_sekolah'),
+            'action' => site_url('pembeli/create_action'),
+	    'id_pembeli' => set_value('id_pembeli'),
+	    'nama_pembeli' => set_value('nama_pembeli'),
 	    'nama_kepsek' => set_value('nama_kepsek'),
-	    'alamat_sekolah' => set_value('alamat_sekolah'),
+	    'alamat_pembeli' => set_value('alamat_pembeli'),
 	    'visi' => set_value('visi'),
 	    'misi' => set_value('misi'),
 	    'no_telpon' => set_value('no_telpon'),
 	);
-        $this->template->load('template/backend/dashboard', 'sekolah/sekolah_form', $data);
+        $this->template->load('template/backend/dashboard', 'pembeli/pembeli_form', $data);
     }
     
     public function create_action() 
@@ -89,40 +89,40 @@ class Sekolah extends CI_Controller
             $this->create();
         } else {
             $data = array(
-		'nama_sekolah' => $this->input->post('nama_sekolah',TRUE),
+		'nama_pembeli' => $this->input->post('nama_pembeli',TRUE),
 		'nama_kepsek' => $this->input->post('nama_kepsek',TRUE),
-		'alamat_sekolah' => $this->input->post('alamat_sekolah',TRUE),
+		'alamat_pembeli' => $this->input->post('alamat_pembeli',TRUE),
 		'visi' => $this->input->post('visi',TRUE),
 		'misi' => $this->input->post('misi',TRUE),
 		'no_telpon' => $this->input->post('no_telpon',TRUE),
 	    );
 
-            $this->Sekolah_model->insert($data);
+            $this->Pembeli_model->insert($data);
             $this->session->set_flashdata('sukses', 'Calon Pembeli Berhasil Ditambahkan');
-            redirect(site_url('sekolah'));
+            redirect(site_url('pembeli'));
         }
     }
     
     public function update($id) 
     {
-        $row = $this->Sekolah_model->get_by_id($id);
+        $row = $this->Pembeli_model->get_by_id($id);
 
         if ($row) {
             $data = array(
                 'button' => 'Edit',
-                'action' => site_url('sekolah/update_action'),
-		'id_sekolah' => set_value('id_sekolah', $row->id_sekolah),
-		'nama_sekolah' => set_value('nama_sekolah', $row->nama_sekolah),
+                'action' => site_url('pembeli/update_action'),
+		'id_pembeli' => set_value('id_pembeli', $row->id_pembeli),
+		'nama_pembeli' => set_value('nama_pembeli', $row->nama_pembeli),
 		'nama_kepsek' => set_value('nama_kepsek', $row->nama_kepsek),
-		'alamat_sekolah' => set_value('alamat_sekolah', $row->alamat_sekolah),
+		'alamat_pembeli' => set_value('alamat_pembeli', $row->alamat_pembeli),
 		'visi' => set_value('visi', $row->visi),
 		'misi' => set_value('misi', $row->misi),
 		'no_telpon' => set_value('no_telpon', $row->no_telpon),
 	    );
-            $this->template->load('template/backend/dashboard', 'sekolah/sekolah_form', $data);
+            $this->template->load('template/backend/dashboard', 'pembeli/pembeli_form', $data);
         } else {
             $this->session->set_flashdata('gagal', 'Data Calon Pembeli Tidak dapat Ditemukan');
-            redirect(site_url('sekolah'));
+            redirect(site_url('pembeli'));
         }
     }
     
@@ -131,55 +131,55 @@ class Sekolah extends CI_Controller
         $this->_rules();
 
         if ($this->form_validation->run() == FALSE) {
-            $this->update($this->input->post('id_sekolah', TRUE));
+            $this->update($this->input->post('id_pembeli', TRUE));
         } else {
             $data = array(
-		'nama_sekolah' => $this->input->post('nama_sekolah',TRUE),
+		'nama_pembeli' => $this->input->post('nama_pembeli',TRUE),
 		'nama_kepsek' => $this->input->post('nama_kepsek',TRUE),
-		'alamat_sekolah' => $this->input->post('alamat_sekolah',TRUE),
+		'alamat_pembeli' => $this->input->post('alamat_pembeli',TRUE),
 		'visi' => $this->input->post('visi',TRUE),
 		'misi' => $this->input->post('misi',TRUE),
 		'no_telpon' => $this->input->post('no_telpon',TRUE),
 	    );
 
-            $this->Sekolah_model->update($this->input->post('id_sekolah', TRUE), $data);
+            $this->Pembeli_model->update($this->input->post('id_pembeli', TRUE), $data);
             $this->session->set_flashdata('sukses', 'Informasi Calon Pembeli Berhasil Diperbarui');
-            redirect(site_url('sekolah'));
+            redirect(site_url('pembeli'));
         }
     }
     
     public function delete($id) 
     {
-        $row = $this->Sekolah_model->get_by_id($id);
+        $row = $this->Pembeli_model->get_by_id($id);
 
         if ($row) {
-            $this->Sekolah_model->delete($id);
+            $this->Pembeli_model->delete($id);
             $this->session->set_flashdata('sukses', 'Data Calon Pembeli Telah Dihapus');
-            redirect(site_url('sekolah'));
+            redirect(site_url('pembeli'));
         } else {
             $this->session->set_flashdata('gagal', 'Data Calon Pembeli Tidak dapat Ditemukan');
-            redirect(site_url('sekolah'));
+            redirect(site_url('pembeli'));
         }
     }
 
     public function _rules() 
     {
-	$this->form_validation->set_rules('nama_sekolah', 'Nama Sekolah', 'trim|required');
+	$this->form_validation->set_rules('nama_pembeli', 'Nama Pembeli', 'trim|required');
 	$this->form_validation->set_rules('nama_kepsek', 'nama kepsek', 'trim|required');
-	$this->form_validation->set_rules('alamat_sekolah', 'alamat sekolah', 'trim|required');
+	$this->form_validation->set_rules('alamat_pembeli', 'alamat pembeli', 'trim|required');
 	$this->form_validation->set_rules('visi', 'visi', 'trim|required');
 	$this->form_validation->set_rules('misi', 'misi', 'trim|required');
 	$this->form_validation->set_rules('no_telpon', 'no telpon', 'trim|required|numeric');
 
-	$this->form_validation->set_rules('id_sekolah', 'id_sekolah', 'trim');
+	$this->form_validation->set_rules('id_pembeli', 'id_pembeli', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
     }
 
     public function excel()
     {
         $this->load->helper('exportexcel');
-        $namaFile = "sekolah.xls";
-        $judul = "sekolah";
+        $namaFile = "pembeli.xls";
+        $judul = "pembeli";
         $tablehead = 0;
         $tablebody = 1;
         $nourut = 1;
@@ -197,21 +197,21 @@ class Sekolah extends CI_Controller
 
         $kolomhead = 0;
         xlsWriteLabel($tablehead, $kolomhead++, "No");
-	xlsWriteLabel($tablehead, $kolomhead++, "Nama Sekolah");
+	xlsWriteLabel($tablehead, $kolomhead++, "Nama Pembeli");
 	xlsWriteLabel($tablehead, $kolomhead++, "Nama Kepsek");
-	xlsWriteLabel($tablehead, $kolomhead++, "Alamat Sekolah");
+	xlsWriteLabel($tablehead, $kolomhead++, "Alamat Pembeli");
 	xlsWriteLabel($tablehead, $kolomhead++, "Visi");
 	xlsWriteLabel($tablehead, $kolomhead++, "Misi");
 	xlsWriteLabel($tablehead, $kolomhead++, "No Telpon");
 
-	foreach ($this->Sekolah_model->get_all() as $data) {
+	foreach ($this->Pembeli_model->get_all() as $data) {
             $kolombody = 0;
 
             //ubah xlsWriteLabel menjadi xlsWriteNumber untuk kolom numeric
             xlsWriteNumber($tablebody, $kolombody++, $nourut);
-	    xlsWriteLabel($tablebody, $kolombody++, $data->nama_sekolah);
+	    xlsWriteLabel($tablebody, $kolombody++, $data->nama_pembeli);
 	    xlsWriteLabel($tablebody, $kolombody++, $data->nama_kepsek);
-	    xlsWriteLabel($tablebody, $kolombody++, $data->alamat_sekolah);
+	    xlsWriteLabel($tablebody, $kolombody++, $data->alamat_pembeli);
 	    xlsWriteLabel($tablebody, $kolombody++, $data->visi);
 	    xlsWriteLabel($tablebody, $kolombody++, $data->misi);
 	    xlsWriteLabel($tablebody, $kolombody++, $data->no_telpon);
@@ -226,8 +226,8 @@ class Sekolah extends CI_Controller
 
 }
 
-/* End of file Sekolah.php */
-/* Location: ./application/controllers/Sekolah.php */
+/* End of file Pembeli.php */
+/* Location: ./application/controllers/Pembeli.php */
 /* Please DO NOT modify this information : */
 /* Generated by Harviacode Codeigniter CRUD Generator 2017-07-23 05:12:40 */
 /* http://harviacode.com */

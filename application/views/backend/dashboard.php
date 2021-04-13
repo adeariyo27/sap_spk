@@ -36,7 +36,7 @@
 	        	
 	        		<div class="tile-stats tile-aqua">
 	        			<div class="icon"><i class="entypo-suitcase"></i></div>
-	        			<div class="num" data-start="0" data-end=" <?php echo count($jumlah_sekolah) ?> " data-postfix="" data-duration="1500" data-delay="1200">0</div>
+	        			<div class="num" data-start="0" data-end=" <?php echo count($jumlah_pembeli) ?> " data-postfix="" data-duration="1500" data-delay="1200">0</div>
 	        			
 	        			<h3>Jumlah Calon Pembeli</h3>
 	        		</div>

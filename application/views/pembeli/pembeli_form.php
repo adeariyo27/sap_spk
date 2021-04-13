@@ -1,7 +1,7 @@
 
         <h2 style="margin-top:0px"><?php echo $button ?> Calon Pembeli</h2>
         <br>
-        <form action="<?php echo $action; ?>" method="post">
+        <?php echo form_open_multipart($action); ?>
     	    <div class="form-group">
                 <label for="varchar">Nama Pembeli</label>
                 <input type="input-group minimal" class="form-control" name="nama_pembeli" id="nama_pembeli" value="<?php echo $nama_pembeli; ?>" />
@@ -45,7 +45,14 @@
                       <div class="form-text text-danger"><b><?= form_error('no_telpon') ?></b></div> 
                     <?php endif; ?>
             </div>
+    	    <div class="form-group">
+                <label for="varchar">Upload KTP</label>
+                <input type="file" class="form-control" name="ktp" id="ktp" value="" />
+                    <?php if( form_error('ktp') == true ) : ?>
+                      <div class="form-text text-danger"><b><?= form_error('ktp') ?></b></div> 
+                    <?php endif; ?>
+            </div>
     	    <input type="hidden" name="id_pembeli" value="<?php echo $id_pembeli; ?>" /> 
     	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
     	    <a href="<?php echo site_url('pembeli') ?>" class="btn btn-default">Batal</a>
-	   </form>
+	   <?php echo  form_close(); ?>

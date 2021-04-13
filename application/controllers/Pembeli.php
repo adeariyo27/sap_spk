@@ -65,6 +65,25 @@ class Pembeli extends CI_Controller
         }
     }
 
+    public function uploadFile()
+    {
+        $config['upload_path']          = base_url() . 'assets/images/';
+        $config['allowed_types']        = 'jpeg|jpg|png';
+        $config['file_name']            = $this->id_pembeli;
+        $config['overwrite']			= true;
+        $config['max_size']             = 5120; // 1MB
+        // $config['max_width']            = 1024;
+        // $config['max_height']           = 768;
+
+        $this->load->library('upload', $config);
+
+        if ($this->upload->do_upload('ktp')) {
+            return $this->upload->data("file_name");
+        }
+        
+        return "default.jpg";
+    }
+
     public function create() 
     {
         $data = array(
@@ -77,6 +96,7 @@ class Pembeli extends CI_Controller
 	    'visi' => set_value('visi'),
 	    'misi' => set_value('misi'),
 	    'no_telpon' => set_value('no_telpon'),
+	    'ktp' => set_value('ktp'),
 	);
         $this->template->load('template/backend/dashboard', 'pembeli/pembeli_form', $data);
     }
@@ -95,6 +115,7 @@ class Pembeli extends CI_Controller
 		'visi' => $this->input->post('visi',TRUE),
 		'misi' => $this->input->post('misi',TRUE),
 		'no_telpon' => $this->input->post('no_telpon',TRUE),
+		'ktp' => $this->uploadFile(),
 	    );
 
             $this->Pembeli_model->insert($data);

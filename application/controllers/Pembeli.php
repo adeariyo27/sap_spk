@@ -50,14 +50,16 @@ class Pembeli extends CI_Controller
         $row = $this->Pembeli_model->get_by_id($id);
         if ($row) {
             $data = array(
-		'id_pembeli' => $row->id_pembeli,
-		'nama_pembeli' => $row->nama_pembeli,
-		'nama_kepsek' => $row->nama_kepsek,
-		'alamat_pembeli' => $row->alamat_pembeli,
-		'visi' => $row->visi,
-		'misi' => $row->misi,
-		'no_telpon' => $row->no_telpon,
-	    );
+                'id_pembeli' => $row->id_pembeli,
+                'nama_pembeli' => $row->nama_pembeli,
+                'nama_kepsek' => $row->nama_kepsek,
+                'alamat_pembeli' => $row->alamat_pembeli,
+                'visi' => $row->visi,
+                'misi' => $row->misi,
+                'ktp' => $row->ktp,
+                'no_telpon' => $row->no_telpon,
+	        );
+
             $this->template->load('template/backend/dashboard', 'pembeli/pembeli_read', $data);
         } else {
             $this->session->set_flashdata('gagal', 'Record Not Found');
@@ -65,58 +67,57 @@ class Pembeli extends CI_Controller
         }
     }
 
-    public function uploadFile()
+    public function uploadFile($file)
     {
-        $config['upload_path']          = base_url() . 'assets/images/';
+        $filename = str_replace(' ', '_',$path = $file['ktp']['name']);
+        $config['upload_path']          = './uploads/pembeli/';
         $config['allowed_types']        = 'jpeg|jpg|png';
-        $config['file_name']            = $this->id_pembeli;
+        $config['file_name']            = $filename;
         $config['overwrite']			= true;
-        $config['max_size']             = 5120; // 1MB
-        // $config['max_width']            = 1024;
-        // $config['max_height']           = 768;
+        $config['max_size']             = 5120; // 1MB #ukuran maksimal gambar
 
-        $this->load->library('upload', $config);
-
-        if ($this->upload->do_upload('ktp')) {
-            return $this->upload->data("file_name");
+        $this->upload->initialize($config);
+        if ( ! $this->upload->do_upload('ktp')){
+            // $error = array('error' => $this->upload->display_errors());
+           return 'default.png';
         }
-        
-        return "default.jpg";
+
+        return $filename;
     }
 
     public function create() 
     {
         $data = array(
             'button' => 'Tambah Data',
-            'action' => site_url('pembeli/create_action'),
-	    'id_pembeli' => set_value('id_pembeli'),
-	    'nama_pembeli' => set_value('nama_pembeli'),
-	    'nama_kepsek' => set_value('nama_kepsek'),
-	    'alamat_pembeli' => set_value('alamat_pembeli'),
-	    'visi' => set_value('visi'),
-	    'misi' => set_value('misi'),
-	    'no_telpon' => set_value('no_telpon'),
-	    'ktp' => set_value('ktp'),
-	);
+                'action' => site_url('pembeli/create_action'),
+                'id_pembeli' => set_value('id_pembeli'),
+                'nama_pembeli' => set_value('nama_pembeli'),
+                'nama_kepsek' => set_value('nama_kepsek'),
+                'alamat_pembeli' => set_value('alamat_pembeli'),
+                'visi' => set_value('visi'),
+                'misi' => set_value('misi'),
+                'no_telpon' => set_value('no_telpon'),
+                'ktp' => set_value('ktp'),
+            );
         $this->template->load('template/backend/dashboard', 'pembeli/pembeli_form', $data);
     }
     
     public function create_action() 
     {
         $this->_rules();
-
         if ($this->form_validation->run() == FALSE) {
             $this->create();
         } else {
+            $upload = $this->uploadFile($_FILES);
             $data = array(
-		'nama_pembeli' => $this->input->post('nama_pembeli',TRUE),
-		'nama_kepsek' => $this->input->post('nama_kepsek',TRUE),
-		'alamat_pembeli' => $this->input->post('alamat_pembeli',TRUE),
-		'visi' => $this->input->post('visi',TRUE),
-		'misi' => $this->input->post('misi',TRUE),
-		'no_telpon' => $this->input->post('no_telpon',TRUE),
-		'ktp' => $this->uploadFile(),
-	    );
+                'nama_pembeli' => $this->input->post('nama_pembeli',TRUE),
+                'nama_kepsek' => $this->input->post('nama_kepsek',TRUE),
+                'alamat_pembeli' => $this->input->post('alamat_pembeli',TRUE),
+                'visi' => $this->input->post('visi',TRUE),
+                'misi' => $this->input->post('misi',TRUE),
+                'no_telpon' => $this->input->post('no_telpon',TRUE),
+                'ktp' => $upload,
+            );
 
             $this->Pembeli_model->insert($data);
             $this->session->set_flashdata('sukses', 'Calon Pembeli Berhasil Ditambahkan');
@@ -132,14 +133,14 @@ class Pembeli extends CI_Controller
             $data = array(
                 'button' => 'Edit',
                 'action' => site_url('pembeli/update_action'),
-		'id_pembeli' => set_value('id_pembeli', $row->id_pembeli),
-		'nama_pembeli' => set_value('nama_pembeli', $row->nama_pembeli),
-		'nama_kepsek' => set_value('nama_kepsek', $row->nama_kepsek),
-		'alamat_pembeli' => set_value('alamat_pembeli', $row->alamat_pembeli),
-		'visi' => set_value('visi', $row->visi),
-		'misi' => set_value('misi', $row->misi),
-		'no_telpon' => set_value('no_telpon', $row->no_telpon),
-	    );
+                'id_pembeli' => set_value('id_pembeli', $row->id_pembeli),
+                'nama_pembeli' => set_value('nama_pembeli', $row->nama_pembeli),
+                'nama_kepsek' => set_value('nama_kepsek', $row->nama_kepsek),
+                'alamat_pembeli' => set_value('alamat_pembeli', $row->alamat_pembeli),
+                'visi' => set_value('visi', $row->visi),
+                'misi' => set_value('misi', $row->misi),
+                'no_telpon' => set_value('no_telpon', $row->no_telpon),
+            );
             $this->template->load('template/backend/dashboard', 'pembeli/pembeli_form', $data);
         } else {
             $this->session->set_flashdata('gagal', 'Data Calon Pembeli Tidak dapat Ditemukan');
@@ -155,13 +156,13 @@ class Pembeli extends CI_Controller
             $this->update($this->input->post('id_pembeli', TRUE));
         } else {
             $data = array(
-		'nama_pembeli' => $this->input->post('nama_pembeli',TRUE),
-		'nama_kepsek' => $this->input->post('nama_kepsek',TRUE),
-		'alamat_pembeli' => $this->input->post('alamat_pembeli',TRUE),
-		'visi' => $this->input->post('visi',TRUE),
-		'misi' => $this->input->post('misi',TRUE),
-		'no_telpon' => $this->input->post('no_telpon',TRUE),
-	    );
+                'nama_pembeli' => $this->input->post('nama_pembeli',TRUE),
+                'nama_kepsek' => $this->input->post('nama_kepsek',TRUE),
+                'alamat_pembeli' => $this->input->post('alamat_pembeli',TRUE),
+                'visi' => $this->input->post('visi',TRUE),
+                'misi' => $this->input->post('misi',TRUE),
+                'no_telpon' => $this->input->post('no_telpon',TRUE),
+	        );
 
             $this->Pembeli_model->update($this->input->post('id_pembeli', TRUE), $data);
             $this->session->set_flashdata('sukses', 'Informasi Calon Pembeli Berhasil Diperbarui');
@@ -218,32 +219,32 @@ class Pembeli extends CI_Controller
 
         $kolomhead = 0;
         xlsWriteLabel($tablehead, $kolomhead++, "No");
-	xlsWriteLabel($tablehead, $kolomhead++, "Nama Pembeli");
-	xlsWriteLabel($tablehead, $kolomhead++, "Nama Kepsek");
-	xlsWriteLabel($tablehead, $kolomhead++, "Alamat Pembeli");
-	xlsWriteLabel($tablehead, $kolomhead++, "Visi");
-	xlsWriteLabel($tablehead, $kolomhead++, "Misi");
-	xlsWriteLabel($tablehead, $kolomhead++, "No Telpon");
+        xlsWriteLabel($tablehead, $kolomhead++, "Nama Pembeli");
+        xlsWriteLabel($tablehead, $kolomhead++, "Nama Kepsek");
+        xlsWriteLabel($tablehead, $kolomhead++, "Alamat Pembeli");
+        xlsWriteLabel($tablehead, $kolomhead++, "Visi");
+        xlsWriteLabel($tablehead, $kolomhead++, "Misi");
+        xlsWriteLabel($tablehead, $kolomhead++, "No Telpon");
 
-	foreach ($this->Pembeli_model->get_all() as $data) {
-            $kolombody = 0;
+        foreach ($this->Pembeli_model->get_all() as $data) {
+                $kolombody = 0;
 
-            //ubah xlsWriteLabel menjadi xlsWriteNumber untuk kolom numeric
-            xlsWriteNumber($tablebody, $kolombody++, $nourut);
-	    xlsWriteLabel($tablebody, $kolombody++, $data->nama_pembeli);
-	    xlsWriteLabel($tablebody, $kolombody++, $data->nama_kepsek);
-	    xlsWriteLabel($tablebody, $kolombody++, $data->alamat_pembeli);
-	    xlsWriteLabel($tablebody, $kolombody++, $data->visi);
-	    xlsWriteLabel($tablebody, $kolombody++, $data->misi);
-	    xlsWriteLabel($tablebody, $kolombody++, $data->no_telpon);
+                //ubah xlsWriteLabel menjadi xlsWriteNumber untuk kolom numeric
+                xlsWriteNumber($tablebody, $kolombody++, $nourut);
+            xlsWriteLabel($tablebody, $kolombody++, $data->nama_pembeli);
+            xlsWriteLabel($tablebody, $kolombody++, $data->nama_kepsek);
+            xlsWriteLabel($tablebody, $kolombody++, $data->alamat_pembeli);
+            xlsWriteLabel($tablebody, $kolombody++, $data->visi);
+            xlsWriteLabel($tablebody, $kolombody++, $data->misi);
+            xlsWriteLabel($tablebody, $kolombody++, $data->no_telpon);
 
-	    $tablebody++;
-            $nourut++;
+            $tablebody++;
+                $nourut++;
+            }
+
+            xlsEOF();
+            exit();
         }
-
-        xlsEOF();
-        exit();
-    }
 
 }
 

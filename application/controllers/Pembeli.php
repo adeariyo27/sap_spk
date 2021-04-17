@@ -67,10 +67,10 @@ class Pembeli extends CI_Controller
         }
     }
 
-    public function uploadFile($file)
+    public function uploadFile($file, $attributeName,$folder)
     {
-        $filename = str_replace(' ', '_',$path = $file['ktp']['name']);
-        $config['upload_path']          = './uploads/pembeli/';
+        $filename = str_replace(' ', '_', $file[$attributeName]['name']);
+        $config['upload_path']          = $folder;
         $config['allowed_types']        = 'jpeg|jpg|png';
         $config['file_name']            = $filename;
         $config['overwrite']			= true;
@@ -108,7 +108,12 @@ class Pembeli extends CI_Controller
         if ($this->form_validation->run() == FALSE) {
             $this->create();
         } else {
-            $upload = $this->uploadFile($_FILES);
+            // start upload file
+            $attribute = 'ktp'; #nama attribute input form (representasi dari nama tabel di db)
+            $folder = './uploads/pembeli/';
+            $upload = $this->uploadFile($_FILES, $attribute, $folder);
+            // end upload file
+
             $data = array(
                 'nama_pembeli' => $this->input->post('nama_pembeli',TRUE),
                 'nama_kepsek' => $this->input->post('nama_kepsek',TRUE),

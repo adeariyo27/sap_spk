@@ -77,7 +77,7 @@ class Pembeli extends CI_Controller
         $config['max_size']             = 5120; // 1MB #ukuran maksimal gambar
 
         $this->upload->initialize($config);
-        if ( ! $this->upload->do_upload('ktp')){
+        if ( ! $this->upload->do_upload($attributeName)){
             // $error = array('error' => $this->upload->display_errors());
            return 'default.png';
         }

@@ -5,6 +5,8 @@ if (!defined('BASEPATH'))
 
 class Pembeli extends CI_Controller
 {
+    public $namaFile;
+
     function __construct()
     {
         parent::__construct();
@@ -78,11 +80,12 @@ class Pembeli extends CI_Controller
 
         $this->upload->initialize($config);
         if ( ! $this->upload->do_upload($attributeName)){
-            // $error = array('error' => $this->upload->display_errors());
-           return 'default.png';
+           $this->session->set_flashdata('gagal', $this->upload->display_errors());
+           return false;
         }
 
-        return $filename;
+        $this->namaFile = $filename;
+        return true;
     }
 
     public function create() 
@@ -114,6 +117,8 @@ class Pembeli extends CI_Controller
             $upload = $this->uploadFile($_FILES, $attribute, $folder);
             // end upload file
 
+            if ($upload == false)  return redirect(site_url('pembeli'));
+
             $data = array(
                 'nama_pembeli' => $this->input->post('nama_pembeli',TRUE),
                 'nama_kepsek' => $this->input->post('nama_kepsek',TRUE),
@@ -121,7 +126,7 @@ class Pembeli extends CI_Controller
                 'visi' => $this->input->post('visi',TRUE),
                 'misi' => $this->input->post('misi',TRUE),
                 'no_telpon' => $this->input->post('no_telpon',TRUE),
-                'ktp' => $upload,
+                'ktp' => $this->namaFile,
             );
 
             $this->Pembeli_model->insert($data);
@@ -160,14 +165,34 @@ class Pembeli extends CI_Controller
         if ($this->form_validation->run() == FALSE) {
             $this->update($this->input->post('id_pembeli', TRUE));
         } else {
-            $data = array(
-                'nama_pembeli' => $this->input->post('nama_pembeli',TRUE),
-                'nama_kepsek' => $this->input->post('nama_kepsek',TRUE),
-                'alamat_pembeli' => $this->input->post('alamat_pembeli',TRUE),
-                'visi' => $this->input->post('visi',TRUE),
-                'misi' => $this->input->post('misi',TRUE),
-                'no_telpon' => $this->input->post('no_telpon',TRUE),
-	        );
+            if (!empty($_FILES['ktp']['name'])) {
+                // start upload file
+                $attribute = 'ktp'; #nama attribute input form (representasi dari nama tabel di db)
+                $folder = './uploads/pembeli/';
+                $upload = $this->uploadFile($_FILES, $attribute, $folder);
+                // end upload file
+
+                if ($upload == false)  return redirect(site_url('pembeli'));
+
+                $data = array(
+                    'nama_pembeli' => $this->input->post('nama_pembeli',TRUE),
+                    'nama_kepsek' => $this->input->post('nama_kepsek',TRUE),
+                    'alamat_pembeli' => $this->input->post('alamat_pembeli',TRUE),
+                    'visi' => $this->input->post('visi',TRUE),
+                    'misi' => $this->input->post('misi',TRUE),
+                    'no_telpon' => $this->input->post('no_telpon',TRUE),
+                    'ktp' => $this->namaFile,
+                );
+            } else {
+                $data = array(
+                    'nama_pembeli' => $this->input->post('nama_pembeli',TRUE),
+                    'nama_kepsek' => $this->input->post('nama_kepsek',TRUE),
+                    'alamat_pembeli' => $this->input->post('alamat_pembeli',TRUE),
+                    'visi' => $this->input->post('visi',TRUE),
+                    'misi' => $this->input->post('misi',TRUE),
+                    'no_telpon' => $this->input->post('no_telpon',TRUE),
+                );
+            }
 
             $this->Pembeli_model->update($this->input->post('id_pembeli', TRUE), $data);
             $this->session->set_flashdata('sukses', 'Informasi Calon Pembeli Berhasil Diperbarui');

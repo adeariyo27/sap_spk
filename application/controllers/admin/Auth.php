@@ -868,7 +868,7 @@ class Auth extends CI_Controller {
 			'id'      => 'group_name',
 			'type'    => 'text',
 			'class' => 'form-control',
-			'placeholder' => 'Nama Grup',
+			'placeholder' => 'Nama User Level',
 			'value'   => $this->form_validation->set_value('group_name', $group->name),
 			$readonly => $readonly,
 		);
@@ -877,7 +877,7 @@ class Auth extends CI_Controller {
 			'id'    => 'description',
 			'type'  => 'text',
 			'class' => 'form-control',
-			'placeholder' => 'Deskripsi Grup',
+			'placeholder' => 'Deskripsi',
 			'value' => $this->form_validation->set_value('description', $group->description),
 		);
 		$this->template->load('template/backend/dashboard', 'auth/edit_group', $this->data);

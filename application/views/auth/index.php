@@ -14,12 +14,12 @@
 			<div id="infoMessage"><?php echo $message;?></div>
 			<thead>
 				<tr>
-					<th width="3%">No</th>
+					<th width="3.5%">No</th>
 					<th>Nama</th>
 					<th>Email</th>
-					<th>Level</th>
-					<th>Status</th>
-					<th width="15%">Aksi</th>
+					<th width="20%">Level</th>
+					<th width="6%"><center>Status</center></th>
+					<th width="20%"><center>Aksi</center></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -35,13 +35,17 @@
 							<?php echo anchor('admin/auth/edit_group/'.$group->id, htmlspecialchars($group->name,ENT_QUOTES,'UTF-8'), array('class'=>'badge badge-primary badge-roundless')) ;?>
                 		<?php endforeach?>
 		            </td>
-		            <td><?php echo ($user->active) ? anchor("admin/auth/deactivate/".$user->id, lang('index_active_link'), array('class'=>'badge badge-success badge-roundless')) : anchor("admin/auth/activate/". $user->id, lang('index_inactive_link'), array('class'=>'badge badge-secondary badge-roundless'));?></td>
+		           	<td>
+					   <center>
+					   <?php echo ($user->active) ? anchor("admin/auth/deactivate/".$user->id, lang('index_active_link'), array('class'=>'badge badge-success badge-roundless')) : anchor("admin/auth/activate/". $user->id, lang('index_inactive_link'), array('class'=>'badge badge-secondary badge-roundless'));?>
+					   </center>
+					</td>
 					<td>
-						<?php echo anchor('admin/auth/edit_user/'.$user->id, '<i class="entypo-pencil"></i>
-					<span>Edit</span>', array('class'=>'btn btn-default')) ?>
+						<center>
+						<?php echo anchor('admin/auth/edit_user/'.$user->id, '<i class="entypo-pencil"></i><span>Edit</span>', array('class'=>'btn btn-default')) ?>
 						<?php echo ' | ';  ?>
-					 	<?php echo anchor('auth/delete_user/'.$user->id, '<i class="entypo-trash"></i>
-					<span>Hapus</span>', array('class'=>'btn btn-danger btn-sm', 'onclick'=>'javasciprt: return confirm(\'Yakin Menghapus User?\')'))  ?>
+					 	<?php echo anchor('auth/delete_user/'.$user->id, '<i class="entypo-trash"></i><span>Hapus</span>', array('class'=>'btn btn-danger btn-sm', 'onclick'=>'javasciprt: return confirm(\'Yakin Menghapus User?\')'))  ?>
+						</center>
 					</td>
 				</tr>
 			<?php endforeach ?>

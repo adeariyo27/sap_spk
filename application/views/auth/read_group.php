@@ -14,10 +14,10 @@
 			<div id="infoMessage"><?php echo $message;?></div>
 			<thead>
 				<tr>
-					<th width="5%">No</th>
-					<th width="25%">Nama User Level</th>
-					<th>Deskripsi</th>
-					<th width="15%">Aksi</th>
+					<th width="3.5%">No</th>
+					<th width="30%">Nama User Level</th>
+					<th >Deskripsi</th>
+					<th width="20%"><center>Aksi</center></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -29,11 +29,11 @@
 					<td><?php echo htmlspecialchars($groups->name,ENT_QUOTES,'UTF-8');?></td>
 		            <td><?php echo htmlspecialchars($groups->description,ENT_QUOTES,'UTF-8');?></td>
 					<td>
-						<?php echo anchor('admin/auth/edit_group/'.$groups->id, '<i class="entypo-pencil"></i>
-					<span>Edit</span>', array('class'=>'btn btn-default')) ?>
+						<center>
+						<?php echo anchor('admin/auth/edit_group/'.$groups->id, '<i class="entypo-pencil"></i><span>Edit</span>', array('class'=>'btn btn-default')) ?>
 						<?php echo ' | ';  ?>
-					 	<?php echo anchor('admin/auth/delete_group/'.$groups->id, '<i class="entypo-trash"></i>
-					<span>Hapus</span>', array('class'=>'btn btn-danger btn-sm', 'onclick'=>'javasciprt: return confirm(\'Yakin Menghapus User Level?\')'))  ?>
+					 	<?php echo anchor('admin/auth/delete_group/'.$groups->id, '<i class="entypo-trash"></i><span>Hapus</span>', array('class'=>'btn btn-danger btn-sm', 'onclick'=>'javasciprt: return confirm(\'Yakin Menghapus User Level?\')'))  ?>
+						 </center>
 					</td>
 				</tr>
 			<?php endforeach ?>

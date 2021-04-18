@@ -45,10 +45,10 @@
         <table class="table table-bordered responsive" style="margin-bottom: 10px">
             <thead>
                 <tr>
-                    <th>No</th>
+                    <th width="3.5%">No</th>
                     <th>Nama Pembeli</th>
-                    <th>Alamat Pembeli</th>
-                    <th>Aksi</th>
+                    <th width="50%">Alamat Pembeli</th>
+                    <th width="25%"><center>Aksi</center></th>
                         </tr><?php
                         foreach ($pembeli_data as $pembeli)
                         {
@@ -60,7 +60,8 @@
                     <td width="3%"><?php echo ++$start ?></td>
                     <td><?php echo $pembeli->nama_pembeli ?></td>
                     <td><?php echo $pembeli->alamat_pembeli ?></td>
-                    <td width="23%"style="text-align:center" width="200px">
+                    <td width="25%"style="text-align:center" width="200px">
+                        <center>
                         <?php 
                         echo anchor(site_url('pembeli/read/'.$pembeli->id_pembeli),'<i class="entypo-eye"></i>
                         <span>Detail</span>', array('class'=>'btn btn-primary btn-sm')); 
@@ -71,6 +72,7 @@
                         echo anchor(site_url('pembeli/delete/'.$pembeli->id_pembeli),'<i class="entypo-trash"></i>
                         <span>Hapus</span>',array('class'=>'btn btn-danger btn-sm', 'onclick'=>'javasciprt: return confirm(\'Yakin Menghapus User?\')'));
                         ?>
+                        </center>
                     </td>
                 </tr>
                 <?php

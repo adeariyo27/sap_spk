@@ -477,6 +477,22 @@ class Ion_auth
 
 		return $this->in_group($admin_group, $id);
 	}
+	public function is_operator($id=false)
+	{
+		$this->ion_auth_model->trigger_events('is_operator');
+
+		$operator_group = $this->config->item('operator_group', 'ion_auth');
+
+		return $this->in_group($operator_group, $id);
+	}
+	public function is_member($id=false)
+	{
+		$this->ion_auth_model->trigger_events('is_member');
+
+		$default_group = $this->config->item('default_group', 'ion_auth');
+
+		return $this->in_group($default_group, $id);
+	}
 
 	/**
 	 * in_group

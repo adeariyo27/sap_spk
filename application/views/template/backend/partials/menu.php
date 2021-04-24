@@ -24,6 +24,7 @@
 			<!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
 			<li><a href=" <?php echo base_url() ?> " target="_blank"><i class="entypo-monitor"></i><span>Halaman Depan</span></a></li>
 			<li <?php if($page=="Dashboard") echo 'class="active opened active" '; ?> ><?= anchor('admin/Dashboard','<i class=entypo-home></i><span> Dashboard</span>'); ?></li>
+			
 			<li <?php if($pag =="Kriteria" || $pag =="kriteria" || $pag =="Subkriteria" || $pag =="subkriteria") echo 'class="active opened active multiple-expanded" '; ?>>
 				<a href="ui-panels.html">
 					<i class="entypo-layout"></i>
@@ -34,7 +35,9 @@
 					<li <?php if($pag=="Subkriteria" || $pag=="subkriteria") echo 'class="active opened active multiple-expanded" '; ?>><?= anchor('Subkriteria','<span class=entypo-menu> Subkriteria</span>'); ?></li>
 				</ul>
 			</li>
+			
 			<li <?php if($pag=="pembeli" || $pag=="Pembeli") echo 'class="active opened active" '; ?>><?= anchor('Pembeli','<i class=entypo-clipboard></i><span> Calon Pembeli</span>'); ?></li>
+			
 			<li <?php if($pag=="Alternatif" || $pag=="alternatif" || $page=="Banding" || $page=="banding" || $page=="Hasil" || $page=="hasil") echo 'class="active opened active multiple-expanded" '; ?>>
 				<a href="ui-panels.html">
 					<i class="entypo-book"></i>
@@ -46,6 +49,8 @@
 					<li <?php if($page=="hasil" || $page=="Hasil") echo 'class="active opened active multiple-expanded" '; ?>><?= anchor('Perbandingan/hasil','<span class=entypo-chart-bar> Hasil Perhitungan</span>'); ?></li>
 				</ul>
 			</li>
+			
+			<?php if ($this->ion_auth->is_admin()) { ?>
 			<li <?php if($page=="Auth" ||$page=="auth") echo 'class="active opened active multiple-expanded" '; ?>>
 				<a href="ui-panels.html">
 					<i class="entypo-tools"></i>
@@ -56,7 +61,11 @@
 					<li <?php if($page=="Auth" || $page=="auth") echo 'class="active opened active multiple-expanded" '; ?>><?= anchor('admin/auth/read_group','<span class=entypo-user-add> User Level</span>'); ?></li>
 				</ul>
 			</li>
+			<?php } ?>
+			
+			<?php if ($this->ion_auth->is_admin()) { ?>
 			<li><a href="javascript:;" onclick="jQuery('#modal-1').modal('show');"><i class="entypo-help"></i><span> Tentang</span></a></li>
+			<?php } ?>
 		</ul>
 
 	</div>

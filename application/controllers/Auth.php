@@ -7,7 +7,7 @@ class Auth extends CI_Controller {
 		parent::__construct();
 		$this->load->database();
 		$this->load->model('Ion_auth_model', 'm');
-		$this->load->library(array('Ion_auth','Form_validation'));
+		$this->load->library(array('Ion_auth','form_validation'));
 		$this->load->helper(array('url','language'));
 
 		$this->form_validation->set_error_delimiters($this->config->item('error_start_delimiter', 'ion_auth'), $this->config->item('error_end_delimiter', 'ion_auth'));
@@ -18,6 +18,7 @@ class Auth extends CI_Controller {
 	// redirect if needed, otherwise display the user list
 	public function index()
 	{
+
 		if (!$this->ion_auth->logged_in())
 		{
 			// redirect them to the login page
@@ -26,7 +27,7 @@ class Auth extends CI_Controller {
 		elseif (!$this->ion_auth->is_admin()) // remove this elseif if you want to enable this for non-admins
 		{
 			// redirect them to the home page because they must be an administrator to view this
-			return show_error('You must be an administrator to view this page.');
+			return show_error('Hanya Administrator yang bisa akses halaman ini');
 		}
 		else
 		{
@@ -98,7 +99,7 @@ class Auth extends CI_Controller {
 				$this->data['sub'] = array(
 					'class' => 'entypo-login',
 				);
-				$this->template->load('template/auth', 'auth/login', $this->data);
+				$this->template->load('template/auth', 'Auth/login', $this->data);
 				// $this->_render_page('auth/login', $this->data);
 			}
 		}
@@ -106,7 +107,7 @@ class Auth extends CI_Controller {
 		{
 			redirect('admin/Dashboard','refresh');
 		}
-
+		
 	}
 
 	// log the user out
@@ -185,7 +186,7 @@ class Auth extends CI_Controller {
 			else
 			{
 				$this->session->set_flashdata('message', $this->ion_auth->errors());
-				redirect('auth/change_password', 'refresh');
+				redirect('Auth/change_password', 'refresh');
 			}
 		}
 	}
@@ -254,7 +255,7 @@ class Auth extends CI_Controller {
 			{
 				// if there were no errors
 				$this->session->set_flashdata('message', $this->ion_auth->messages());
-				redirect("admin/uth/login", 'refresh'); //we should display a confirmation page here instead of the login page
+				redirect("admin/Auth/login", 'refresh'); //we should display a confirmation page here instead of the login page
 			}
 			else
 			{
@@ -361,7 +362,7 @@ class Auth extends CI_Controller {
 		if (!$this->ion_auth->logged_in() || !$this->ion_auth->is_admin())
 		{
 			// redirect them to the home page because they must be an administrator to view this
-			return show_error('You must be an administrator to view this page.');
+			return show_error('Hanya Administrator yang bisa akses halaman ini');
 		}
 
 		$id = (int) $id;
@@ -410,7 +411,7 @@ class Auth extends CI_Controller {
 		if (!$this->ion_auth->logged_in() || !$this->ion_auth->is_admin())
 		{
 			// redirect them to the home page because they must be an administrator to view this
-			return show_error('You must be an administrator to view this page.');
+			return show_error('Hanya Administrator yang bisa akses halaman ini');
 		}
 
 		$id = (int) $id;
@@ -425,6 +426,7 @@ class Auth extends CI_Controller {
 			$this->data['csrf'] = $this->_get_csrf_nonce();
 			$this->data['user'] = $this->ion_auth->user($id)->row();
 
+			$this->session->set_flashdata('message', $this->ion_auth->errors());
 			$this->template->load('template/backend/dashboard', 'auth/deactivate_user', $this->data);
 			//$this->_render_page('auth/deactivate_user', $this->data);
 		}
@@ -447,6 +449,7 @@ class Auth extends CI_Controller {
 			}
 
 			// redirect them back to the auth page
+			$this->session->set_flashdata('message', $this->ion_auth->messages());
 			redirect('admin/Auth', 'refresh');
 		}
 	}
@@ -477,8 +480,8 @@ class Auth extends CI_Controller {
         {
             $this->form_validation->set_rules('email', $this->lang->line('create_user_validation_email_label'), 'required|valid_email|is_unique[' . $tables['users'] . '.email]');
         }
-        $this->form_validation->set_rules('phone', $this->lang->line('create_user_validation_phone_label'), 'trim');
-        $this->form_validation->set_rules('company', $this->lang->line('create_user_validation_company_label'), 'trim');
+        $this->form_validation->set_rules('phone', $this->lang->line('create_user_validation_phone_label'), 'required|numeric|trim');
+        $this->form_validation->set_rules('company', $this->lang->line('create_user_validation_company_label'), 'required|trim');
         $this->form_validation->set_rules('password', $this->lang->line('create_user_validation_password_label'), 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']|matches[password_confirm]');
         $this->form_validation->set_rules('password_confirm', $this->lang->line('create_user_validation_password_confirm_label'), 'required');
 
@@ -553,7 +556,7 @@ class Auth extends CI_Controller {
                 'id'    => 'phone',
                 'type'  => 'text',
                 'class' => 'form-control',
-                'placeholder' => 'No.Telpo/HP',
+                'placeholder' => 'No. Handphone',
                 'value' => $this->form_validation->set_value('phone'),
             );
             $this->data['password'] = array(
@@ -746,7 +749,7 @@ class Auth extends CI_Controller {
 		elseif (!$this->ion_auth->is_admin()) // remove this elseif if you want to enable this for non-admins
 		{
 			// redirect them to the home page because they must be an administrator to view this
-			return show_error('You must be an administrator to view this page.');
+			return show_error('Hanya Administrator yang bisa akses halaman ini');
 		}
 		else
 		{
@@ -767,7 +770,7 @@ class Auth extends CI_Controller {
 
 		if (!$this->ion_auth->logged_in() || !$this->ion_auth->is_admin())
 		{
-			redirect('admin/Auth', 'refresh');
+			redirect('admin/auth/read_group', 'refresh');
 		}
 
 		// validate form input
@@ -782,7 +785,7 @@ class Auth extends CI_Controller {
 				// check to see if we are creating the group
 				// redirect them back to the admin page
 				$this->session->set_flashdata('message', $this->ion_auth->messages());
-				redirect("admin/Auth", 'refresh');
+				redirect('admin/auth/read_group', 'refresh');
 			}
 		}
 		else
@@ -825,19 +828,20 @@ class Auth extends CI_Controller {
 
 		if (!$this->ion_auth->logged_in() || !$this->ion_auth->is_admin())
 		{
-			redirect('admin/Auth', 'refresh');
+			redirect('admin/auth/read_group', 'refresh');
 		}
 
 		$group = $this->ion_auth->group($id)->row();
 
 		// validate form input
-		$this->form_validation->set_rules('group_name', $this->lang->line('edit_group_validation_name_label'), 'required|alpha_dash');
+		$this->form_validation->set_rules('group_name', $this->lang->line('create_group_validation_name_label'), 'required|alpha_dash');
+		$this->form_validation->set_rules('description', $this->lang->line('create_group_validation_desc_label'), 'required');
 
 		if (isset($_POST) && !empty($_POST))
 		{
 			if ($this->form_validation->run() === TRUE)
 			{
-				$group_update = $this->ion_auth->update_group($id, $_POST['group_name'], $_POST['group_description']);
+				$group_update = $this->ion_auth->update_group($id, $_POST['group_name'], $_POST['description']);
 
 				if($group_update)
 				{
@@ -847,7 +851,7 @@ class Auth extends CI_Controller {
 				{
 					$this->session->set_flashdata('message', $this->ion_auth->errors());
 				}
-				redirect("admin/Auth", 'refresh');
+				redirect('admin/auth/read_group', 'refresh');
 			}
 		}
 
@@ -868,13 +872,13 @@ class Auth extends CI_Controller {
 			'value'   => $this->form_validation->set_value('group_name', $group->name),
 			$readonly => $readonly,
 		);
-		$this->data['group_description'] = array(
-			'name'  => 'group_description',
-			'id'    => 'group_description',
+		$this->data['description'] = array(
+			'name'  => 'description',
+			'id'    => 'description',
 			'type'  => 'text',
 			'class' => 'form-control',
 			'placeholder' => 'Deskripsi',
-			'value' => $this->form_validation->set_value('group_description', $group->description),
+			'value' => $this->form_validation->set_value('description', $group->description),
 		);
 		$this->template->load('template/backend/dashboard', 'auth/edit_group', $this->data);
 		//$this->_render_page('auth/edit_group', $this->data);

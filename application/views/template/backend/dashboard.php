@@ -14,11 +14,23 @@
 	        			<!-- Profile Info -->
 	        			<li class="profile-info dropdown">
 	                    <!-- add class "pull-right" if you want to place this from right -->
-
+							
+							<?php if ($this->ion_auth->is_admin()) { ?>
 	        				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-	        					<img src="<?= base_url() ?>assets/images/thumb-1@2xx.png" alt="" class="img-circle" width="44" />
+	        					<img src="<?= base_url() ?>assets/images/administrator-icon.png" alt="" title="Administrator" class="img-circle" width="44" />
 	        					<?php echo$this->session->userdata('identity'); ?>
 	        				</a>
+							<?php } elseif ($this->ion_auth->is_operator()) { ?>
+	        				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+	        					<img src="<?= base_url() ?>assets/images/operator-icon.png" alt="" title="Operator" class="img-circle" width="44" />
+	        					<?php echo$this->session->userdata('identity'); ?>
+	        				</a>
+							<?php } else { ?>
+	        				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+	        					<img src="<?= base_url() ?>assets/images/member-icon.png" alt="" title="Member" class="img-circle" width="44" />
+	        					<?php echo$this->session->userdata('identity'); ?>
+	        				</a>
+							<?php } ?>
 
 	        				<ul class="dropdown-menu">
 

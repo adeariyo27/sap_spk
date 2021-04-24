@@ -50,11 +50,11 @@ $lang['activation_email_unsuccessful']		        = 'Tidak Dapat Mengirimkan Email
 $lang['deactivate_current_user_unsuccessful']       = "<div class='alert alert-info alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>TIdak dapat menonaktifkan Akun yang sedang login</div>";
 
 // Login / Logout
-$lang['login_successful']							= 'Log In Berhasil';
-$lang['login_unsuccessful']							= "<div class='alert alert-info'>Email dan Password tidak cocok</div>";
-$lang['login_unsuccessful_not_active']	            = 'Akun Tidak Aktif';
-$lang['login_timeout']								= 'Sementara Terkunci. Coba Beberapa Saat Lagi.';
-$lang['logout_successful']							= 'Log Out Berhasil';
+$lang['login_successful']							= "<div class='alert alert-info'>Log In berhasil</div>";
+$lang['login_unsuccessful']							= "<div class='alert alert-danger'>Email dan Password tidak cocok</div>";
+$lang['login_unsuccessful_not_active']	            = "<div class='alert alert-danger'>Akun telah dinonaktifkan</div>";
+$lang['login_timeout']								= "<div class='alert alert-danger'>Akun sementara terkunci. Coba beberapa saat lagi</div>";
+$lang['logout_successful']							= "<div class='alert alert-info'>Log Out berhasil</div>";
 
 // Account Changes
 $lang['update_successful']							=  "<div class='alert alert-info alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>Informasi User Berhasil Diperbarui</div>";
@@ -67,9 +67,9 @@ $lang['group_creation_successful']				    = "<div class='alert alert-info alert-
 $lang['group_already_exists']						= "<div class='alert alert-danger alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>User Level Telah Digunakan</div>";
 $lang['group_update_successful']					= "<div class='alert alert-info alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>Informasi User Level Berhasil Diperbarui";
 $lang['group_delete_successful']					= "<div class='alert alert-info alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>User Level Telah Dihapus</div>";
-$lang['group_delete_unsuccessful']				    = "<div class='alert alert-info alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>User Level Gagal Dihapus</div>";
-$lang['group_delete_notallowed']					= "<div class='alert alert-info alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>Tidak Dapat Menghapus Administrator</div>";
-$lang['group_name_required']						= "<div class='alert alert-info alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>Nama User Level Tidak Boleh Kosong</div>";
+$lang['group_delete_unsuccessful']				    = "<div class='alert alert-danger alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>User Level Gagal Dihapus</div>";
+$lang['group_delete_notallowed']					= "<div class='alert alert-danger alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>Tidak Dapat Menghapus Administrator</div>";
+$lang['group_name_required']						= "<div class='alert alert-danger alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>Nama User Level Tidak Boleh Kosong</div>";
 $lang['group_name_admin_not_alter']			    	= "Nama Grup Admin Tidak Bisa Diubah";
 
 // Activation Email

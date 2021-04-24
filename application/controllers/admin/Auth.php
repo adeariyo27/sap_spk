@@ -27,7 +27,7 @@ class Auth extends CI_Controller {
 		elseif (!$this->ion_auth->is_admin()) // remove this elseif if you want to enable this for non-admins
 		{
 			// redirect them to the home page because they must be an administrator to view this
-			return show_error('You must be an administrator to view this page.');
+			return show_error('Hanya Administrator yang bisa akses halaman ini');
 		}
 		else
 		{
@@ -362,7 +362,7 @@ class Auth extends CI_Controller {
 		if (!$this->ion_auth->logged_in() || !$this->ion_auth->is_admin())
 		{
 			// redirect them to the home page because they must be an administrator to view this
-			return show_error('You must be an administrator to view this page.');
+			return show_error('Hanya Administrator yang bisa akses halaman ini');
 		}
 
 		$id = (int) $id;
@@ -411,7 +411,7 @@ class Auth extends CI_Controller {
 		if (!$this->ion_auth->logged_in() || !$this->ion_auth->is_admin())
 		{
 			// redirect them to the home page because they must be an administrator to view this
-			return show_error('You must be an administrator to view this page.');
+			return show_error('Hanya Administrator yang bisa akses halaman ini');
 		}
 
 		$id = (int) $id;
@@ -749,7 +749,7 @@ class Auth extends CI_Controller {
 		elseif (!$this->ion_auth->is_admin()) // remove this elseif if you want to enable this for non-admins
 		{
 			// redirect them to the home page because they must be an administrator to view this
-			return show_error('You must be an administrator to view this page.');
+			return show_error('Hanya Administrator yang bisa akses halaman ini');
 		}
 		else
 		{

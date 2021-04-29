@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 14, 2021 at 01:56 PM
+-- Generation Time: Apr 29, 2021 at 08:15 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.1.1
 
@@ -39,9 +39,10 @@ CREATE TABLE `alternatif` (
 
 INSERT INTO `alternatif` (`id_alternatif`, `id_sekolah`, `status`, `total`) VALUES
 (39, 2, 'unggulan', 5),
+(40, 1, 'unggulan', 4),
 (41, 3, 'unggulan', 3),
 (42, 4, 'unggulan', 2),
-(52, 5, 'unggulan', 1);
+(52, 5, 'belum unggulan', 1);
 
 -- --------------------------------------------------------
 
@@ -124,8 +125,9 @@ CREATE TABLE `groups` (
 
 INSERT INTO `groups` (`id`, `name`, `description`) VALUES
 (1, 'admin', 'Administrator'),
-(2, 'member', 'General User'),
-(3, 'operator', 'Website Operator');
+(2, 'members', 'General User'),
+(3, 'operator', 'Website Operator'),
+(4, 'awdawd', 'awd');
 
 -- --------------------------------------------------------
 
@@ -167,16 +169,16 @@ CREATE TABLE `kriteria_nilai` (
 --
 
 INSERT INTO `kriteria_nilai` (`id_kriteria_nilai`, `kriteria_id_dari`, `kriteria_id_tujuan`, `nilai`) VALUES
-(631, 13, 14, 1),
-(632, 13, 16, 1),
-(633, 13, 17, 1),
-(634, 13, 20, 1),
-(635, 14, 16, 1),
-(636, 14, 17, 1),
-(637, 14, 20, 1),
-(638, 16, 17, 6),
-(639, 16, 20, 1),
-(640, 17, 20, 1);
+(621, 13, 14, 1),
+(622, 13, 16, 1),
+(623, 13, 17, 1),
+(624, 13, 20, 1),
+(625, 14, 16, 1),
+(626, 14, 17, 1),
+(627, 14, 20, 1),
+(628, 16, 17, 1),
+(629, 16, 20, 1),
+(630, 17, 20, 1);
 
 -- --------------------------------------------------------
 
@@ -243,64 +245,20 @@ CREATE TABLE `pembeli` (
   `alamat_pembeli` text NOT NULL,
   `visi` text NOT NULL,
   `misi` text NOT NULL,
-  `no_telpon` varchar(20) NOT NULL,
-  `ktp` varchar(100) NOT NULL
+  `no_telpon` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 --
 -- Dumping data for table `pembeli`
 --
 
-INSERT INTO `pembeli` (`id_pembeli`, `nama_pembeli`, `nama_kepsek`, `alamat_pembeli`, `visi`, `misi`, `no_telpon`, `ktp`) VALUES
-(3, 'SMAN 18 Makassar', 'Akbar abustang', 'Komp. Mangga Tiga Permai Daya Makassar', 'Menjadi sekolah yang unggul dalam bidang imtaq dan ipteks yang berwawasan lingkungan', 'Mengaktualisasikan ajaran agama secara konsekuen\r\nMelaksanakan managemen partisipatif berbasis pelayanan prima\r\nMelaksanakan proses pembelajaran berkualitas\r\nMembina bakat dan minat siswa dalam kegiatan ekstrakurikuler\r\nMeningkatkan profesionalisme guru dan staf tata usaha yang berbasis kinerja.\r\nMewujudkan kemitraan seluruh stageholder menuju sekolah yang unggul.\r\nMemaksimalkan kecintaan lingkungan dengan upaya mencegah terjadinya pencemaran lingkungan.\r\nMemaksimalkan kecintaan lingkungan dengan upaya mencegah terjadinya kerusakan lingkungan.\r\nMemaksimalkan kecintaan lingkungan dengan upaya menjaga pelestarian lingkungan.', '0411 - 511121', ''),
-(4, 'SMAN 5 Makassar', 'ana', 'jl.sunu', 'yaaaa', 'taaa', '88', ''),
-(5, 'SMAN 4 Makassar', 'akbar', 'jl. masjid raya', 'memajukan yang dibelakang', 'membantu visi memajukan yang dibelakang', '99898', ''),
-(7, 'SMAN 16', 'Jembut Biawak', 'Jembut Kuda', 'Jembut Manusia', 'Banyaknya Jembut', 'Jembut Beckham', ''),
-(8, 'ddd', 'dddd', 'ssss', 'ssss', 'ssss', 'sss', ''),
-(9, 'asdasd', 'asdasd', 'asdasd', 'asdasd', 'sadasd', 'asdasd', ''),
-(10, 'asdasdasd', 'asdasdasda', 'dasdasd', 'assdasdas', 'sdssssssssssss', 'sssssss', ''),
-(11, 'asdadasda', 'dasdasd', 'asdasdasd', 'asdasdas', 'dasdasd', 'asdasdasd', ''),
-(12, 'asdasdas', 'asdasda', 'sdasdasd', 'asdasdasd', 'asdasd', 'asdasd', ''),
-(13, 'asdasda', 'asdasd', 'asdasd', 'adasd', 'asdasd', 'asdasd', ''),
-(14, 'asdasd', 'asdasd', 'asdasdas', 'asdasd', 'asdasd', 'asdasd', ''),
-(15, 'asdasdasd', 'asdasd', 'asdasd', 'asdasd', 'asdasd', 'asdasd', ''),
-(16, 'asdasd', 'adasda', 'asdasd', 'asdasd', 'asdasd', 'asdasd', ''),
-(17, 'asdasdasd', 'asdasd', 'asdasd', 'asdasd', 'asdasd', 'asdsdasd', ''),
-(18, 'asdasdasd', 'asdasd', 'asdasd', 'asdasd', 'asdasd', 'asdas', ''),
-(19, 'asdadasd', 'asdasd', 'asdas', 'asdas', 'asdas', 'asdasd', ''),
-(20, 'asdasdasd', 'asdasd', 'asdas', 'asdas', 'asdas', 'asdasd', ''),
-(21, 'asdas', 'asdas', 'asdas', 'asdas', 'asdas', 'asdasd', ''),
-(22, 'fafafafa', 'asdasd', 'asdas', 'asdas', 'asdas', 'asdasd', ''),
-(23, 'asdasdasd', 'asdasd', 'asdas', 'asdas', 'asdas', 'asdasd', ''),
-(24, 'asdasdasd', 'asdasd', 'ffffffffff', 'ffffffffff', 'ffffffffff', 'gugun', ''),
-(25, 'asdasdasd', 'asdasd', 'ffffffffff', 'ffffffffff', 'ffffffffff', 'ffffffffff', ''),
-(26, 'asdasdasd', 'asdasd', 'ffffffffff', 'ffffffffff', 'ffffffffff', 'ffffffffff', ''),
-(27, 'asdasdasd', 'asdasd', 'ffffffffff', 'ffffffffff', 'ffffffffff', 'ffffffffff', ''),
-(28, 'asdasdasd', 'asdasd', 'ffffffffff', 'ffffffffff', 'ffffffffff', 'ffffffffff', ''),
-(29, 'asdasdasd', 'asdasd', 'ffffffffff', 'ffffffffff', 'ffffffffff', 'ffffffffff', ''),
-(30, 'asdasdasd', 'asdasd', 'ffffffffff', 'ffffffffff', 'ffffffffff', 'ffffffffff', ''),
-(31, 'asdasdasd', 'asdasd', 'ffffffffff', 'ffffffffff', 'ffffffffff', 'ffffffffff', ''),
-(32, 'asdasdasd', 'asdasd', 'ffffffffff', 'ffffffffff', 'ffffffffff', 'ffffffffff', ''),
-(33, 'asdasdasd', 'asdasd', 'ffffffffff', 'ffffffffff', 'ffffffffff', 'ffffffffff', ''),
-(34, 'asdasdasd', 'asdasd', 'ffffffffff', 'ffffffffff', 'ffffffffff', 'ffffffffff', ''),
-(35, 'bbbbbbbb', 'bbbbbbbbb', 'ffffffffff', 'ffffffffff', 'ffffffffff', 'ffffffffff', ''),
-(36, 'asdasdasd', 'asdasd', 'ddd', 'ddd', 'ddd', 'ddd', ''),
-(37, 'asdasdasd', 'asdasd', 'daasd', 'asd', 'asd', 'asd', ''),
-(38, 'asdasd', 'asdasd', 'ddddd', 'ddddddd', 'ddddd', 'dddd', ''),
-(39, 'asdasdasd', 'asdasd', 'asdasd', 'asdasd', 'asdasd', 'asdasd', ''),
-(40, 'asdasdasd', 'asdasd', 'asdasd', 'asdasd', 'asdads', 'asdads', ''),
-(41, 'asdasdasd', 'asdasd', 'sssssss', 'ssssssss', 'sssss', 'sdsdsdsdsdsdss', ''),
-(42, 'asdasdasd', 'asdasd', 'ffffff', 'ffff', 'ffff', 'ffffffffff', ''),
-(43, 'asdasdasd', 'asdasd', 'dd', 'ddd', 'ddd', 'ddd', ''),
-(44, 'asdasdasd', 'asdasd', 'ddddd', 'dddddd', 'dddd', 'a', ''),
-(45, 'asdasdasd', 'asdasd', 'dddd', 'dddd', 'dddd', 'dddd', ''),
-(46, 'jembut', 'a', 'dddd', 'dddd', 'dddd', '1111', ''),
-(50, 'jembut', 'Jembut Biawak', 'dasasasasasasas', 'adssssss', 'dasssss', '222', ''),
-(51, 'kondom', 'Jembut Biawak', 'asdasdasd', 'adwawdawda', 'sdasdasd', '12312414', ''),
-(52, 'asdasda', 'asdasd', 'asdasd', 'asdasd', 'asdasd', '1111', ''),
-(53, 'jubaedah', 'jembut', 'jembuuutz', 'jubeadeh', 'jubaedah', '1234', ''),
-(56, 'bud', 'budi', 'ptun palu', 'budi', 'budi', '1234', 'default.jpg'),
-(57, 'aaaaaaaa', 'asdasd', 'asdasd', 'asdasdasd', 'asdasd', '12345', 'default.jpg....');
+INSERT INTO `pembeli` (`id_pembeli`, `nama_pembeli`, `nama_kepsek`, `alamat_pembeli`, `visi`, `misi`, `no_telpon`) VALUES
+(1, 'SMAN 17 Makassar', 'Syamsuddin, S. Pd, MM.', 'Sunu No. 11 Kelurahan Suangga Kecamatan Tallo, Makassar', '“Menjadi sekolah yang unggul dalam prestasi, berkarakter, berwawasan lingkungan dan berdaya saing global berlandaskan IMTAQ dan IPTEK”', 'Misi :\r\n? Menciptakan lingkungan pembelajar yang kondusif dalam upaya meningkatkan mutu pembelajaran;\r\n? Mendorong dan membantu setiap peserta didik untuk mengenali potensi dirinya sehingga dapat dikembangkan secara optimal;\r\n? Menumbuhkembangkan semangat keunggulan dan budaya belajar yang tinggi kepada seluruh warga sekolah;\r\n? Menumbuhkembangkan karakter warga sekolah yang relegius, disiplin, jujur, bertanggung jawab, kreatif dan inovatif;\r\n? Meningkatkan komitmen, kinerja dan loyalitas seluruh pendidik dan tenaga kependidikan terhadap tugas pokok dan fungsinya;\r\n? Meningkatkan apresiasi terhadap seni dan budaya bangsa;\r\n? Melaksanakan pembelajaran yang berbasis lingkungan;\r\n? Menumbuhkan budaya hidup bersih dan sehat;\r\n? Menumbuhkankembangkan semangat mencintai, mengelolah dan memelihara lingkungan oleh seluruh warga sekolah;\r\n? Menerapkan Teknologi Informasi dan Komunikasi dalam pembelajaran dan pengelolaan sekolah;\r\n? Menerapkan sistem manajemen mutu.', '0411- 445825'),
+(2, 'SMAIT Al Biruni Makassar', 'Muh. Arafah Kube, ST', 'A.P. Pettarani, Ruko Diamond, No. 12-14', 'BE A LEADERSHIP SCHOOL IN EAST INDONESIA', '• Menciptakan Manusia Kreatif, Mandiri, Berakhlak Mulia, Bertanggung Jawab dan Berwawasan Global\r\n  • Mencetak Peneliti Muda yang Handal dalam Aplikasi Ilmu dan Teknologi\r\n  • Menjalin Ukhwah Antar Orang Tua, Pemerintah dan Masyarakat', '0411-425277'),
+(3, 'SMAN 18 Makassar', 'Akbar abustang', 'Komp. Mangga Tiga Permai Daya Makassar', 'Menjadi sekolah yang unggul dalam bidang imtaq dan ipteks yang berwawasan lingkungan', 'Mengaktualisasikan ajaran agama secara konsekuen\r\nMelaksanakan managemen partisipatif berbasis pelayanan prima\r\nMelaksanakan proses pembelajaran berkualitas\r\nMembina bakat dan minat siswa dalam kegiatan ekstrakurikuler\r\nMeningkatkan profesionalisme guru dan staf tata usaha yang berbasis kinerja.\r\nMewujudkan kemitraan seluruh stageholder menuju sekolah yang unggul.\r\nMemaksimalkan kecintaan lingkungan dengan upaya mencegah terjadinya pencemaran lingkungan.\r\nMemaksimalkan kecintaan lingkungan dengan upaya mencegah terjadinya kerusakan lingkungan.\r\nMemaksimalkan kecintaan lingkungan dengan upaya menjaga pelestarian lingkungan.', '0411 - 511121'),
+(4, 'SMAN 5 Makassar', 'ana', 'jl.sunu', 'yaaaa', 'taaa', '88'),
+(5, 'SMAN 4 Makassar', 'akbar', 'jl. masjid raya', 'memajukan yang dibelakang', 'membantu visi memajukan yang dibelakang', '99898'),
+(7, 'SMAN 16', 'trty', 'ghf', 'hgf', 'hgf', 'hgf');
 
 -- --------------------------------------------------------
 
@@ -379,7 +337,7 @@ INSERT INTO `subkriteria` (`id_subkriteria`, `nama_subkriteria`, `id_kriteria`, 
 (81, '71%-85% memiliki sertifikat pendidik', 20, 'teks', NULL, NULL, NULL, NULL, 2),
 (82, '56%-70% memiliki sertifikat pendidik', 20, 'teks', NULL, NULL, NULL, NULL, 3),
 (83, '41%-55% memiliki sertifikat pendidik', 20, 'teks', NULL, NULL, NULL, NULL, 4),
-(85, '> 0 < 45', 20, 'nilai', 0, 45, '>', '<', 5);
+(84, 'Kurang dari 41% memiliki sertifikat pendidik', 20, 'teks', NULL, NULL, NULL, NULL, 5);
 
 -- --------------------------------------------------------
 
@@ -525,8 +483,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`) VALUES
-(2, '::1', 'adeharioyudanto@gmail.com', '$2y$08$RL4hQqyM.jElniuKk6MIR.k7/Z73aDx/aeWv8l3m2Z8xjiDdDfWRm', NULL, 'adeharioyudanto@gmail.com', NULL, NULL, NULL, NULL, 1617712801, 1618400911, 1, 'Ade Ariyo', 'Yudanto', 'PT. Serasi Anugrah Pratama', '081370231033'),
-(3, '::1', 'gunanta.s@gmail.com', '$2y$08$xfPWlmM.QcHooQFiVd6bAu/r4.1QAWeudfnMuyEAWWhToMsPjuRtS', NULL, 'gunanta.s@gmail.com', NULL, NULL, NULL, NULL, 1617712876, 1617802167, 1, 'Gunanta', 'Sembiring', 'PT. Serasi Anugrah Pratama', '081375388797');
+(2, '::1', 'adeharioyudanto@gmail.com', '$2y$08$lql0hvJRq4GxXKCbmJYYkuaENe7ueD19b5redhklCccv3oISDZ8Pq', NULL, 'adeharioyudanto@gmail.com', NULL, NULL, NULL, NULL, 1619100985, 1619673437, 1, 'Ade Ariyo', 'Yudanto', 'PT. Serasi Anugrah Pratama', '081370231033'),
+(3, '::1', 'gunanta.s@gmail.com', '$2y$08$IjJPCdE8gle4hYHoSa/kG.hoipD7PRXThSm/e.vLjLBUZGjGpjUaq', NULL, 'gunanta.s@gmail.com', NULL, NULL, NULL, NULL, 1619101074, 1619249698, 1, 'Gunanta', 'Sembiring', 'PT. Serasi Anugrah Pratama', '081375388797'),
+(4, '::1', 'ridhorinaldy@gmail.com', '$2y$08$tJhD3PuodvVTCGfjAejoK.ufBFSNr2QN19mbMVdho/fzonnQbz6sq', NULL, 'ridhorinaldy@gmail.com', NULL, NULL, NULL, NULL, 1619101760, 1619246712, 1, 'Ridho', 'Rinaldy', 'PT. Berkah Rizki Putra', '081345678899'),
+(5, '::1', 'jimmypelawi@gmail.com', '$2y$08$VemYZpi3IZBguTisFmVqFOTqLv5uDwxX6Dvz32LaL1iu.sXZXlvMK', NULL, 'jimmypelawi@gmail.com', NULL, NULL, NULL, NULL, 1619101861, 1619249709, 1, 'Jimmy', 'Pelawi', 'CV. Pelawinta Durian', '081323456789'),
+(14, '::1', 'jono@gmail.com', '$2y$08$hQgtwAOVbE48X2PMLpjpWezrNXPcDawW7qYnGKTb/l3qw8/thCW9.', NULL, 'jono@gmail.com', NULL, NULL, NULL, NULL, 1619249629, NULL, 1, 'Junaidi', 'Karo Karo', 'PT. Berkah Rizki Putra', '081375388797');
 
 -- --------------------------------------------------------
 
@@ -545,9 +506,11 @@ CREATE TABLE `users_groups` (
 --
 
 INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES
-(37, 2, 1),
-(38, 2, 3),
-(29, 3, 3);
+(52, 2, 1),
+(51, 3, 3),
+(15, 4, 3),
+(16, 5, 2),
+(50, 14, 2);
 
 --
 -- Indexes for dumped tables
@@ -669,7 +632,7 @@ ALTER TABLE `galeri`
 -- AUTO_INCREMENT for table `groups`
 --
 ALTER TABLE `groups`
-  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `kriteria`
 --
@@ -679,12 +642,12 @@ ALTER TABLE `kriteria`
 -- AUTO_INCREMENT for table `kriteria_nilai`
 --
 ALTER TABLE `kriteria_nilai`
-  MODIFY `id_kriteria_nilai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=641;
+  MODIFY `id_kriteria_nilai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=631;
 --
 -- AUTO_INCREMENT for table `login_attempts`
 --
 ALTER TABLE `login_attempts`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `nilai_kategori`
 --
@@ -694,7 +657,7 @@ ALTER TABLE `nilai_kategori`
 -- AUTO_INCREMENT for table `pembeli`
 --
 ALTER TABLE `pembeli`
-  MODIFY `id_pembeli` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id_pembeli` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `pesan`
 --
@@ -704,7 +667,7 @@ ALTER TABLE `pesan`
 -- AUTO_INCREMENT for table `subkriteria`
 --
 ALTER TABLE `subkriteria`
-  MODIFY `id_subkriteria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+  MODIFY `id_subkriteria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 --
 -- AUTO_INCREMENT for table `subkriteria_hasil`
 --
@@ -719,12 +682,12 @@ ALTER TABLE `subkriteria_nilai`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `users_groups`
 --
 ALTER TABLE `users_groups`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 --
 -- Constraints for dumped tables
 --

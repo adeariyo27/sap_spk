@@ -7,6 +7,6 @@
 	    <tr><td>Visi</td><td><?php echo $visi; ?></td></tr>
 	    <tr><td>Misi</td><td><?php echo $misi; ?></td></tr>
 	    <tr><td>No Telpon</td><td><?php echo $no_telpon; ?></td></tr>
-	    <tr><td>Gambar</td><td><img src="<?php echo base_url('uploads/pembeli/'.$ktp) ?>" width="50%" ></td></tr>
+	    <tr><td>Gambar</td><td><img src="<?php echo base_url('uploads/pembeli/'.$ktp) ?>" width="30%"></td></tr>
 	    <tr><td><a href="<?php echo site_url('pembeli') ?>" class="btn btn-default">Kembali</a></td></tr>
 	</table>

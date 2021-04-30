@@ -107,7 +107,7 @@ class Pembeli extends CI_Controller
     
     public function create_action() 
     {
-        $this->_rules();
+        $this->_createrules();
         if ($this->form_validation->run() == FALSE) {
             $this->create();
         } else {
@@ -160,7 +160,7 @@ class Pembeli extends CI_Controller
     
     public function update_action() 
     {
-        $this->_rules();
+        $this->_updaterules();
 
         if ($this->form_validation->run() == FALSE) {
             $this->update($this->input->post('id_pembeli', TRUE));
@@ -214,7 +214,23 @@ class Pembeli extends CI_Controller
         }
     }
 
-    public function _rules() 
+    public function _createrules() 
+    {
+	$this->form_validation->set_rules('nama_pembeli', 'Nama Pembeli', 'trim|required');
+	$this->form_validation->set_rules('nama_kepsek', 'nama kepsek', 'trim|required');
+	$this->form_validation->set_rules('alamat_pembeli', 'alamat pembeli', 'trim|required');
+	$this->form_validation->set_rules('visi', 'visi', 'trim|required');
+	$this->form_validation->set_rules('misi', 'misi', 'trim|required');
+	$this->form_validation->set_rules('no_telpon', 'no telpon', 'trim|required|numeric');
+    if (empty($_FILES['ktp']['name'])) {
+	    $this->form_validation->set_rules('ktp', 'ktp', 'required');
+    }
+
+	$this->form_validation->set_rules('id_pembeli', 'id_pembeli', 'trim');
+	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+    }
+    
+    public function _updaterules() 
     {
 	$this->form_validation->set_rules('nama_pembeli', 'Nama Pembeli', 'trim|required');
 	$this->form_validation->set_rules('nama_kepsek', 'nama kepsek', 'trim|required');
@@ -226,7 +242,7 @@ class Pembeli extends CI_Controller
 	$this->form_validation->set_rules('id_pembeli', 'id_pembeli', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
     }
-
+    
     public function excel()
     {
         $this->load->helper('exportexcel');

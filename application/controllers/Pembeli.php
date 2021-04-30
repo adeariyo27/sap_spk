@@ -13,6 +13,7 @@ class Pembeli extends CI_Controller
         $this->load->model('Pembeli_model');
         $this->load->library('Form_validation');
         $this->load->library('Ion_auth');
+        $this->load->helper('file');
         ceklogin();
     }
 
@@ -64,7 +65,7 @@ class Pembeli extends CI_Controller
 
             $this->template->load('template/backend/dashboard', 'pembeli/pembeli_read', $data);
         } else {
-            $this->session->set_flashdata('gagal', 'Record Not Found');
+            $this->session->set_flashdata('gagal', 'Data Calon Pembeli Tidak Dapat Ditemukan');
             redirect(site_url('pembeli'));
         }
     }
@@ -153,7 +154,7 @@ class Pembeli extends CI_Controller
             );
             $this->template->load('template/backend/dashboard', 'pembeli/pembeli_form', $data);
         } else {
-            $this->session->set_flashdata('gagal', 'Data Calon Pembeli Tidak dapat Ditemukan');
+            $this->session->set_flashdata('gagal', 'Data Calon Pembeli Tidak Dapat Ditemukan');
             redirect(site_url('pembeli'));
         }
     }
@@ -213,6 +214,11 @@ class Pembeli extends CI_Controller
             redirect(site_url('pembeli'));
         }
     }
+    // ------------------------- RULES FILE SIZE ALT ------------------------------------------------- 
+    // if(!empty($_FILES['ktp']['name']) && ($_FILES['ktp']['error']==1 || $_FILES['ktp']['size']>1048576))
+    // {
+    //     return $this->form_validation->set_rules('ktp', 'ktp', 'isset');
+    // }
 
     public function _createrules() 
     {
@@ -223,7 +229,23 @@ class Pembeli extends CI_Controller
 	$this->form_validation->set_rules('misi', 'misi', 'trim|required');
 	$this->form_validation->set_rules('no_telpon', 'no telpon', 'trim|required|numeric');
     if (empty($_FILES['ktp']['name'])) {
-	    $this->form_validation->set_rules('ktp', 'ktp', 'required');
+        $this->form_validation->set_rules('ktp', 'ktp', 'required');
+    }
+    if(!empty($_FILES['ktp']['name'])) {
+        $maxsize    = 1048576;
+        $acceptable = array(
+            'image/jpeg',
+            'image/jpg',
+            'image/png'
+        );
+    
+        if(($_FILES['ktp']['size'] >= $maxsize) || ($_FILES["ktp"]["size"] == 0)) {
+            return $this->form_validation->set_rules('ktp', 'ktp', 'isset');
+        }
+    
+        if((!in_array($_FILES['ktp']['type'], $acceptable)) && (!empty($_FILES["ktp"]["type"]))) {
+            return $this->form_validation->set_rules('ktp', 'ktp', 'isset');
+        }
     }
 
 	$this->form_validation->set_rules('id_pembeli', 'id_pembeli', 'trim');
@@ -238,6 +260,22 @@ class Pembeli extends CI_Controller
 	$this->form_validation->set_rules('visi', 'visi', 'trim|required');
 	$this->form_validation->set_rules('misi', 'misi', 'trim|required');
 	$this->form_validation->set_rules('no_telpon', 'no telpon', 'trim|required|numeric');
+    if(!empty($_FILES['ktp']['name'])) {
+        $maxsize    = 1048576;
+        $acceptable = array(
+            'image/jpeg',
+            'image/jpg',
+            'image/png'
+        );
+    
+        if(($_FILES['ktp']['size'] >= $maxsize) || ($_FILES["ktp"]["size"] == 0)) {
+            return $this->form_validation->set_rules('ktp', 'ktp', 'isset');
+        }
+    
+        if((!in_array($_FILES['ktp']['type'], $acceptable)) && (!empty($_FILES["ktp"]["type"]))) {
+            return $this->form_validation->set_rules('ktp', 'ktp', 'isset');
+        }
+    }
 
 	$this->form_validation->set_rules('id_pembeli', 'id_pembeli', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');

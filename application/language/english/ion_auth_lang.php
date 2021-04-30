@@ -51,7 +51,7 @@ $lang['deactivate_current_user_unsuccessful']       = "<div class='alert alert-i
 
 // Login / Logout
 $lang['login_successful']							= "<div class='alert alert-info'>Log In berhasil</div>";
-$lang['login_unsuccessful']							= "<div class='alert alert-danger'>Email dan Password tidak cocok</div>";
+$lang['login_unsuccessful']							= "<div class='alert alert-danger'>Email atau Password salah</div>";
 $lang['login_unsuccessful_not_active']	            = "<div class='alert alert-danger'>Akun telah dinonaktifkan</div>";
 $lang['login_timeout']								= "<div class='alert alert-danger'>Akun sementara terkunci. Coba beberapa saat lagi</div>";
 $lang['logout_successful']							= "<div class='alert alert-info'>Log Out berhasil</div>";

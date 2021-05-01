@@ -174,7 +174,7 @@ class Pembeli extends CI_Controller
                 // end upload file
 
                 if ($upload == false)  return redirect(site_url('pembeli'));
-
+                
                 $data = array(
                     'nama_pembeli' => $this->input->post('nama_pembeli',TRUE),
                     'nama_kepsek' => $this->input->post('nama_kepsek',TRUE),
@@ -204,9 +204,12 @@ class Pembeli extends CI_Controller
     public function delete($id) 
     {
         $row = $this->Pembeli_model->get_by_id($id);
+        $lokasiktp = './uploads/pembeli/';
+        $filektp = $row->ktp;
 
         if ($row) {
             $this->Pembeli_model->delete($id);
+            unlink($lokasiktp.$filektp);
             $this->session->set_flashdata('sukses', 'Data Calon Pembeli Telah Dihapus');
             redirect(site_url('pembeli'));
         } else {

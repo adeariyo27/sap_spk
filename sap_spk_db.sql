@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 29, 2021 at 08:15 AM
+-- Generation Time: May 01, 2021 at 07:26 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.1.1
 
@@ -126,8 +126,7 @@ CREATE TABLE `groups` (
 INSERT INTO `groups` (`id`, `name`, `description`) VALUES
 (1, 'admin', 'Administrator'),
 (2, 'members', 'General User'),
-(3, 'operator', 'Website Operator'),
-(4, 'awdawd', 'awd');
+(3, 'operator', 'Website Operator');
 
 -- --------------------------------------------------------
 
@@ -245,20 +244,21 @@ CREATE TABLE `pembeli` (
   `alamat_pembeli` text NOT NULL,
   `visi` text NOT NULL,
   `misi` text NOT NULL,
-  `no_telpon` varchar(20) NOT NULL
+  `no_telpon` varchar(20) NOT NULL,
+  `ktp` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 --
 -- Dumping data for table `pembeli`
 --
 
-INSERT INTO `pembeli` (`id_pembeli`, `nama_pembeli`, `nama_kepsek`, `alamat_pembeli`, `visi`, `misi`, `no_telpon`) VALUES
-(1, 'SMAN 17 Makassar', 'Syamsuddin, S. Pd, MM.', 'Sunu No. 11 Kelurahan Suangga Kecamatan Tallo, Makassar', '“Menjadi sekolah yang unggul dalam prestasi, berkarakter, berwawasan lingkungan dan berdaya saing global berlandaskan IMTAQ dan IPTEK”', 'Misi :\r\n? Menciptakan lingkungan pembelajar yang kondusif dalam upaya meningkatkan mutu pembelajaran;\r\n? Mendorong dan membantu setiap peserta didik untuk mengenali potensi dirinya sehingga dapat dikembangkan secara optimal;\r\n? Menumbuhkembangkan semangat keunggulan dan budaya belajar yang tinggi kepada seluruh warga sekolah;\r\n? Menumbuhkembangkan karakter warga sekolah yang relegius, disiplin, jujur, bertanggung jawab, kreatif dan inovatif;\r\n? Meningkatkan komitmen, kinerja dan loyalitas seluruh pendidik dan tenaga kependidikan terhadap tugas pokok dan fungsinya;\r\n? Meningkatkan apresiasi terhadap seni dan budaya bangsa;\r\n? Melaksanakan pembelajaran yang berbasis lingkungan;\r\n? Menumbuhkan budaya hidup bersih dan sehat;\r\n? Menumbuhkankembangkan semangat mencintai, mengelolah dan memelihara lingkungan oleh seluruh warga sekolah;\r\n? Menerapkan Teknologi Informasi dan Komunikasi dalam pembelajaran dan pengelolaan sekolah;\r\n? Menerapkan sistem manajemen mutu.', '0411- 445825'),
-(2, 'SMAIT Al Biruni Makassar', 'Muh. Arafah Kube, ST', 'A.P. Pettarani, Ruko Diamond, No. 12-14', 'BE A LEADERSHIP SCHOOL IN EAST INDONESIA', '• Menciptakan Manusia Kreatif, Mandiri, Berakhlak Mulia, Bertanggung Jawab dan Berwawasan Global\r\n  • Mencetak Peneliti Muda yang Handal dalam Aplikasi Ilmu dan Teknologi\r\n  • Menjalin Ukhwah Antar Orang Tua, Pemerintah dan Masyarakat', '0411-425277'),
-(3, 'SMAN 18 Makassar', 'Akbar abustang', 'Komp. Mangga Tiga Permai Daya Makassar', 'Menjadi sekolah yang unggul dalam bidang imtaq dan ipteks yang berwawasan lingkungan', 'Mengaktualisasikan ajaran agama secara konsekuen\r\nMelaksanakan managemen partisipatif berbasis pelayanan prima\r\nMelaksanakan proses pembelajaran berkualitas\r\nMembina bakat dan minat siswa dalam kegiatan ekstrakurikuler\r\nMeningkatkan profesionalisme guru dan staf tata usaha yang berbasis kinerja.\r\nMewujudkan kemitraan seluruh stageholder menuju sekolah yang unggul.\r\nMemaksimalkan kecintaan lingkungan dengan upaya mencegah terjadinya pencemaran lingkungan.\r\nMemaksimalkan kecintaan lingkungan dengan upaya mencegah terjadinya kerusakan lingkungan.\r\nMemaksimalkan kecintaan lingkungan dengan upaya menjaga pelestarian lingkungan.', '0411 - 511121'),
-(4, 'SMAN 5 Makassar', 'ana', 'jl.sunu', 'yaaaa', 'taaa', '88'),
-(5, 'SMAN 4 Makassar', 'akbar', 'jl. masjid raya', 'memajukan yang dibelakang', 'membantu visi memajukan yang dibelakang', '99898'),
-(7, 'SMAN 16', 'trty', 'ghf', 'hgf', 'hgf', 'hgf');
+INSERT INTO `pembeli` (`id_pembeli`, `nama_pembeli`, `nama_kepsek`, `alamat_pembeli`, `visi`, `misi`, `no_telpon`, `ktp`) VALUES
+(1, 'SMAN 17 Makassar', 'Syamsuddin, S. Pd, MM.', 'Sunu No. 11 Kelurahan Suangga Kecamatan Tallo, Makassar', '“Menjadi sekolah yang unggul dalam prestasi, berkarakter, berwawasan lingkungan dan berdaya saing global berlandaskan IMTAQ dan IPTEK”', 'Misi :\r\n? Menciptakan lingkungan pembelajar yang kondusif dalam upaya meningkatkan mutu pembelajaran;\r\n? Mendorong dan membantu setiap peserta didik untuk mengenali potensi dirinya sehingga dapat dikembangkan secara optimal;\r\n? Menumbuhkembangkan semangat keunggulan dan budaya belajar yang tinggi kepada seluruh warga sekolah;\r\n? Menumbuhkembangkan karakter warga sekolah yang relegius, disiplin, jujur, bertanggung jawab, kreatif dan inovatif;\r\n? Meningkatkan komitmen, kinerja dan loyalitas seluruh pendidik dan tenaga kependidikan terhadap tugas pokok dan fungsinya;\r\n? Meningkatkan apresiasi terhadap seni dan budaya bangsa;\r\n? Melaksanakan pembelajaran yang berbasis lingkungan;\r\n? Menumbuhkan budaya hidup bersih dan sehat;\r\n? Menumbuhkankembangkan semangat mencintai, mengelolah dan memelihara lingkungan oleh seluruh warga sekolah;\r\n? Menerapkan Teknologi Informasi dan Komunikasi dalam pembelajaran dan pengelolaan sekolah;\r\n? Menerapkan sistem manajemen mutu.', '0411- 445825', ''),
+(2, 'SMAIT Al Biruni Makassar', 'Muh. Arafah Kube, ST', 'A.P. Pettarani, Ruko Diamond, No. 12-14', 'BE A LEADERSHIP SCHOOL IN EAST INDONESIA', '• Menciptakan Manusia Kreatif, Mandiri, Berakhlak Mulia, Bertanggung Jawab dan Berwawasan Global\r\n  • Mencetak Peneliti Muda yang Handal dalam Aplikasi Ilmu dan Teknologi\r\n  • Menjalin Ukhwah Antar Orang Tua, Pemerintah dan Masyarakat', '0411-425277', ''),
+(3, 'SMAN 18 Makassar', 'Akbar abustang', 'Komp. Mangga Tiga Permai Daya Makassar', 'Menjadi sekolah yang unggul dalam bidang imtaq dan ipteks yang berwawasan lingkungan', 'Mengaktualisasikan ajaran agama secara konsekuen\r\nMelaksanakan managemen partisipatif berbasis pelayanan prima\r\nMelaksanakan proses pembelajaran berkualitas\r\nMembina bakat dan minat siswa dalam kegiatan ekstrakurikuler\r\nMeningkatkan profesionalisme guru dan staf tata usaha yang berbasis kinerja.\r\nMewujudkan kemitraan seluruh stageholder menuju sekolah yang unggul.\r\nMemaksimalkan kecintaan lingkungan dengan upaya mencegah terjadinya pencemaran lingkungan.\r\nMemaksimalkan kecintaan lingkungan dengan upaya mencegah terjadinya kerusakan lingkungan.\r\nMemaksimalkan kecintaan lingkungan dengan upaya menjaga pelestarian lingkungan.', '0411 - 511121', ''),
+(4, 'SMAN 5 Makassar', 'ana', 'jl.sunu', 'yaaaa', 'taaa', '88', ''),
+(5, 'SMAN 4 Makassar', 'akbar', 'jl. masjid raya', 'memajukan yang dibelakang', 'membantu visi memajukan yang dibelakang', '99898', ''),
+(7, 'SMAN 16', 'trty', 'ghf', 'hgf', 'hgf', 'hgf', '');
 
 -- --------------------------------------------------------
 
@@ -483,11 +483,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`) VALUES
-(2, '::1', 'adeharioyudanto@gmail.com', '$2y$08$lql0hvJRq4GxXKCbmJYYkuaENe7ueD19b5redhklCccv3oISDZ8Pq', NULL, 'adeharioyudanto@gmail.com', NULL, NULL, NULL, NULL, 1619100985, 1619673437, 1, 'Ade Ariyo', 'Yudanto', 'PT. Serasi Anugrah Pratama', '081370231033'),
-(3, '::1', 'gunanta.s@gmail.com', '$2y$08$IjJPCdE8gle4hYHoSa/kG.hoipD7PRXThSm/e.vLjLBUZGjGpjUaq', NULL, 'gunanta.s@gmail.com', NULL, NULL, NULL, NULL, 1619101074, 1619249698, 1, 'Gunanta', 'Sembiring', 'PT. Serasi Anugrah Pratama', '081375388797'),
+(2, '::1', 'adeharioyudanto@gmail.com', '$2y$08$lql0hvJRq4GxXKCbmJYYkuaENe7ueD19b5redhklCccv3oISDZ8Pq', NULL, 'adeharioyudanto@gmail.com', NULL, NULL, NULL, NULL, 1619100985, 1619844738, 1, 'Ade Ariyo', 'Yudanto', 'PT. Serasi Anugrah Pratama', '081370231033'),
+(3, '::1', 'gunanta.s@gmail.com', '$2y$08$IjJPCdE8gle4hYHoSa/kG.hoipD7PRXThSm/e.vLjLBUZGjGpjUaq', NULL, 'gunanta.s@gmail.com', NULL, NULL, NULL, NULL, 1619101074, 1619768294, 1, 'Gunanta', 'Sembiring', 'PT. Serasi Anugrah Pratama', '081375388797'),
 (4, '::1', 'ridhorinaldy@gmail.com', '$2y$08$tJhD3PuodvVTCGfjAejoK.ufBFSNr2QN19mbMVdho/fzonnQbz6sq', NULL, 'ridhorinaldy@gmail.com', NULL, NULL, NULL, NULL, 1619101760, 1619246712, 1, 'Ridho', 'Rinaldy', 'PT. Berkah Rizki Putra', '081345678899'),
-(5, '::1', 'jimmypelawi@gmail.com', '$2y$08$VemYZpi3IZBguTisFmVqFOTqLv5uDwxX6Dvz32LaL1iu.sXZXlvMK', NULL, 'jimmypelawi@gmail.com', NULL, NULL, NULL, NULL, 1619101861, 1619249709, 1, 'Jimmy', 'Pelawi', 'CV. Pelawinta Durian', '081323456789'),
-(14, '::1', 'jono@gmail.com', '$2y$08$hQgtwAOVbE48X2PMLpjpWezrNXPcDawW7qYnGKTb/l3qw8/thCW9.', NULL, 'jono@gmail.com', NULL, NULL, NULL, NULL, 1619249629, NULL, 1, 'Junaidi', 'Karo Karo', 'PT. Berkah Rizki Putra', '081375388797');
+(5, '::1', 'jimmypelawi@gmail.com', '$2y$08$VemYZpi3IZBguTisFmVqFOTqLv5uDwxX6Dvz32LaL1iu.sXZXlvMK', NULL, 'jimmypelawi@gmail.com', NULL, NULL, NULL, NULL, 1619101861, 1619844720, 1, 'Jimmy', 'Pelawi', 'CV. Pelawinta Durian', '081323456789');
 
 -- --------------------------------------------------------
 
@@ -507,10 +506,9 @@ CREATE TABLE `users_groups` (
 
 INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES
 (52, 2, 1),
-(51, 3, 3),
+(59, 3, 3),
 (15, 4, 3),
-(16, 5, 2),
-(50, 14, 2);
+(65, 5, 2);
 
 --
 -- Indexes for dumped tables
@@ -647,7 +645,7 @@ ALTER TABLE `kriteria_nilai`
 -- AUTO_INCREMENT for table `login_attempts`
 --
 ALTER TABLE `login_attempts`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `nilai_kategori`
 --
@@ -657,7 +655,7 @@ ALTER TABLE `nilai_kategori`
 -- AUTO_INCREMENT for table `pembeli`
 --
 ALTER TABLE `pembeli`
-  MODIFY `id_pembeli` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_pembeli` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT for table `pesan`
 --
@@ -682,12 +680,12 @@ ALTER TABLE `subkriteria_nilai`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `users_groups`
 --
 ALTER TABLE `users_groups`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 --
 -- Constraints for dumped tables
 --

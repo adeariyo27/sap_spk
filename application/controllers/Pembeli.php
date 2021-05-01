@@ -74,7 +74,7 @@ class Pembeli extends CI_Controller
     {
         $filename = str_replace(' ', '_', $file[$attributeName]['name']);
         $config['upload_path']          = $folder;
-        $config['allowed_types']        = 'jpeg|jpg|png';
+        $config['allowed_types']        = 'pdf';
         $config['file_name']            = $filename;
         $config['overwrite']			= true;
         $config['max_size']             = 5120; // 1MB #ukuran maksimal gambar
@@ -151,6 +151,7 @@ class Pembeli extends CI_Controller
                 'visi' => set_value('visi', $row->visi),
                 'misi' => set_value('misi', $row->misi),
                 'no_telpon' => set_value('no_telpon', $row->no_telpon),
+                'ktp' => set_value('ktp', $row->ktp),
             );
             $this->template->load('template/backend/dashboard', 'pembeli/pembeli_form', $data);
         } else {
@@ -174,7 +175,7 @@ class Pembeli extends CI_Controller
                 // end upload file
 
                 if ($upload == false)  return redirect(site_url('pembeli'));
-                
+
                 $data = array(
                     'nama_pembeli' => $this->input->post('nama_pembeli',TRUE),
                     'nama_kepsek' => $this->input->post('nama_kepsek',TRUE),
@@ -237,9 +238,7 @@ class Pembeli extends CI_Controller
     if(!empty($_FILES['ktp']['name'])) {
         $maxsize    = 1048576;
         $acceptable = array(
-            'image/jpeg',
-            'image/jpg',
-            'image/png'
+            'application/pdf'
         );
     
         if(($_FILES['ktp']['size'] >= $maxsize) || ($_FILES["ktp"]["size"] == 0)) {
@@ -266,9 +265,7 @@ class Pembeli extends CI_Controller
     if(!empty($_FILES['ktp']['name'])) {
         $maxsize    = 1048576;
         $acceptable = array(
-            'image/jpeg',
-            'image/jpg',
-            'image/png'
+            'application/pdf'
         );
     
         if(($_FILES['ktp']['size'] >= $maxsize) || ($_FILES["ktp"]["size"] == 0)) {

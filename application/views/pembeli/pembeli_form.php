@@ -46,7 +46,13 @@
                     <?php endif; ?>
             </div>
     	    <div class="form-group">
-                <label for="varchar">Upload KTP</label>
+                <label for="varchar"><h3><b>Upload File Calon Pembeli</b></h3></label>
+            </div>
+    	    <div class="form-group">
+                <label for="varchar">Upload KTP  <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
+                <br><br>
+                <?php echo anchor(site_url('uploads/pembeli/'.$ktp), '<i class="entypo-doc-text"></i><span> Preview KTP</span>', array('target'=>'_new','class'=>'btn btn-success btn-sm')); ?>
+                <br>
                 <input type="file" class="form-control" name="ktp" id="ktp" value="" />
                     <?php if( form_error('ktp') == true ) : ?>
                       <div class="form-text text-danger"><b><?= form_error('ktp') ?></b></div> 

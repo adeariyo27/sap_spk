@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 01, 2021 at 07:26 AM
+-- Generation Time: May 01, 2021 at 12:05 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.1.1
 
@@ -240,10 +240,15 @@ INSERT INTO `nilai_kategori` (`id_nilai`, `nama_nilai`) VALUES
 CREATE TABLE `pembeli` (
   `id_pembeli` int(11) NOT NULL,
   `nama_pembeli` varchar(40) NOT NULL,
-  `nama_kepsek` varchar(30) NOT NULL,
-  `alamat_pembeli` text NOT NULL,
-  `visi` text NOT NULL,
-  `misi` text NOT NULL,
+  `usia` int(11) NOT NULL,
+  `status` varchar(10) NOT NULL,
+  `alamat` text NOT NULL,
+  `pekerjaan` varchar(50) NOT NULL,
+  `penghasilan` int(15) NOT NULL,
+  `riwayat_kredit` varchar(10) NOT NULL,
+  `uang_muka` int(11) NOT NULL,
+  `jangka_waktu` int(11) NOT NULL,
+  `agama` varchar(20) NOT NULL,
   `no_telpon` varchar(20) NOT NULL,
   `ktp` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
@@ -252,13 +257,10 @@ CREATE TABLE `pembeli` (
 -- Dumping data for table `pembeli`
 --
 
-INSERT INTO `pembeli` (`id_pembeli`, `nama_pembeli`, `nama_kepsek`, `alamat_pembeli`, `visi`, `misi`, `no_telpon`, `ktp`) VALUES
-(1, 'SMAN 17 Makassar', 'Syamsuddin, S. Pd, MM.', 'Sunu No. 11 Kelurahan Suangga Kecamatan Tallo, Makassar', '“Menjadi sekolah yang unggul dalam prestasi, berkarakter, berwawasan lingkungan dan berdaya saing global berlandaskan IMTAQ dan IPTEK”', 'Misi :\r\n? Menciptakan lingkungan pembelajar yang kondusif dalam upaya meningkatkan mutu pembelajaran;\r\n? Mendorong dan membantu setiap peserta didik untuk mengenali potensi dirinya sehingga dapat dikembangkan secara optimal;\r\n? Menumbuhkembangkan semangat keunggulan dan budaya belajar yang tinggi kepada seluruh warga sekolah;\r\n? Menumbuhkembangkan karakter warga sekolah yang relegius, disiplin, jujur, bertanggung jawab, kreatif dan inovatif;\r\n? Meningkatkan komitmen, kinerja dan loyalitas seluruh pendidik dan tenaga kependidikan terhadap tugas pokok dan fungsinya;\r\n? Meningkatkan apresiasi terhadap seni dan budaya bangsa;\r\n? Melaksanakan pembelajaran yang berbasis lingkungan;\r\n? Menumbuhkan budaya hidup bersih dan sehat;\r\n? Menumbuhkankembangkan semangat mencintai, mengelolah dan memelihara lingkungan oleh seluruh warga sekolah;\r\n? Menerapkan Teknologi Informasi dan Komunikasi dalam pembelajaran dan pengelolaan sekolah;\r\n? Menerapkan sistem manajemen mutu.', '0411- 445825', ''),
-(2, 'SMAIT Al Biruni Makassar', 'Muh. Arafah Kube, ST', 'A.P. Pettarani, Ruko Diamond, No. 12-14', 'BE A LEADERSHIP SCHOOL IN EAST INDONESIA', '• Menciptakan Manusia Kreatif, Mandiri, Berakhlak Mulia, Bertanggung Jawab dan Berwawasan Global\r\n  • Mencetak Peneliti Muda yang Handal dalam Aplikasi Ilmu dan Teknologi\r\n  • Menjalin Ukhwah Antar Orang Tua, Pemerintah dan Masyarakat', '0411-425277', ''),
-(3, 'SMAN 18 Makassar', 'Akbar abustang', 'Komp. Mangga Tiga Permai Daya Makassar', 'Menjadi sekolah yang unggul dalam bidang imtaq dan ipteks yang berwawasan lingkungan', 'Mengaktualisasikan ajaran agama secara konsekuen\r\nMelaksanakan managemen partisipatif berbasis pelayanan prima\r\nMelaksanakan proses pembelajaran berkualitas\r\nMembina bakat dan minat siswa dalam kegiatan ekstrakurikuler\r\nMeningkatkan profesionalisme guru dan staf tata usaha yang berbasis kinerja.\r\nMewujudkan kemitraan seluruh stageholder menuju sekolah yang unggul.\r\nMemaksimalkan kecintaan lingkungan dengan upaya mencegah terjadinya pencemaran lingkungan.\r\nMemaksimalkan kecintaan lingkungan dengan upaya mencegah terjadinya kerusakan lingkungan.\r\nMemaksimalkan kecintaan lingkungan dengan upaya menjaga pelestarian lingkungan.', '0411 - 511121', ''),
-(4, 'SMAN 5 Makassar', 'ana', 'jl.sunu', 'yaaaa', 'taaa', '88', ''),
-(5, 'SMAN 4 Makassar', 'akbar', 'jl. masjid raya', 'memajukan yang dibelakang', 'membantu visi memajukan yang dibelakang', '99898', ''),
-(7, 'SMAN 16', 'trty', 'ghf', 'hgf', 'hgf', 'hgf', '');
+INSERT INTO `pembeli` (`id_pembeli`, `nama_pembeli`, `usia`, `status`, `alamat`, `pekerjaan`, `penghasilan`, `riwayat_kredit`, `uang_muka`, `jangka_waktu`, `agama`, `no_telpon`, `ktp`) VALUES
+(2, 'ssddddddddddddddddddddddddd', 12, 'menikah', 'asdasd', 'asdasd', 3434, 'adasd', 343434, 343434, 'asdasd', '343434', 'CV_Starbucks.pdf'),
+(3, 'q', 1, 'q', 'q', 'q', 1, 'q', 1, 1, '1', '1234', 'ektp.pdf'),
+(4, 'junaidi', 45, '---', 'adasdasd', 'PNS', 2000000, 'asdasd', 123123, 34, 'asdasd', '123', 'toefl.pdf');
 
 -- --------------------------------------------------------
 
@@ -655,7 +657,7 @@ ALTER TABLE `nilai_kategori`
 -- AUTO_INCREMENT for table `pembeli`
 --
 ALTER TABLE `pembeli`
-  MODIFY `id_pembeli` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id_pembeli` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `pesan`
 --
@@ -680,12 +682,12 @@ ALTER TABLE `subkriteria_nilai`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `users_groups`
 --
 ALTER TABLE `users_groups`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 --
 -- Constraints for dumped tables
 --

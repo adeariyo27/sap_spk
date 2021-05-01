@@ -46,8 +46,9 @@
             <thead>
                 <tr>
                     <th width="3.5%">No</th>
-                    <th>Nama Pembeli</th>
-                    <th width="50%">Alamat Pembeli</th>
+                    <th>Nama Calon Pembeli</th>
+                    <th width="24%">Pekerjaan</th>
+                    <th width="21%">Penghasilan</th>
                     <th width="25%"><center>Aksi</center></th>
                         </tr><?php
                         foreach ($pembeli_data as $pembeli)
@@ -59,7 +60,8 @@
                 <tr>
                     <td width="3%"><?php echo ++$start ?></td>
                     <td><?php echo $pembeli->nama_pembeli ?></td>
-                    <td><?php echo $pembeli->alamat_pembeli ?></td>
+                    <td><?php echo $pembeli->pekerjaan ?></td>
+                    <td><?php echo $pembeli->penghasilan ?></td>
                     <td width="25%"style="text-align:center" width="200px">
                         <center>
                         <?php 

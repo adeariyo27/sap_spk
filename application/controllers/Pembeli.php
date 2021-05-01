@@ -55,12 +55,17 @@ class Pembeli extends CI_Controller
             $data = array(
                 'id_pembeli' => $row->id_pembeli,
                 'nama_pembeli' => $row->nama_pembeli,
-                'nama_kepsek' => $row->nama_kepsek,
-                'alamat_pembeli' => $row->alamat_pembeli,
-                'visi' => $row->visi,
-                'misi' => $row->misi,
-                'ktp' => $row->ktp,
+                'usia' => $row->usia,
+                'status' => $row->status,
+                'alamat' => $row->alamat,
+                'pekerjaan' => $row->pekerjaan,
+                'penghasilan' => $row->penghasilan,
+                'riwayat_kredit' => $row->riwayat_kredit,
+                'uang_muka' => $row->uang_muka,
+                'jangka_waktu' => $row->jangka_waktu,
+                'agama' => $row->agama,
                 'no_telpon' => $row->no_telpon,
+                'ktp' => $row->ktp,
 	        );
 
             $this->template->load('template/backend/dashboard', 'pembeli/pembeli_read', $data);
@@ -96,10 +101,15 @@ class Pembeli extends CI_Controller
                 'action' => site_url('pembeli/create_action'),
                 'id_pembeli' => set_value('id_pembeli'),
                 'nama_pembeli' => set_value('nama_pembeli'),
-                'nama_kepsek' => set_value('nama_kepsek'),
-                'alamat_pembeli' => set_value('alamat_pembeli'),
-                'visi' => set_value('visi'),
-                'misi' => set_value('misi'),
+                'usia' => set_value('usia'),
+                'status' => set_value('status'),
+                'alamat' => set_value('alamat'),
+                'pekerjaan' => set_value('pekerjaan'),
+                'penghasilan' => set_value('penghasilan'),
+                'riwayat_kredit' => set_value('riwayat_kredit'),
+                'uang_muka' => set_value('uang_muka'),
+                'jangka_waktu' => set_value('jangka_waktu'),
+                'agama' => set_value('agama'),
                 'no_telpon' => set_value('no_telpon'),
                 'ktp' => set_value('ktp'),
             );
@@ -122,10 +132,15 @@ class Pembeli extends CI_Controller
 
             $data = array(
                 'nama_pembeli' => $this->input->post('nama_pembeli',TRUE),
-                'nama_kepsek' => $this->input->post('nama_kepsek',TRUE),
-                'alamat_pembeli' => $this->input->post('alamat_pembeli',TRUE),
-                'visi' => $this->input->post('visi',TRUE),
-                'misi' => $this->input->post('misi',TRUE),
+                'usia' => $this->input->post('usia',TRUE),
+                'status' => $this->input->post('status',TRUE),
+                'alamat' => $this->input->post('alamat',TRUE),
+                'pekerjaan' => $this->input->post('pekerjaan',TRUE),
+                'penghasilan' => $this->input->post('penghasilan',TRUE),
+                'riwayat_kredit' => $this->input->post('riwayat_kredit',TRUE),
+                'uang_muka' => $this->input->post('uang_muka',TRUE),
+                'jangka_waktu' => $this->input->post('jangka_waktu',TRUE),
+                'agama' => $this->input->post('agama',TRUE),
                 'no_telpon' => $this->input->post('no_telpon',TRUE),
                 'ktp' => $this->namaFile,
             );
@@ -146,10 +161,15 @@ class Pembeli extends CI_Controller
                 'action' => site_url('pembeli/update_action'),
                 'id_pembeli' => set_value('id_pembeli', $row->id_pembeli),
                 'nama_pembeli' => set_value('nama_pembeli', $row->nama_pembeli),
-                'nama_kepsek' => set_value('nama_kepsek', $row->nama_kepsek),
-                'alamat_pembeli' => set_value('alamat_pembeli', $row->alamat_pembeli),
-                'visi' => set_value('visi', $row->visi),
-                'misi' => set_value('misi', $row->misi),
+                'usia' => set_value('usia', $row->usia),
+                'status' => set_value('status', $row->status),
+                'alamat' => set_value('alamat', $row->alamat),
+                'pekerjaan' => set_value('pekerjaan', $row->pekerjaan),
+                'penghasilan' => set_value('penghasilan', $row->penghasilan),
+                'riwayat_kredit' => set_value('riwayat_kredit', $row->riwayat_kredit),
+                'uang_muka' => set_value('uang_muka', $row->uang_muka),
+                'jangka_waktu' => set_value('jangka_waktu', $row->jangka_waktu),
+                'agama' => set_value('agama', $row->agama),
                 'no_telpon' => set_value('no_telpon', $row->no_telpon),
                 'ktp' => set_value('ktp', $row->ktp),
             );
@@ -171,6 +191,8 @@ class Pembeli extends CI_Controller
                 // start upload file
                 $attribute = 'ktp'; #nama attribute input form (representasi dari nama tabel di db)
                 $folder = './uploads/pembeli/';
+                // unlink($folder.$this->$_FILES['ktp']['name']);
+                // print_r($_FILES); exit;
                 $upload = $this->uploadFile($_FILES, $attribute, $folder);
                 // end upload file
 
@@ -178,20 +200,30 @@ class Pembeli extends CI_Controller
 
                 $data = array(
                     'nama_pembeli' => $this->input->post('nama_pembeli',TRUE),
-                    'nama_kepsek' => $this->input->post('nama_kepsek',TRUE),
-                    'alamat_pembeli' => $this->input->post('alamat_pembeli',TRUE),
-                    'visi' => $this->input->post('visi',TRUE),
-                    'misi' => $this->input->post('misi',TRUE),
+                    'usia' => $this->input->post('usia',TRUE),
+                    'status' => $this->input->post('status',TRUE),
+                    'alamat' => $this->input->post('alamat',TRUE),
+                    'pekerjaan' => $this->input->post('pekerjaan',TRUE),
+                    'penghasilan' => $this->input->post('penghasilan',TRUE),
+                    'riwayat_kredit' => $this->input->post('riwayat_kredit',TRUE),
+                    'uang_muka' => $this->input->post('uang_muka',TRUE),
+                    'jangka_waktu' => $this->input->post('jangka_waktu',TRUE),
+                    'agama' => $this->input->post('agama',TRUE),
                     'no_telpon' => $this->input->post('no_telpon',TRUE),
                     'ktp' => $this->namaFile,
                 );
             } else {
                 $data = array(
                     'nama_pembeli' => $this->input->post('nama_pembeli',TRUE),
-                    'nama_kepsek' => $this->input->post('nama_kepsek',TRUE),
-                    'alamat_pembeli' => $this->input->post('alamat_pembeli',TRUE),
-                    'visi' => $this->input->post('visi',TRUE),
-                    'misi' => $this->input->post('misi',TRUE),
+                    'usia' => $this->input->post('usia',TRUE),
+                    'status' => $this->input->post('status',TRUE),
+                    'alamat' => $this->input->post('alamat',TRUE),
+                    'pekerjaan' => $this->input->post('pekerjaan',TRUE),
+                    'penghasilan' => $this->input->post('penghasilan',TRUE),
+                    'riwayat_kredit' => $this->input->post('riwayat_kredit',TRUE),
+                    'uang_muka' => $this->input->post('uang_muka',TRUE),
+                    'jangka_waktu' => $this->input->post('jangka_waktu',TRUE),
+                    'agama' => $this->input->post('agama',TRUE),
                     'no_telpon' => $this->input->post('no_telpon',TRUE),
                 );
             }
@@ -227,13 +259,18 @@ class Pembeli extends CI_Controller
     public function _createrules() 
     {
 	$this->form_validation->set_rules('nama_pembeli', 'Nama Pembeli', 'trim|required');
-	$this->form_validation->set_rules('nama_kepsek', 'nama kepsek', 'trim|required');
-	$this->form_validation->set_rules('alamat_pembeli', 'alamat pembeli', 'trim|required');
-	$this->form_validation->set_rules('visi', 'visi', 'trim|required');
-	$this->form_validation->set_rules('misi', 'misi', 'trim|required');
-	$this->form_validation->set_rules('no_telpon', 'no telpon', 'trim|required|numeric');
+	$this->form_validation->set_rules('usia', 'Usia', 'trim|required');
+	$this->form_validation->set_rules('status', 'Status', 'trim|required');
+	$this->form_validation->set_rules('alamat', 'Alamat', 'trim|required');
+	$this->form_validation->set_rules('pekerjaan', 'Pekerjaan', 'trim|required');
+	$this->form_validation->set_rules('penghasilan', 'Penghasilan', 'trim|required');
+	$this->form_validation->set_rules('riwayat_kredit', 'Riwayat Kredit', 'trim|required');
+	$this->form_validation->set_rules('uang_muka', 'Uang Muka', 'trim|required');
+	$this->form_validation->set_rules('jangka_waktu', 'Jangka Waktu', 'trim|required');
+	$this->form_validation->set_rules('agama', 'Agama', 'trim|required');
+	$this->form_validation->set_rules('no_telpon', 'No. Handphone', 'trim|required|numeric');
     if (empty($_FILES['ktp']['name'])) {
-        $this->form_validation->set_rules('ktp', 'ktp', 'required');
+        $this->form_validation->set_rules('ktp', 'KTP', 'required');
     }
     if(!empty($_FILES['ktp']['name'])) {
         $maxsize    = 1048576;
@@ -242,11 +279,11 @@ class Pembeli extends CI_Controller
         );
     
         if(($_FILES['ktp']['size'] >= $maxsize) || ($_FILES["ktp"]["size"] == 0)) {
-            return $this->form_validation->set_rules('ktp', 'ktp', 'isset');
+            return $this->form_validation->set_rules('ktp', 'KTP', 'isset');
         }
     
         if((!in_array($_FILES['ktp']['type'], $acceptable)) && (!empty($_FILES["ktp"]["type"]))) {
-            return $this->form_validation->set_rules('ktp', 'ktp', 'isset');
+            return $this->form_validation->set_rules('ktp', 'KTP', 'isset');
         }
     }
 
@@ -257,11 +294,16 @@ class Pembeli extends CI_Controller
     public function _updaterules() 
     {
 	$this->form_validation->set_rules('nama_pembeli', 'Nama Pembeli', 'trim|required');
-	$this->form_validation->set_rules('nama_kepsek', 'nama kepsek', 'trim|required');
-	$this->form_validation->set_rules('alamat_pembeli', 'alamat pembeli', 'trim|required');
-	$this->form_validation->set_rules('visi', 'visi', 'trim|required');
-	$this->form_validation->set_rules('misi', 'misi', 'trim|required');
-	$this->form_validation->set_rules('no_telpon', 'no telpon', 'trim|required|numeric');
+	$this->form_validation->set_rules('usia', 'Usia', 'trim|required');
+    $this->form_validation->set_rules('status', 'Status', 'trim|required');
+	$this->form_validation->set_rules('alamat', 'Alamat', 'trim|required');
+	$this->form_validation->set_rules('pekerjaan', 'Pekerjaan', 'trim|required');
+    $this->form_validation->set_rules('penghasilan', 'Penghasilan', 'trim|required');
+	$this->form_validation->set_rules('riwayat_kredit', 'Riwayat Kredit', 'trim|required');
+	$this->form_validation->set_rules('uang_muka', 'Uang Muka', 'trim|required');
+	$this->form_validation->set_rules('jangka_waktu', 'Jangka Waktu', 'trim|required');
+	$this->form_validation->set_rules('agama', 'Agama', 'trim|required');
+	$this->form_validation->set_rules('no_telpon', 'No. Handphone', 'trim|required|numeric');
     if(!empty($_FILES['ktp']['name'])) {
         $maxsize    = 1048576;
         $acceptable = array(
@@ -269,11 +311,11 @@ class Pembeli extends CI_Controller
         );
     
         if(($_FILES['ktp']['size'] >= $maxsize) || ($_FILES["ktp"]["size"] == 0)) {
-            return $this->form_validation->set_rules('ktp', 'ktp', 'isset');
+            return $this->form_validation->set_rules('ktp', 'KTP', 'isset');
         }
     
         if((!in_array($_FILES['ktp']['type'], $acceptable)) && (!empty($_FILES["ktp"]["type"]))) {
-            return $this->form_validation->set_rules('ktp', 'ktp', 'isset');
+            return $this->form_validation->set_rules('ktp', 'KTP', 'isset');
         }
     }
 
@@ -303,12 +345,17 @@ class Pembeli extends CI_Controller
 
         $kolomhead = 0;
         xlsWriteLabel($tablehead, $kolomhead++, "No");
-        xlsWriteLabel($tablehead, $kolomhead++, "Nama Pembeli");
-        xlsWriteLabel($tablehead, $kolomhead++, "Nama Kepsek");
-        xlsWriteLabel($tablehead, $kolomhead++, "Alamat Pembeli");
-        xlsWriteLabel($tablehead, $kolomhead++, "Visi");
-        xlsWriteLabel($tablehead, $kolomhead++, "Misi");
-        xlsWriteLabel($tablehead, $kolomhead++, "No Telpon");
+        xlsWriteLabel($tablehead, $kolomhead++, "Nama");
+        xlsWriteLabel($tablehead, $kolomhead++, "Usia");
+        xlsWriteLabel($tablehead, $kolomhead++, "Status");
+        xlsWriteLabel($tablehead, $kolomhead++, "Alamat");
+        xlsWriteLabel($tablehead, $kolomhead++, "Pekerjaan");
+        xlsWriteLabel($tablehead, $kolomhead++, "Penghasilan");
+        xlsWriteLabel($tablehead, $kolomhead++, "Riwayat Kredit");
+        xlsWriteLabel($tablehead, $kolomhead++, "Uang Muka");
+        xlsWriteLabel($tablehead, $kolomhead++, "Jangka Waktu Pembayaran");
+        xlsWriteLabel($tablehead, $kolomhead++, "Agama");
+        xlsWriteLabel($tablehead, $kolomhead++, "No. Handphone");
 
         foreach ($this->Pembeli_model->get_all() as $data) {
                 $kolombody = 0;
@@ -316,10 +363,15 @@ class Pembeli extends CI_Controller
                 //ubah xlsWriteLabel menjadi xlsWriteNumber untuk kolom numeric
                 xlsWriteNumber($tablebody, $kolombody++, $nourut);
             xlsWriteLabel($tablebody, $kolombody++, $data->nama_pembeli);
-            xlsWriteLabel($tablebody, $kolombody++, $data->nama_kepsek);
-            xlsWriteLabel($tablebody, $kolombody++, $data->alamat_pembeli);
-            xlsWriteLabel($tablebody, $kolombody++, $data->visi);
-            xlsWriteLabel($tablebody, $kolombody++, $data->misi);
+            xlsWriteLabel($tablebody, $kolombody++, $data->usia);
+            xlsWriteLabel($tablebody, $kolombody++, $data->status);
+            xlsWriteLabel($tablebody, $kolombody++, $data->alamat);
+            xlsWriteLabel($tablebody, $kolombody++, $data->pekerjaan);
+            xlsWriteLabel($tablebody, $kolombody++, $data->penghasilan);
+            xlsWriteLabel($tablebody, $kolombody++, $data->riwayat_kredit);
+            xlsWriteLabel($tablebody, $kolombody++, $data->uang_muka);
+            xlsWriteLabel($tablebody, $kolombody++, $data->jangka_waktu);
+            xlsWriteLabel($tablebody, $kolombody++, $data->agama);
             xlsWriteLabel($tablebody, $kolombody++, $data->no_telpon);
 
             $tablebody++;

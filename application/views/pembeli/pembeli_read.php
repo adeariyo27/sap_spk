@@ -1,13 +1,19 @@
 
-    <h2 style="margin-top:0px">Detail Calon Pembeli</h2>
+    <h2 style="margin-top:0px"><b>Data Calon Pembeli</b></h2>
     <table class="table">
-	    <tr><td width="150px">Nama Pembeli</td><td><?php echo $nama_pembeli; ?></td></tr>
-	    <tr><td>Nama Kepsek</td><td><?php echo $nama_kepsek; ?></td></tr>
-	    <tr><td>Alamat Pembeli</td><td><?php echo $alamat_pembeli; ?></td></tr>
-	    <tr><td>Visi</td><td><?php echo $visi; ?></td></tr>
-	    <tr><td>Misi</td><td><?php echo $misi; ?></td></tr>
+	    <tr><td width="250px">Nama Pembeli</td><td><?php echo $nama_pembeli; ?></td></tr>
+	    <tr><td>Usia</td><td><?php echo $usia; ?></td></tr>
+	    <tr><td>Status Pernikahan</td><td><?php echo $status; ?></td></tr>
+	    <tr><td>Alamat</td><td><?php echo $alamat; ?></td></tr>
+	    <tr><td>Pekerjaan</td><td><?php echo $pekerjaan; ?></td></tr>
+	    <tr><td>Penghasilan</td><td><?php echo $penghasilan; ?></td></tr>
+	    <tr><td>Riwayat Kredit</td><td><?php echo $riwayat_kredit; ?></td></tr>
+	    <tr><td>Uang Muka</td><td><?php echo $uang_muka; ?></td></tr>
+	    <tr><td>Jangka Waktu</td><td><?php echo $jangka_waktu; ?></td></tr>
+	    <tr><td>Agama</td><td><?php echo $agama; ?></td></tr>
 	    <tr><td>No Telpon</td><td><?php echo $no_telpon; ?></td></tr>
-	    <tr><td>File KTP</td>
+	    <tr><td><h4><b>File Calon Pembeli</b></h4></td><td></td></tr>
+	    <tr><td>KTP</td>
 			<td>
 				<?php echo anchor(site_url('uploads/pembeli/'.$ktp), '<i class="entypo-doc-text"></i><span> Preview KTP</span>', array('target'=>'_new','class'=>'btn btn-success btn-sm')); ?>
 			</td>

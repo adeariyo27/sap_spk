@@ -6,7 +6,7 @@
 	    <tr><td>Status Pernikahan</td><td><?php echo $status; ?></td></tr>
 	    <tr><td>Alamat</td><td><?php echo $alamat; ?></td></tr>
 	    <tr><td>Pekerjaan</td><td><?php echo $pekerjaan; ?></td></tr>
-	    <tr><td>Penghasilan</td><td><?php echo $penghasilan; ?></td></tr>
+	    <tr><td>Penghasilan</td><td>Rp. <?php echo $penghasilan; ?></td></tr>
 	    <tr><td>Riwayat Kredit</td><td><?php echo $riwayat_kredit; ?></td></tr>
 	    <tr><td>Uang Muka</td><td><?php echo $uang_muka; ?></td></tr>
 	    <tr><td>Jangka Waktu</td><td><?php echo $jangka_waktu; ?></td></tr>
@@ -20,3 +20,13 @@
 		</tr>
 	    <tr><td><a href="<?php echo site_url('pembeli') ?>" class="btn btn-default">Kembali</a></td></tr>
 	</table>
+
+<script>
+var n = new Number($penghasilan);
+var myObj = {
+  style: "currency",
+  currency: "EUR"
+}
+
+document.write(n.toLocaleString("en-GB", myObj));
+</script>

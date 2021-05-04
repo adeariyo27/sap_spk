@@ -18,18 +18,14 @@
             </div>
           <div class="form-group">
                 <label for="status">Status Pernikahan</label>
-                <select class="form-control" autocomplete="off" name="status" id="status" value="<?php echo $status; ?>">
-                    <option>---</option>
-                    <option>II/c</option>
-                    <option>II/d</option>
-                    <option>III/a</option>
-                    <option>III/b</option>
-                    <option>III/c</option>
-                    <option>III/d</option>
-                    <option>IV/a</option>
-                    <option>IV/b</option>
-                    <option>IV/c</option>
-                    <option>IV/d</option>
+                <select class="form-control" autocomplete="off" name="status" id="status" >
+                    <?php foreach( $status as $s ) : ?>
+                        <?php if( $s == $statusdb) : ?>
+                            <option value="<?php echo $s; ?>" selected><?php echo $s; ?></option>
+                        <?php else : ?>
+                            <option value="<?php echo $s; ?>"><?php echo $s; ?></option>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
                 </select>
                     <?php if( form_error('status') == true ) : ?>
                       <div class="form-text text-danger"><b><?= form_error('status') ?></b></div> 
@@ -44,7 +40,15 @@
             </div>
     	    <div class="form-group">
                 <label for="pekerjaan">Pekerjaan</label>
-                <input type="input-group minimal" class="form-control" autocomplete="off" name="pekerjaan" id="pekerjaan" value="<?php echo $pekerjaan; ?>" />
+                <select class="form-control" autocomplete="off" name="pekerjaan" id="pekerjaan">
+                    <?php foreach( $pekerjaan as $p ) : ?>
+                        <?php if( $p == $pekerjaandb) : ?>
+                            <option value="<?php echo $p; ?>" selected><?php echo $p; ?></option>
+                        <?php else : ?>
+                            <option value="<?php echo $p; ?>"><?php echo $p; ?></option>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                </select>
                     <?php if( form_error('pekerjaan') == true ) : ?>
                       <div class="form-text text-danger"><b><?= form_error('pekerjaan') ?></b></div> 
                     <?php endif; ?>
@@ -58,28 +62,60 @@
             </div>
     	    <div class="form-group">
                 <label for="riwayat_kredit">Riwayat Kredit</label>
-                <input type="input-group minimal" class="form-control" autocomplete="off" name="riwayat_kredit" id="riwayat_kredit" value="<?php echo $riwayat_kredit; ?>" />
+                <select class="form-control" autocomplete="off" name="riwayat_kredit" id="riwayat_kredit">
+                    <?php foreach( $riwayat_kredit as $rk ) : ?>
+                        <?php if( $rk == $riwayat_kreditdb) : ?>
+                            <option value="<?php echo $rk; ?>" selected><?php echo $rk; ?></option>
+                        <?php else : ?>
+                            <option value="<?php echo $rk; ?>"><?php echo $rk; ?></option>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                </select>
                     <?php if( form_error('riwayat_kredit') == true ) : ?>
                       <div class="form-text text-danger"><b><?= form_error('riwayat_kredit') ?></b></div> 
                     <?php endif; ?>
             </div>
     	    <div class="form-group">
                 <label for="uang_muka">Uang Muka</label>
-                <input type="input-group minimal" class="form-control" autocomplete="off" name="uang_muka" id="uang_muka" value="<?php echo $uang_muka; ?>" />
+                <select class="form-control" autocomplete="off" name="uang_muka" id="uang_muka">
+                    <?php foreach( $uang_muka as $um ) : ?>
+                        <?php if( $um == $uang_mukadb) : ?>
+                            <option value="<?php echo $um; ?>" selected><?php echo $um; ?></option>
+                        <?php else : ?>
+                            <option value="<?php echo $um; ?>"><?php echo $um; ?></option>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                </select> 
                     <?php if( form_error('uang_muka') == true ) : ?>
                       <div class="form-text text-danger"><b><?= form_error('uang_muka') ?></b></div> 
                     <?php endif; ?>
             </div>
     	    <div class="form-group">
                 <label for="jangka_waktu">Jangka Waktu Pembayaran</label>
-                <input type="input-group minimal" class="form-control" autocomplete="off" name="jangka_waktu" id="jangka_waktu" value="<?php echo $jangka_waktu; ?>" />
+                <select class="form-control" autocomplete="off" name="jangka_waktu" id="jangka_waktu">
+                    <?php foreach( $jangka_waktu as $jw ) : ?>
+                        <?php if( $jw == $jangka_waktudb) : ?>
+                            <option value="<?php echo $jw; ?>" selected><?php echo $jw; ?></option>
+                        <?php else : ?>
+                            <option value="<?php echo $jw; ?>"><?php echo $jw; ?></option>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                </select>
                     <?php if( form_error('jangka_waktu') == true ) : ?>
                       <div class="form-text text-danger"><b><?= form_error('jangka_waktu') ?></b></div> 
                     <?php endif; ?>
             </div>
     	    <div class="form-group">
                 <label for="agama">Agama</label>
-                <input type="input-group minimal" class="form-control" autocomplete="off" name="agama" id="agama" value="<?php echo $agama; ?>" />
+                <select class="form-control" autocomplete="off" name="agama" id="agama">
+                    <?php foreach( $agama as $ag ) : ?>
+                        <?php if( $ag == $agamadb) : ?>
+                            <option value="<?php echo $ag; ?>" selected><?php echo $ag; ?></option>
+                        <?php else : ?>
+                            <option value="<?php echo $ag; ?>"><?php echo $ag; ?></option>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                </select>
                     <?php if( form_error('agama') == true ) : ?>
                       <div class="form-text text-danger"><b><?= form_error('agama') ?></b></div> 
                     <?php endif; ?>

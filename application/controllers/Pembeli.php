@@ -14,6 +14,7 @@ class Pembeli extends CI_Controller
         $this->load->library('Form_validation');
         $this->load->library('Ion_auth');
         $this->load->helper('file');
+        $this->load->helper('number');
         ceklogin();
     }
 
@@ -102,14 +103,14 @@ class Pembeli extends CI_Controller
                 'id_pembeli' => set_value('id_pembeli'),
                 'nama_pembeli' => set_value('nama_pembeli'),
                 'usia' => set_value('usia'),
-                'status' => set_value('status'),
+                'status' => array('','Lajang','Menikah','Cerai'),
                 'alamat' => set_value('alamat'),
-                'pekerjaan' => set_value('pekerjaan'),
+                'pekerjaan' => array('','Pegawai Negeri Sipil','Karyawan Swasta','Wiraswasta'),
                 'penghasilan' => set_value('penghasilan'),
-                'riwayat_kredit' => set_value('riwayat_kredit'),
-                'uang_muka' => set_value('uang_muka'),
-                'jangka_waktu' => set_value('jangka_waktu'),
-                'agama' => set_value('agama'),
+                'riwayat_kredit' => array('','Kolektibilitas - 1','Kolektibilitas - 2','Kolektibilitas - 3', 'Kolektibilitas - 4', 'Kolektibilitas - 5'),
+                'uang_muka' => array('',7000000,8500000,10000000),
+                'jangka_waktu' => array('','10 Tahun','15 Tahun','20 Tahun'),
+                'agama' => array('','Islam','Kristen Protestan','Kristen Katolik','Hindhu','Buddha','Konghuchu'),
                 'no_telpon' => set_value('no_telpon'),
                 'ktp' => set_value('ktp'),
             );
@@ -162,14 +163,20 @@ class Pembeli extends CI_Controller
                 'id_pembeli' => set_value('id_pembeli', $row->id_pembeli),
                 'nama_pembeli' => set_value('nama_pembeli', $row->nama_pembeli),
                 'usia' => set_value('usia', $row->usia),
-                'status' => set_value('status', $row->status),
+                'status' => array('','Lajang','Menikah','Cerai'),
+                'statusdb' => set_value('status', $row->status),
                 'alamat' => set_value('alamat', $row->alamat),
-                'pekerjaan' => set_value('pekerjaan', $row->pekerjaan),
+                'pekerjaan' => array('','Pegawai Negeri Sipil','Karyawan Swasta','Wiraswasta'),
+                'pekerjaandb' => set_value('pekerjaan', $row->pekerjaan),
                 'penghasilan' => set_value('penghasilan', $row->penghasilan),
-                'riwayat_kredit' => set_value('riwayat_kredit', $row->riwayat_kredit),
-                'uang_muka' => set_value('uang_muka', $row->uang_muka),
-                'jangka_waktu' => set_value('jangka_waktu', $row->jangka_waktu),
-                'agama' => set_value('agama', $row->agama),
+                'riwayat_kredit' => array('','Kolektibilitas - 1','Kolektibilitas - 2','Kolektibilitas - 3', 'Kolektibilitas - 4', 'Kolektibilitas - 5'),
+                'riwayat_kreditdb' => set_value('riwayat_kredit', $row->riwayat_kredit),
+                'uang_muka' => array('',7000000,8500000,10000000),
+                'uang_mukadb' => set_value('uang_muka',$row->uang_muka),
+                'jangka_waktu' => array('','10 Tahun','15 Tahun','20 Tahun'),
+                'jangka_waktudb' => set_value('jangka_waktu', $row->jangka_waktu),
+                'agama' => array('','Islam','Kristen Protestan','Kristen Katolik','Hindhu','Buddha','Konghuchu'),
+                'agamadb' => set_value('agama', $row->agama),
                 'no_telpon' => set_value('no_telpon', $row->no_telpon),
                 'ktp' => set_value('ktp', $row->ktp),
             );

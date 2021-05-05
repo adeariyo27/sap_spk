@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 04, 2021 at 08:14 AM
+-- Generation Time: May 05, 2021 at 05:22 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.1.1
 
@@ -250,15 +250,29 @@ CREATE TABLE `pembeli` (
   `jangka_waktu` varchar(20) NOT NULL,
   `agama` varchar(20) NOT NULL,
   `no_telpon` varchar(20) NOT NULL,
-  `ktp` varchar(200) NOT NULL
+  `pas_foto` varchar(200) NOT NULL,
+  `ktp` varchar(200) NOT NULL,
+  `kk` varchar(200) NOT NULL,
+  `surat_nikah` varchar(200) DEFAULT NULL,
+  `slip_gaji` varchar(200) DEFAULT NULL,
+  `sk_terakhir` varchar(200) DEFAULT NULL,
+  `surat_ket_kerja` varchar(200) DEFAULT NULL,
+  `siup` varchar(200) DEFAULT NULL,
+  `daftar_perusahaan` varchar(200) DEFAULT NULL,
+  `surat_ket_dom` varchar(200) DEFAULT NULL,
+  `laporan_keuangan` varchar(200) DEFAULT NULL,
+  `npwp` varchar(200) NOT NULL,
+  `buku_tabungan` varchar(200) NOT NULL,
+  `rekening_koran` varchar(200) NOT NULL,
+  `surat_pernyataan` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 --
 -- Dumping data for table `pembeli`
 --
 
-INSERT INTO `pembeli` (`id_pembeli`, `nama_pembeli`, `usia`, `status`, `alamat`, `pekerjaan`, `penghasilan`, `riwayat_kredit`, `uang_muka`, `jangka_waktu`, `agama`, `no_telpon`, `ktp`) VALUES
-(10, 'Jo', 44, 'Cerai', 'Jl. Asam Kd', 'Pegawai Negeri Sipil', 5777777, 'Kolektibilitas - 5', 7000000, '20 Tahun', 'Hindhu', '1111', 'ijazah_Ade.pdf');
+INSERT INTO `pembeli` (`id_pembeli`, `nama_pembeli`, `usia`, `status`, `alamat`, `pekerjaan`, `penghasilan`, `riwayat_kredit`, `uang_muka`, `jangka_waktu`, `agama`, `no_telpon`, `pas_foto`, `ktp`, `kk`, `surat_nikah`, `slip_gaji`, `sk_terakhir`, `surat_ket_kerja`, `siup`, `daftar_perusahaan`, `surat_ket_dom`, `laporan_keuangan`, `npwp`, `buku_tabungan`, `rekening_koran`, `surat_pernyataan`) VALUES
+(10, 'Jo', 44, 'Cerai', 'Jl. Asam Kd', 'Pegawai Negeri Sipil', 5777777, 'Kolektibilitas - 5', 7000000, '20 Tahun', 'Hindhu', '1111', '', 'ektp.pdf', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -483,7 +497,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`) VALUES
-(2, '::1', 'adeharioyudanto@gmail.com', '$2y$08$lql0hvJRq4GxXKCbmJYYkuaENe7ueD19b5redhklCccv3oISDZ8Pq', NULL, 'adeharioyudanto@gmail.com', NULL, NULL, NULL, NULL, 1619100985, 1620099976, 1, 'Ade Ariyo', 'Yudanto', 'PT. Serasi Anugrah Pratama', '081370231033'),
+(2, '::1', 'adeharioyudanto@gmail.com', '$2y$08$lql0hvJRq4GxXKCbmJYYkuaENe7ueD19b5redhklCccv3oISDZ8Pq', NULL, 'adeharioyudanto@gmail.com', NULL, NULL, NULL, NULL, 1619100985, 1620222495, 1, 'Ade Ariyo', 'Yudanto', 'PT. Serasi Anugrah Pratama', '081370231033'),
 (3, '::1', 'gunanta.s@gmail.com', '$2y$08$IjJPCdE8gle4hYHoSa/kG.hoipD7PRXThSm/e.vLjLBUZGjGpjUaq', NULL, 'gunanta.s@gmail.com', NULL, NULL, NULL, NULL, 1619101074, 1619768294, 1, 'Gunanta', 'Sembiring', 'PT. Serasi Anugrah Pratama', '081375388797'),
 (4, '::1', 'ridhorinaldy@gmail.com', '$2y$08$tJhD3PuodvVTCGfjAejoK.ufBFSNr2QN19mbMVdho/fzonnQbz6sq', NULL, 'ridhorinaldy@gmail.com', NULL, NULL, NULL, NULL, 1619101760, 1619246712, 1, 'Ridho', 'Rinaldy', 'PT. Berkah Rizki Putra', '081345678899'),
 (5, '::1', 'jimmypelawi@gmail.com', '$2y$08$VemYZpi3IZBguTisFmVqFOTqLv5uDwxX6Dvz32LaL1iu.sXZXlvMK', NULL, 'jimmypelawi@gmail.com', NULL, NULL, NULL, NULL, 1619101861, 1619844720, 1, 'Jimmy', 'Pelawi', 'CV. Pelawinta Durian', '081323456789');

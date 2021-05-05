@@ -5,7 +5,8 @@ if (!defined('BASEPATH'))
 
 class Pembeli extends CI_Controller
 {
-    public $namaFile;
+    private $namaFile;
+    private $isCreate;
 
     function __construct()
     {
@@ -75,23 +76,23 @@ class Pembeli extends CI_Controller
         }
     }
 
-    public function uploadFile($file, $attributeName,$folder)
+    public function uploadFile($file, $attributeName)
     {
-        $filename = str_replace(' ', '_', $file[$attributeName]['name']);
-        $config['upload_path']          = $folder;
+
+        $filename = uniqid() .'-'. str_replace(' ', '_', $file[$attributeName]['name']);
+        $config['upload_path']          = './uploads/pembeli/';
         $config['allowed_types']        = 'pdf';
-        $config['file_name']            = array($filename);
+        $config['file_name']            = $filename;
         $config['overwrite']			= true;
-        $config['max_size']             = 5120; // 1MB #ukuran maksimal gambar
+        $config['max_size']             = 1024; // 1MB #ukuran maksimal gambar
 
         $this->upload->initialize($config);
         if ( ! $this->upload->do_upload($attributeName)){
            $this->session->set_flashdata('gagal', $this->upload->display_errors());
-           return false;
+           return $this->isCreate == true ? $this->create() : $this->update();
         }
 
-        $this->namaFile = $filename;
-        return true;
+        return $filename;
     }
 
     public function create() 
@@ -113,6 +114,7 @@ class Pembeli extends CI_Controller
                 'no_telpon' => set_value('no_telpon'),
                 'pas_foto' => set_value('pas_foto'),
                 'ktp' => set_value('ktp'),
+                'kk' => set_value('kk'),
             );
         $this->template->load('template/backend/dashboard', 'pembeli/pembeli_form', $data);
     }
@@ -123,14 +125,6 @@ class Pembeli extends CI_Controller
         if ($this->form_validation->run() == FALSE) {
             $this->create();
         } else {
-            // start upload file
-            $attribute = array('pas_foto','ktp'); #nama attribute input form (representasi dari nama tabel di db)
-            $folder = './uploads/pembeli/';
-            $upload = $this->uploadFile($_FILES, $attribute, $folder);
-            // end upload file
-
-            if ($upload == false)  return redirect(site_url('pembeli'));
-
             $data = array(
                 'nama_pembeli' => $this->input->post('nama_pembeli',TRUE),
                 'usia' => $this->input->post('usia',TRUE),
@@ -143,8 +137,9 @@ class Pembeli extends CI_Controller
                 'jangka_waktu' => $this->input->post('jangka_waktu',TRUE),
                 'agama' => $this->input->post('agama',TRUE),
                 'no_telpon' => $this->input->post('no_telpon',TRUE),
-                'pas_foto' => $this->namaFile,
-                'ktp' => $this->namaFile,
+                'pas_foto' =>$this->uploadFile($_FILES, 'pas_foto'),
+                'ktp' => $this->uploadFile($_FILES, 'ktp'),
+                'kk' => $this->uploadFile($_FILES, 'kk'),
             );
 
             $this->Pembeli_model->insert($data);
@@ -179,9 +174,11 @@ class Pembeli extends CI_Controller
                 'agama' => array('','Islam','Kristen Protestan','Kristen Katolik','Hindhu','Buddha','Konghuchu'),
                 'agamadb' => set_value('agama', $row->agama),
                 'no_telpon' => set_value('no_telpon', $row->no_telpon),
+                'pas_foto' => set_value('pas_foto', $row->pas_foto),
                 'ktp' => set_value('ktp', $row->ktp),
+                'kk' => set_value('kk', $row->kk),
             );
-            $this->template->load('template/backend/dashboard', 'pembeli/pembeli_form', $data);
+            $this->template->load('template/backend/dashboard', 'pembeli/pembeli_form_edit', $data);
         } else {
             $this->session->set_flashdata('gagal', 'Data Calon Pembeli Tidak Dapat Ditemukan');
             redirect(site_url('pembeli'));
@@ -191,49 +188,40 @@ class Pembeli extends CI_Controller
     public function update_action() 
     {
         $this->_updaterules();
+        $this->isCreate = false;
 
         if ($this->form_validation->run() == FALSE) {
             $this->update($this->input->post('id_pembeli', TRUE));
         } else {
-            if (!empty($_FILES['ktp']['name'])) {
-                // start upload file
-                $attribute = 'ktp'; #nama attribute input form (representasi dari nama tabel di db)
-                $folder = './uploads/pembeli/';
-                // unlink($folder.$this->$_FILES['ktp']['name']);
-                // print_r($_FILES); exit;
-                $upload = $this->uploadFile($_FILES, $attribute, $folder);
-                // end upload file
+            $data = array(
+                'nama_pembeli' => $this->input->post('nama_pembeli',TRUE),
+                'usia' => $this->input->post('usia',TRUE),
+                'status' => $this->input->post('status',TRUE),
+                'alamat' => $this->input->post('alamat',TRUE),
+                'pekerjaan' => $this->input->post('pekerjaan',TRUE),
+                'penghasilan' => $this->input->post('penghasilan',TRUE),
+                'riwayat_kredit' => $this->input->post('riwayat_kredit',TRUE),
+                'uang_muka' => $this->input->post('uang_muka',TRUE),
+                'jangka_waktu' => $this->input->post('jangka_waktu',TRUE),
+                'agama' => $this->input->post('agama',TRUE),
+                'no_telpon' => $this->input->post('no_telpon',TRUE),
+            );
 
-                if ($upload == false)  return redirect(site_url('pembeli'));
+            $detail = $this->Pembeli_model->get_by_id($this->input->post('id_pembeli'));
 
-                $data = array(
-                    'nama_pembeli' => $this->input->post('nama_pembeli',TRUE),
-                    'usia' => $this->input->post('usia',TRUE),
-                    'status' => $this->input->post('status',TRUE),
-                    'alamat' => $this->input->post('alamat',TRUE),
-                    'pekerjaan' => $this->input->post('pekerjaan',TRUE),
-                    'penghasilan' => $this->input->post('penghasilan',TRUE),
-                    'riwayat_kredit' => $this->input->post('riwayat_kredit',TRUE),
-                    'uang_muka' => $this->input->post('uang_muka',TRUE),
-                    'jangka_waktu' => $this->input->post('jangka_waktu',TRUE),
-                    'agama' => $this->input->post('agama',TRUE),
-                    'no_telpon' => $this->input->post('no_telpon',TRUE),
-                    'ktp' => $this->namaFile,
-                );
-            } else {
-                $data = array(
-                    'nama_pembeli' => $this->input->post('nama_pembeli',TRUE),
-                    'usia' => $this->input->post('usia',TRUE),
-                    'status' => $this->input->post('status',TRUE),
-                    'alamat' => $this->input->post('alamat',TRUE),
-                    'pekerjaan' => $this->input->post('pekerjaan',TRUE),
-                    'penghasilan' => $this->input->post('penghasilan',TRUE),
-                    'riwayat_kredit' => $this->input->post('riwayat_kredit',TRUE),
-                    'uang_muka' => $this->input->post('uang_muka',TRUE),
-                    'jangka_waktu' => $this->input->post('jangka_waktu',TRUE),
-                    'agama' => $this->input->post('agama',TRUE),
-                    'no_telpon' => $this->input->post('no_telpon',TRUE),
-                );
+            // get all files and insert one by one if it's exist
+            $arr = [];
+            if (isset($_FILES)) {
+                foreach ($_FILES as $key => $value) {
+                    $arr[$key] = $value;
+                    if (!empty($value['tmp_name'])) {
+                        $data[$key] = $newFile = $this->uploadFile($_FILES, $key);
+
+                        // replace current file and update table
+                        unlink('./uploads/pembeli/'. $detail->$key);
+                        $this->Pembeli_model->update($this->input->post('id_pembeli'), [$key => $newFile]);
+                    }
+                }
             }
 
             $this->Pembeli_model->update($this->input->post('id_pembeli', TRUE), $data);
@@ -277,40 +265,27 @@ class Pembeli extends CI_Controller
 	$this->form_validation->set_rules('jangka_waktu', 'Jangka Waktu', 'trim|required');
 	$this->form_validation->set_rules('agama', 'Agama', 'trim|required');
 	$this->form_validation->set_rules('no_telpon', 'No. Handphone', 'trim|required|numeric');
-    
-    if (empty($_FILES['pas_foto']['name'])) {
-        $this->form_validation->set_rules('pas_foto', 'Pas Foto', 'required');
-    }
-    if(!empty($_FILES['pas_foto']['name'])) {
-        $maxsize    = 1048576;
-        $acceptable = array(
-            'application/pdf'
-        );
-    
-        if(($_FILES['pas_foto']['size'] >= $maxsize) || ($_FILES["pas_foto"]["size"] == 0)) {
-            return $this->form_validation->set_rules('pas_foto', 'Pas Foto', 'isset');
-        }
-    
-        if((!in_array($_FILES['pas_foto']['type'], $acceptable)) && (!empty($_FILES["pas_foto"]["type"]))) {
-            return $this->form_validation->set_rules('pas_foto', 'Pas Foto', 'isset');
-        }
-    }
+	
+    $fileList = ['pas_foto', 'kk', 'ktp']; # please add new list for all field for file (same to field name on DB)
 
-    if (empty($_FILES['ktp']['name'])) {
-        $this->form_validation->set_rules('ktp', 'KTP', 'required');
-    }
-    if(!empty($_FILES['ktp']['name'])) {
-        $maxsize    = 1048576;
-        $acceptable = array(
-            'application/pdf'
-        );
-    
-        if(($_FILES['ktp']['size'] >= $maxsize) || ($_FILES["ktp"]["size"] == 0)) {
-            return $this->form_validation->set_rules('ktp', 'KTP', 'isset');
+    // loop all file validation
+    for ($i=0; $i < count($fileList) ; $i++) { 
+        if (empty($_FILES[$fileList[$i]]['name'])) {
+            $this->form_validation->set_rules($fileList[$i], str_replace('_', ' ', ucwords($fileList[$i])), 'required');
         }
-    
-        if((!in_array($_FILES['ktp']['type'], $acceptable)) && (!empty($_FILES["ktp"]["type"]))) {
-            return $this->form_validation->set_rules('ktp', 'KTP', 'isset');
+        if(!empty($_FILES[$fileList[$i]]['name'])) {
+            $maxsize    = 1048576;
+            $acceptable = array(
+                'application/pdf'
+            );
+        
+            if(($_FILES[$fileList[$i]]['size'] >= $maxsize) || ($_FILES[$fileList[$i]]["size"] == 0)) {
+                return $this->form_validation->set_rules($fileList[$i], str_replace('_', ' ', ucwords($fileList[$i])), 'isset');
+            }
+        
+            if((!in_array($_FILES[$fileList[$i]]['type'], $acceptable)) && (!empty($_FILES[$fileList[$i]]["type"]))) {
+                return $this->form_validation->set_rules($fileList[$i], str_replace('_', ' ', ucwords($fileList[$i])), 'isset');
+            }
         }
     }
 
@@ -332,34 +307,26 @@ class Pembeli extends CI_Controller
 	$this->form_validation->set_rules('agama', 'Agama', 'trim|required');
 	$this->form_validation->set_rules('no_telpon', 'No. Handphone', 'trim|required|numeric');
     
-    if(!empty($_FILES['pas_foto']['name'])) {
-        $maxsize    = 1048576;
-        $acceptable = array(
-            'application/pdf'
-        );
-    
-        if(($_FILES['pas_foto']['size'] >= $maxsize) || ($_FILES["pas_foto"]["size"] == 0)) {
-            return $this->form_validation->set_rules('pas_foto', 'Pas Foto', 'isset');
-        }
-    
-        if((!in_array($_FILES['pas_foto']['type'], $acceptable)) && (!empty($_FILES["pas_foto"]["type"]))) {
-            return $this->form_validation->set_rules('pas_foto', 'Pas Foto', 'isset');
-        }
-    }
-    if(!empty($_FILES['ktp']['name'])) {
-        $maxsize    = 1048576;
-        $acceptable = array(
-            'application/pdf'
-        );
-    
-        if(($_FILES['ktp']['size'] >= $maxsize) || ($_FILES["ktp"]["size"] == 0)) {
-            return $this->form_validation->set_rules('ktp', 'KTP', 'isset');
-        }
-    
-        if((!in_array($_FILES['ktp']['type'], $acceptable)) && (!empty($_FILES["ktp"]["type"]))) {
-            return $this->form_validation->set_rules('ktp', 'KTP', 'isset');
+    $fileList = ['pas_foto', 'kk', 'ktp']; # please add new list for all field for file (same to field name on DB)
+
+    // loop all file validation
+    for ($i=0; $i < count($fileList) ; $i++) { 
+        if(!empty($_FILES[$fileList[$i]]['name'])) {
+            $maxsize    = 1048576;
+            $acceptable = array(
+                'application/pdf'
+            );
+        
+            if(($_FILES[$fileList[$i]]['size'] >= $maxsize) || ($_FILES[$fileList[$i]]["size"] == 0)) {
+                return $this->form_validation->set_rules($fileList[$i], str_replace('_', ' ', ucwords($fileList[$i])), 'isset');
+            }
+        
+            if((!in_array($_FILES[$fileList[$i]]['type'], $acceptable)) && (!empty($_FILES[$fileList[$i]]["type"]))) {
+                return $this->form_validation->set_rules($fileList[$i], str_replace('_', ' ', ucwords($fileList[$i])), 'isset');
+            }
         }
     }
+   
 
 	$this->form_validation->set_rules('id_pembeli', 'id_pembeli', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');

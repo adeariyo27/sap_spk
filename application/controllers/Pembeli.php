@@ -212,7 +212,6 @@ class Pembeli extends CI_Controller
             // get all files and insert one by one if it's exist
             if (isset($_FILES)) {
                 foreach ($_FILES as $key => $value) {
-                    $arr[$key] = $value;
                     if (!empty($value['tmp_name'])) {
                         $data[$key] = $newFile = $this->uploadFile($_FILES, $key);
 

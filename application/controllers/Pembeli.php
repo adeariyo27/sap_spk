@@ -210,7 +210,6 @@ class Pembeli extends CI_Controller
             $detail = $this->Pembeli_model->get_by_id($this->input->post('id_pembeli'));
 
             // get all files and insert one by one if it's exist
-            $arr = [];
             if (isset($_FILES)) {
                 foreach ($_FILES as $key => $value) {
                     $arr[$key] = $value;

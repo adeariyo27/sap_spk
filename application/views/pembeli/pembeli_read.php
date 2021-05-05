@@ -20,13 +20,3 @@
 		</tr>
 	    <tr><td><a href="<?php echo site_url('pembeli') ?>" class="btn btn-default">Kembali</a></td></tr>
 	</table>
-
-<script>
-var n = new Number($penghasilan);
-var myObj = {
-  style: "currency",
-  currency: "EUR"
-}
-
-document.write(n.toLocaleString("en-GB", myObj));
-</script>

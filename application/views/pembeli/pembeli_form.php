@@ -130,6 +130,25 @@
     	    <div class="form-group">
                 <label for="varchar"><h3><b>Upload File Calon Pembeli</b></h3></label>
             </div>
+
+    	    <div class="form-group">
+                <label for="varchar">Upload Pas Foto 3x4  <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
+                <?php if($button == 'Edit') { ?>
+                  <br><br>
+                  <?php echo anchor(site_url('uploads/pembeli/'.$pas_foto), '<i class="entypo-doc-text"></i><span> Preview Pas Foto</span>', array('target'=>'_new','class'=>'btn btn-success btn-sm')); ?>
+                  <br>
+                  <input type="file" class="form-control" name="pas_foto" id="pas_foto" value="" />
+                      <?php if( form_error('pas_foto') == true ) : ?>
+                        <div class="form-text text-danger"><b><?= form_error('pas_foto') ?></b></div> 
+                      <?php endif; ?>
+                <?php } elseif ($button == 'Tambah Data') {?>
+                  <input type="file" class="form-control" name="pas_foto" id="pas_foto" value="" />
+                      <?php if( form_error('pas_foto') == true ) : ?>
+                        <div class="form-text text-danger"><b><?= form_error('pas_foto') ?></b></div> 
+                      <?php endif; ?>
+                <?php } ?>
+            </div>
+            
     	    <div class="form-group">
                 <label for="varchar">Upload KTP  <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
                 <?php if($button == 'Edit') { ?>
@@ -147,6 +166,7 @@
                       <?php endif; ?>
                 <?php } ?>
             </div>
+
     	    <input type="hidden" name="id_pembeli" value="<?php echo $id_pembeli; ?>" /> 
     	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
     	    <a href="<?php echo site_url('pembeli') ?>" class="btn btn-default">Batal</a>

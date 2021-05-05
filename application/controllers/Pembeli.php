@@ -14,7 +14,6 @@ class Pembeli extends CI_Controller
         $this->load->library('Form_validation');
         $this->load->library('Ion_auth');
         $this->load->helper('file');
-        $this->load->helper('number');
         ceklogin();
     }
 
@@ -81,7 +80,7 @@ class Pembeli extends CI_Controller
         $filename = str_replace(' ', '_', $file[$attributeName]['name']);
         $config['upload_path']          = $folder;
         $config['allowed_types']        = 'pdf';
-        $config['file_name']            = $filename;
+        $config['file_name']            = array($filename);
         $config['overwrite']			= true;
         $config['max_size']             = 5120; // 1MB #ukuran maksimal gambar
 
@@ -112,6 +111,7 @@ class Pembeli extends CI_Controller
                 'jangka_waktu' => array('','10 Tahun','15 Tahun','20 Tahun'),
                 'agama' => array('','Islam','Kristen Protestan','Kristen Katolik','Hindhu','Buddha','Konghuchu'),
                 'no_telpon' => set_value('no_telpon'),
+                'pas_foto' => set_value('pas_foto'),
                 'ktp' => set_value('ktp'),
             );
         $this->template->load('template/backend/dashboard', 'pembeli/pembeli_form', $data);
@@ -124,7 +124,7 @@ class Pembeli extends CI_Controller
             $this->create();
         } else {
             // start upload file
-            $attribute = 'ktp'; #nama attribute input form (representasi dari nama tabel di db)
+            $attribute = array('pas_foto','ktp'); #nama attribute input form (representasi dari nama tabel di db)
             $folder = './uploads/pembeli/';
             $upload = $this->uploadFile($_FILES, $attribute, $folder);
             // end upload file
@@ -143,6 +143,7 @@ class Pembeli extends CI_Controller
                 'jangka_waktu' => $this->input->post('jangka_waktu',TRUE),
                 'agama' => $this->input->post('agama',TRUE),
                 'no_telpon' => $this->input->post('no_telpon',TRUE),
+                'pas_foto' => $this->namaFile,
                 'ktp' => $this->namaFile,
             );
 
@@ -276,6 +277,25 @@ class Pembeli extends CI_Controller
 	$this->form_validation->set_rules('jangka_waktu', 'Jangka Waktu', 'trim|required');
 	$this->form_validation->set_rules('agama', 'Agama', 'trim|required');
 	$this->form_validation->set_rules('no_telpon', 'No. Handphone', 'trim|required|numeric');
+    
+    if (empty($_FILES['pas_foto']['name'])) {
+        $this->form_validation->set_rules('pas_foto', 'Pas Foto', 'required');
+    }
+    if(!empty($_FILES['pas_foto']['name'])) {
+        $maxsize    = 1048576;
+        $acceptable = array(
+            'application/pdf'
+        );
+    
+        if(($_FILES['pas_foto']['size'] >= $maxsize) || ($_FILES["pas_foto"]["size"] == 0)) {
+            return $this->form_validation->set_rules('pas_foto', 'Pas Foto', 'isset');
+        }
+    
+        if((!in_array($_FILES['pas_foto']['type'], $acceptable)) && (!empty($_FILES["pas_foto"]["type"]))) {
+            return $this->form_validation->set_rules('pas_foto', 'Pas Foto', 'isset');
+        }
+    }
+
     if (empty($_FILES['ktp']['name'])) {
         $this->form_validation->set_rules('ktp', 'KTP', 'required');
     }
@@ -311,6 +331,21 @@ class Pembeli extends CI_Controller
 	$this->form_validation->set_rules('jangka_waktu', 'Jangka Waktu', 'trim|required');
 	$this->form_validation->set_rules('agama', 'Agama', 'trim|required');
 	$this->form_validation->set_rules('no_telpon', 'No. Handphone', 'trim|required|numeric');
+    
+    if(!empty($_FILES['pas_foto']['name'])) {
+        $maxsize    = 1048576;
+        $acceptable = array(
+            'application/pdf'
+        );
+    
+        if(($_FILES['pas_foto']['size'] >= $maxsize) || ($_FILES["pas_foto"]["size"] == 0)) {
+            return $this->form_validation->set_rules('pas_foto', 'Pas Foto', 'isset');
+        }
+    
+        if((!in_array($_FILES['pas_foto']['type'], $acceptable)) && (!empty($_FILES["pas_foto"]["type"]))) {
+            return $this->form_validation->set_rules('pas_foto', 'Pas Foto', 'isset');
+        }
+    }
     if(!empty($_FILES['ktp']['name'])) {
         $maxsize    = 1048576;
         $acceptable = array(

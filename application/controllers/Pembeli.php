@@ -66,7 +66,9 @@ class Pembeli extends CI_Controller
                 'jangka_waktu' => $row->jangka_waktu,
                 'agama' => $row->agama,
                 'no_telpon' => $row->no_telpon,
+                'pas_foto' => $row->pas_foto,
                 'ktp' => $row->ktp,
+                'kk' => $row->kk,
 	        );
 
             $this->template->load('template/backend/dashboard', 'pembeli/pembeli_read', $data);
@@ -115,6 +117,8 @@ class Pembeli extends CI_Controller
                 'pas_foto' => set_value('pas_foto'),
                 'ktp' => set_value('ktp'),
                 'kk' => set_value('kk'),
+                'surat_nikah' => set_value('surat_nikah'),
+                'slip_gaji' => set_value('slip_gaji'),
             );
         $this->template->load('template/backend/dashboard', 'pembeli/pembeli_form', $data);
     }
@@ -140,6 +144,8 @@ class Pembeli extends CI_Controller
                 'pas_foto' =>$this->uploadFile($_FILES, 'pas_foto'),
                 'ktp' => $this->uploadFile($_FILES, 'ktp'),
                 'kk' => $this->uploadFile($_FILES, 'kk'),
+                'surat_nikah' => $this->uploadFile($_FILES, 'surat_nikah'),
+                'slip_gaji' => $this->uploadFile($_FILES, 'slip_gaji'),
             );
 
             $this->Pembeli_model->insert($data);
@@ -177,6 +183,8 @@ class Pembeli extends CI_Controller
                 'pas_foto' => set_value('pas_foto', $row->pas_foto),
                 'ktp' => set_value('ktp', $row->ktp),
                 'kk' => set_value('kk', $row->kk),
+                'surat_nikah' => set_value('surat_nikah', $row->surat_nikah),
+                'slip_gaji' => set_value('slip_gaji', $row->slip_gaji),
             );
             $this->template->load('template/backend/dashboard', 'pembeli/pembeli_form_edit', $data);
         } else {
@@ -264,13 +272,31 @@ class Pembeli extends CI_Controller
 	$this->form_validation->set_rules('agama', 'Agama', 'trim|required');
 	$this->form_validation->set_rules('no_telpon', 'No. Handphone', 'trim|required|numeric');
 	
-    $fileList = ['pas_foto', 'kk', 'ktp']; # please add new list for all field for file (same to field name on DB)
+    $fileList = ['pas_foto', 'ktp', 'kk', 'surat_nikah', 'slip_gaji']; # please add new list for all field for file (same to field name on DB)
+    $fileListreq = ['pas_foto', 'kk', 'ktp'];
 
     // loop all file validation
-    for ($i=0; $i < count($fileList) ; $i++) { 
-        if (empty($_FILES[$fileList[$i]]['name'])) {
-            $this->form_validation->set_rules($fileList[$i], str_replace('_', ' ', ucwords($fileList[$i])), 'required');
+    for ($i=0; $i < count($fileListreq) ; $i++) { 
+        if (empty($_FILES[$fileListreq[$i]]['name'])) {
+            $this->form_validation->set_rules($fileListreq[$i], str_replace('_', ' ', ucwords($fileListreq[$i])), 'required');
         }
+        if(!empty($_FILES[$fileListreq[$i]]['name'])) {
+            $maxsize    = 1048576;
+            $acceptable = array(
+                'application/pdf'
+            );
+        
+            if(($_FILES[$fileListreq[$i]]['size'] >= $maxsize) || ($_FILES[$fileListreq[$i]]["size"] == 0)) {
+                return $this->form_validation->set_rules($fileListreq[$i], str_replace('_', ' ', ucwords($fileListreq[$i])), 'isset');
+            }
+        
+            if((!in_array($_FILES[$fileListreq[$i]]['type'], $acceptable)) && (!empty($_FILES[$fileListreq[$i]]["type"]))) {
+                return $this->form_validation->set_rules($fileListreq[$i], str_replace('_', ' ', ucwords($fileListreq[$i])), 'isset');
+            }
+        }
+    }
+
+    for ($i=0; $i < count($fileList) ; $i++) { 
         if(!empty($_FILES[$fileList[$i]]['name'])) {
             $maxsize    = 1048576;
             $acceptable = array(
@@ -305,7 +331,7 @@ class Pembeli extends CI_Controller
 	$this->form_validation->set_rules('agama', 'Agama', 'trim|required');
 	$this->form_validation->set_rules('no_telpon', 'No. Handphone', 'trim|required|numeric');
     
-    $fileList = ['pas_foto', 'kk', 'ktp']; # please add new list for all field for file (same to field name on DB)
+    $fileList = ['pas_foto', 'ktp', 'kk', 'surat_nikah', 'slip_gaji']; # please add new list for all field for file (same to field name on DB)
 
     // loop all file validation
     for ($i=0; $i < count($fileList) ; $i++) { 

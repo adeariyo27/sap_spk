@@ -97,18 +97,18 @@
                     <?php endif; ?>
             </div>
     	    <div class="form-group">
-                <label for="varchar">No. Handphone</label>
+                <label for="no_telpon">No. Handphone</label>
                 <input type="text" class="form-control" name="no_telpon" id="no_telpon" value="<?php echo $no_telpon; ?>" />
                     <?php if( form_error('no_telpon') == true ) : ?>
                       <div class="form-text text-danger"><b><?= form_error('no_telpon') ?></b></div> 
                     <?php endif; ?>
             </div>
     	    <div class="form-group">
-                <label for="varchar"><h3><b>Upload File Calon Pembeli</b></h3></label>
+                <label for="uploadfile"><h3><b>Upload File Calon Pembeli</b></h3></label>
             </div>
 
     	    <div class="form-group">
-              <label for="varchar">Upload Pas Foto 3x4  <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
+              <label for="pas_foto">Upload File Pas Foto 3x4  <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
               <input type="file" class="form-control" name="pas_foto" id="pas_foto"/>
               <?php if( form_error('pas_foto') == true ) : ?>
                 <div class="form-text text-danger"><b><?= form_error('pas_foto') ?></b></div> 
@@ -116,7 +116,7 @@
           </div>
             
     	    <div class="form-group">
-            <label for="varchar">Upload KTP  <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
+            <label for="ktp">Upload File KTP  <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
             <input type="file" class="form-control" name="ktp" id="ktp" />
             <?php if( form_error('ktp') == true ) : ?>
               <div class="form-text text-danger"><b><?= form_error('ktp') ?></b></div> 
@@ -124,10 +124,30 @@
           </div>
 
           <div class="form-group">
-            <label for="varchar">Upload Foto KK  <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
+            <label for="kk">Upload File Kartu Keluarga  <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
             <input type="file" class="form-control" name="kk" id="kk" />
             <?php if( form_error('kk') == true ) : ?>
               <div class="form-text text-danger"><b><?= form_error('kk') ?></b></div> 
+            <?php endif; ?>
+          </div>
+          
+          <div class="form-group">
+            <label for="surat_nikah">Surat Nikah  <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
+            <br>
+            <medium><b>Isi Bila Status Pernikahan = Menikah</b></medium>
+            <input type="file" class="form-control" name="surat_nikah" id="surat_nikah" />
+            <?php if( form_error('surat_nikah') == true ) : ?>
+              <div class="form-text text-danger"><b><?= form_error('surat_nikah') ?></b></div> 
+            <?php endif; ?>
+          </div>
+          
+          <div class="form-group">
+            <label for="slip_gaji">Surat Nikah  <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
+            <br>
+            <medium><b>Isi Bila Status Pekerjaan = PNS/Karyawan Swasta</b></medium>
+            <input type="file" class="form-control" name="slip_gaji" id="slip_gaji" />
+            <?php if( form_error('slip_gaji') == true ) : ?>
+              <div class="form-text text-danger"><b><?= form_error('slip_gaji') ?></b></div> 
             <?php endif; ?>
           </div>
 

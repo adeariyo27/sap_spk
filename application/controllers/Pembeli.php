@@ -78,9 +78,8 @@ class Pembeli extends CI_Controller
         }
     }
 
-    public function uploadFile($file, $attributeName)
+    public function uploadFile($file, $attributeName, $id = null)
     {
-
         $filename = uniqid() .'-'. str_replace(' ', '_', $file[$attributeName]['name']);
         $config['upload_path']          = './uploads/pembeli/';
         $config['allowed_types']        = 'pdf';
@@ -91,7 +90,7 @@ class Pembeli extends CI_Controller
         $this->upload->initialize($config);
         if ( ! $this->upload->do_upload($attributeName)){
            $this->session->set_flashdata('gagal', $this->upload->display_errors());
-           return $this->isCreate == true ? $this->create() : $this->update();
+           return $this->isCreate == true ? $this->create() : $this->update($id);
         }
 
         return $filename;
@@ -157,7 +156,6 @@ class Pembeli extends CI_Controller
     public function update($id) 
     {
         $row = $this->Pembeli_model->get_by_id($id);
-
         if ($row) {
             $data = array(
                 'button' => 'Edit',
@@ -221,7 +219,7 @@ class Pembeli extends CI_Controller
             if (isset($_FILES)) {
                 foreach ($_FILES as $key => $value) {
                     if (!empty($value['tmp_name'])) {
-                        $data[$key] = $newFile = $this->uploadFile($_FILES, $key);
+                        $data[$key] = $newFile = $this->uploadFile($_FILES, $key, $this->input->post('id_pembeli', TRUE));
 
                         // replace current file and update table
                         unlink('./uploads/pembeli/'. $detail->$key);

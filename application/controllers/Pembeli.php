@@ -6,7 +6,7 @@ if (!defined('BASEPATH'))
 class Pembeli extends CI_Controller
 {
     private $namaFile;
-    private $isCreate;
+    private $isCreate = true;
 
     function __construct()
     {
@@ -145,8 +145,8 @@ class Pembeli extends CI_Controller
                 'pas_foto' =>$this->uploadFile($_FILES, 'pas_foto'),
                 'ktp' => $this->uploadFile($_FILES, 'ktp'),
                 'kk' => $this->uploadFile($_FILES, 'kk'),
-                'surat_nikah' => $this->uploadFile($_FILES, 'surat_nikah'),
-                'slip_gaji' => $this->uploadFile($_FILES, 'slip_gaji'),
+                'surat_nikah' => $_FILES['surat_nikah']['name'] !== null ? $this->uploadFile($_FILES, 'surat_nikah') : null, ## unrequired handler
+                'slip_gaji' => $_FILES['slip_gaji']['name'] !== null ? $this->uploadFile($_FILES, 'slip_gaji') : null, ## unrequired handler
             );
 
             $this->Pembeli_model->insert($data);

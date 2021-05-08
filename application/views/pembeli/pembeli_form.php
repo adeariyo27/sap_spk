@@ -142,7 +142,7 @@
           </div>
           
           <div class="form-group">
-            <label for="slip_gaji">Surat Nikah  <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
+            <label for="slip_gaji">Slip gaji  <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
             <br>
             <medium><b>Isi Bila Status Pekerjaan = PNS/Karyawan Swasta</b></medium>
             <input type="file" class="form-control" name="slip_gaji" id="slip_gaji" />

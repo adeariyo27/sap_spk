@@ -69,6 +69,8 @@ class Pembeli extends CI_Controller
                 'pas_foto' => $row->pas_foto,
                 'ktp' => $row->ktp,
                 'kk' => $row->kk,
+                'surat_nikah' => $row->surat_nikah,
+                'slip_gaji' => $row->slip_gaji,
 	        );
 
             $this->template->load('template/backend/dashboard', 'pembeli/pembeli_read', $data);
@@ -238,11 +240,13 @@ class Pembeli extends CI_Controller
     {
         $row = $this->Pembeli_model->get_by_id($id);
         $lokasiktp = './uploads/pembeli/';
-        $filektp = $row->ktp;
+        $filedelete = array($row->pas_foto, $row->ktp, $row->kk, $row->surat_nikah, $row->slip_gaji);
 
         if ($row) {
             $this->Pembeli_model->delete($id);
-            unlink($lokasiktp.$filektp);
+            foreach($filedelete as $fd) {
+                unlink($lokasiktp.$fd);
+            }
             $this->session->set_flashdata('sukses', 'Data Calon Pembeli Telah Dihapus');
             redirect(site_url('pembeli'));
         } else {

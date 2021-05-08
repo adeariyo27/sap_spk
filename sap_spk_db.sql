@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 05, 2021 at 05:22 PM
+-- Generation Time: May 08, 2021 at 06:08 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.1.1
 
@@ -144,11 +144,10 @@ CREATE TABLE `kriteria` (
 --
 
 INSERT INTO `kriteria` (`id_kriteria`, `nama_kriteria`) VALUES
-(13, 'SI  Sikap Spritual Siswa sesuai tingkat kompetensi'),
-(14, 'SI  Sikap Sosial Siswa sesuai tingkat kompetensi'),
-(16, 'SP Mengembangkan Silabus (9 Komponen)'),
-(17, 'SP Mengembangkan RPP dari silabus, secara lengkap dan sistematis'),
-(20, 'SPTK Guru memiliki sertifikat pendidik');
+(1, 'Pekerjaan'),
+(2, 'Riwayat Kredit'),
+(3, 'Usia'),
+(4, 'Jangka Waktu Pembayaran');
 
 -- --------------------------------------------------------
 
@@ -162,22 +161,6 @@ CREATE TABLE `kriteria_nilai` (
   `kriteria_id_tujuan` int(11) NOT NULL,
   `nilai` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `kriteria_nilai`
---
-
-INSERT INTO `kriteria_nilai` (`id_kriteria_nilai`, `kriteria_id_dari`, `kriteria_id_tujuan`, `nilai`) VALUES
-(621, 13, 14, 1),
-(622, 13, 16, 1),
-(623, 13, 17, 1),
-(624, 13, 20, 1),
-(625, 14, 16, 1),
-(626, 14, 17, 1),
-(627, 14, 20, 1),
-(628, 16, 17, 1),
-(629, 16, 20, 1),
-(630, 17, 20, 1);
 
 -- --------------------------------------------------------
 
@@ -220,17 +203,6 @@ CREATE TABLE `nilai_kategori` (
   `nama_nilai` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `nilai_kategori`
---
-
-INSERT INTO `nilai_kategori` (`id_nilai`, `nama_nilai`) VALUES
-(1, 'Sangat Baik'),
-(2, 'Baik'),
-(3, 'Cukup'),
-(4, 'Kurang'),
-(5, 'Sangat Kurang');
-
 -- --------------------------------------------------------
 
 --
@@ -267,13 +239,6 @@ CREATE TABLE `pembeli` (
   `surat_pernyataan` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
---
--- Dumping data for table `pembeli`
---
-
-INSERT INTO `pembeli` (`id_pembeli`, `nama_pembeli`, `usia`, `status`, `alamat`, `pekerjaan`, `penghasilan`, `riwayat_kredit`, `uang_muka`, `jangka_waktu`, `agama`, `no_telpon`, `pas_foto`, `ktp`, `kk`, `surat_nikah`, `slip_gaji`, `sk_terakhir`, `surat_ket_kerja`, `siup`, `daftar_perusahaan`, `surat_ket_dom`, `laporan_keuangan`, `npwp`, `buku_tabungan`, `rekening_koran`, `surat_pernyataan`) VALUES
-(10, 'Jo', 44, 'Cerai', 'Jl. Asam Kd', 'Pegawai Negeri Sipil', 5777777, 'Kolektibilitas - 5', 7000000, '20 Tahun', 'Hindhu', '1111', '', 'ektp.pdf', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', '', '');
-
 -- --------------------------------------------------------
 
 --
@@ -307,52 +272,6 @@ CREATE TABLE `subkriteria` (
   `id_nilai` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `subkriteria`
---
-
-INSERT INTO `subkriteria` (`id_subkriteria`, `nama_subkriteria`, `id_kriteria`, `tipe`, `nilai_minimum`, `nilai_maksimum`, `op_min`, `op_max`, `id_nilai`) VALUES
-(45, '=> 91 <= 100', 13, 'nilai', 91, 100, '=>', '<=', 1),
-(46, '=> 81 <= 90', 13, 'nilai', 81, 90, '=>', '<=', 2),
-(47, '=> 71 <= 80', 13, 'nilai', 71, 80, '=>', '<=', 3),
-(48, '=> 61 <= 70', 13, 'nilai', 61, 70, '=>', '<=', 4),
-(49, '=> 0 < 60', 13, 'nilai', 0, 60, '=>', '<', 5),
-(50, '=> 91 <= 100', 14, 'nilai', 91, 100, '=>', '<=', 1),
-(51, '=> 81 <= 90', 14, 'nilai', 81, 90, '=>', '<=', 2),
-(52, '=> 71 <= 80', 14, 'nilai', 71, 80, '=>', '<=', 3),
-(53, '=> 61 <= 70', 14, 'nilai', 61, 70, '=>', '<=', 4),
-(54, '=> 0 <= 60', 14, 'nilai', 0, 60, '=>', '<=', 5),
-(55, '=> 91 <= 100', 15, 'nilai', 91, 100, '=>', '<=', 1),
-(56, '=> 81 <= 90', 15, 'nilai', 81, 90, '=>', '<=', 2),
-(57, '=> 71 <= 80', 15, 'nilai', 71, 80, '=>', '<=', 3),
-(58, '=> 61 <= 70', 15, 'nilai', 61, 70, '=>', '<=', 4),
-(59, '=> 0 <= 60', 15, 'nilai', 0, 60, '=>', '<=', 5),
-(60, 'Memuat 9 komponen dalam silabus', 16, 'teks', NULL, NULL, NULL, NULL, 1),
-(61, 'Memuat 8 komponen dalam silabus', 16, 'teks', NULL, NULL, NULL, NULL, 2),
-(62, 'Memuat 7 komponen dalam silabus', 16, 'teks', NULL, NULL, NULL, NULL, 3),
-(63, 'Memuat 6 komponen dalam silabus', 16, 'teks', NULL, NULL, NULL, NULL, 4),
-(64, 'Memuat kurang dari 6 komponen dalam silabus', 16, 'teks', NULL, NULL, NULL, NULL, 5),
-(65, '100% mata pelajaran', 17, 'teks', NULL, NULL, NULL, NULL, 1),
-(66, '95%-99% mata pelajaran', 17, 'teks', NULL, NULL, NULL, NULL, 2),
-(67, '90%-94% mata pelajaran', 17, 'teks', NULL, NULL, NULL, NULL, 3),
-(68, '85%-89% mata pelajaran', 17, 'teks', NULL, NULL, NULL, NULL, 4),
-(69, 'Kurang dari 85% mata pelajaran', 17, 'teks', NULL, NULL, NULL, NULL, 5),
-(70, '100% menggunakan buku teks', 18, 'teks', NULL, NULL, NULL, NULL, 1),
-(71, '95%-99% menggunakan buku teks', 18, 'teks', NULL, NULL, NULL, NULL, 2),
-(72, '90%-94% menggunakan buku teks', 18, 'teks', NULL, NULL, NULL, NULL, 3),
-(73, '85%-89% menggunakan buku teks', 18, 'teks', NULL, NULL, NULL, NULL, 4),
-(74, 'Kurang dari 85% menggunakan buku teks', 18, 'teks', NULL, NULL, NULL, NULL, 5),
-(75, '20% atau lebih berpendidikan S2 dan/atau S3, seleb', 19, 'teks', NULL, NULL, NULL, NULL, 1),
-(76, '100% berpendidikan S1/D4', 19, 'teks', NULL, NULL, NULL, NULL, 2),
-(77, '91%-99% berpendidikan S1/D4', 19, 'teks', NULL, NULL, NULL, NULL, 3),
-(78, '81%-90% berpendidikan S1/D4', 19, 'teks', NULL, NULL, NULL, NULL, 4),
-(79, 'Kurang dari 81% berpendidikan S1/D4', 19, 'teks', NULL, NULL, NULL, NULL, 5),
-(80, '86%-100% memiliki sertifikat pendidik', 20, 'teks', NULL, NULL, NULL, NULL, 1),
-(81, '71%-85% memiliki sertifikat pendidik', 20, 'teks', NULL, NULL, NULL, NULL, 2),
-(82, '56%-70% memiliki sertifikat pendidik', 20, 'teks', NULL, NULL, NULL, NULL, 3),
-(83, '41%-55% memiliki sertifikat pendidik', 20, 'teks', NULL, NULL, NULL, NULL, 4),
-(84, 'Kurang dari 41% memiliki sertifikat pendidik', 20, 'teks', NULL, NULL, NULL, NULL, 5);
-
 -- --------------------------------------------------------
 
 --
@@ -364,37 +283,6 @@ CREATE TABLE `subkriteria_hasil` (
   `id_subkriteria` int(11) NOT NULL,
   `prioritas` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `subkriteria_hasil`
---
-
-INSERT INTO `subkriteria_hasil` (`id_subkriteria_hasil`, `id_subkriteria`, `prioritas`) VALUES
-(83, 45, 1),
-(84, 46, 0.5296070795769015),
-(85, 47, 0.1515404539051346),
-(86, 48, 0.1282407399951657),
-(87, 49, 0.11669121673644427),
-(88, 50, 1),
-(89, 51, 0.21178188314887259),
-(90, 52, 0.18580955091954202),
-(91, 53, 0.174678551392686),
-(92, 54, 0.1684946627666549),
-(93, 60, 1),
-(94, 61, 0.21178188314887259),
-(95, 62, 0.18580955091954202),
-(96, 63, 0.174678551392686),
-(97, 64, 0.1684946627666549),
-(98, 65, 1),
-(99, 66, 0.21178188314887259),
-(100, 67, 0.18580955091954202),
-(101, 68, 0.174678551392686),
-(102, 69, 0.1684946627666549),
-(103, 80, 1),
-(104, 81, 0.21178188314887259),
-(105, 82, 0.18580955091954202),
-(106, 83, 0.174678551392686),
-(107, 84, 0.1684946627666549);
 
 -- --------------------------------------------------------
 
@@ -409,62 +297,6 @@ CREATE TABLE `subkriteria_nilai` (
   `subkriteria_id_tujuan` int(11) NOT NULL,
   `nilai` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `subkriteria_nilai`
---
-
-INSERT INTO `subkriteria_nilai` (`id_subkriteria_nilai`, `id_kriteria`, `subkriteria_id_dari`, `subkriteria_id_tujuan`, `nilai`) VALUES
-(565, 13, 45, 46, 3),
-(566, 13, 45, 47, 5),
-(567, 13, 45, 48, 7),
-(568, 13, 45, 49, 9),
-(569, 13, 46, 47, 3),
-(570, 13, 46, 48, 5),
-(571, 13, 46, 49, 7),
-(572, 13, 47, 48, 1),
-(573, 13, 47, 49, 1),
-(574, 13, 48, 49, 1),
-(575, 14, 50, 51, 3),
-(576, 14, 50, 52, 5),
-(577, 14, 50, 53, 7),
-(578, 14, 50, 54, 9),
-(579, 14, 51, 52, 1),
-(580, 14, 51, 53, 1),
-(581, 14, 51, 54, 1),
-(582, 14, 52, 53, 1),
-(583, 14, 52, 54, 1),
-(584, 14, 53, 54, 1),
-(585, 16, 60, 61, 3),
-(586, 16, 60, 62, 5),
-(587, 16, 60, 63, 7),
-(588, 16, 60, 64, 9),
-(589, 16, 61, 62, 1),
-(590, 16, 61, 63, 1),
-(591, 16, 61, 64, 1),
-(592, 16, 62, 63, 1),
-(593, 16, 62, 64, 1),
-(594, 16, 63, 64, 1),
-(595, 17, 65, 66, 3),
-(596, 17, 65, 67, 5),
-(597, 17, 65, 68, 7),
-(598, 17, 65, 69, 9),
-(599, 17, 66, 67, 1),
-(600, 17, 66, 68, 1),
-(601, 17, 66, 69, 1),
-(602, 17, 67, 68, 1),
-(603, 17, 67, 69, 1),
-(604, 17, 68, 69, 1),
-(605, 20, 80, 81, 3),
-(606, 20, 80, 82, 5),
-(607, 20, 80, 83, 7),
-(608, 20, 80, 84, 9),
-(609, 20, 81, 82, 1),
-(610, 20, 81, 83, 1),
-(611, 20, 81, 84, 1),
-(612, 20, 82, 83, 1),
-(613, 20, 82, 84, 1),
-(614, 20, 83, 84, 1);
 
 -- --------------------------------------------------------
 
@@ -497,7 +329,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`) VALUES
-(2, '::1', 'adeharioyudanto@gmail.com', '$2y$08$lql0hvJRq4GxXKCbmJYYkuaENe7ueD19b5redhklCccv3oISDZ8Pq', NULL, 'adeharioyudanto@gmail.com', NULL, NULL, NULL, NULL, 1619100985, 1620222495, 1, 'Ade Ariyo', 'Yudanto', 'PT. Serasi Anugrah Pratama', '081370231033'),
+(2, '::1', 'adeharioyudanto@gmail.com', '$2y$08$lql0hvJRq4GxXKCbmJYYkuaENe7ueD19b5redhklCccv3oISDZ8Pq', NULL, 'adeharioyudanto@gmail.com', NULL, NULL, NULL, NULL, 1619100985, 1620444047, 1, 'Ade Ariyo', 'Yudanto', 'PT. Serasi Anugrah Pratama', '081370231033'),
 (3, '::1', 'gunanta.s@gmail.com', '$2y$08$IjJPCdE8gle4hYHoSa/kG.hoipD7PRXThSm/e.vLjLBUZGjGpjUaq', NULL, 'gunanta.s@gmail.com', NULL, NULL, NULL, NULL, 1619101074, 1619768294, 1, 'Gunanta', 'Sembiring', 'PT. Serasi Anugrah Pratama', '081375388797'),
 (4, '::1', 'ridhorinaldy@gmail.com', '$2y$08$tJhD3PuodvVTCGfjAejoK.ufBFSNr2QN19mbMVdho/fzonnQbz6sq', NULL, 'ridhorinaldy@gmail.com', NULL, NULL, NULL, NULL, 1619101760, 1619246712, 1, 'Ridho', 'Rinaldy', 'PT. Berkah Rizki Putra', '081345678899'),
 (5, '::1', 'jimmypelawi@gmail.com', '$2y$08$VemYZpi3IZBguTisFmVqFOTqLv5uDwxX6Dvz32LaL1iu.sXZXlvMK', NULL, 'jimmypelawi@gmail.com', NULL, NULL, NULL, NULL, 1619101861, 1619844720, 1, 'Jimmy', 'Pelawi', 'CV. Pelawinta Durian', '081323456789');
@@ -649,12 +481,12 @@ ALTER TABLE `groups`
 -- AUTO_INCREMENT for table `kriteria`
 --
 ALTER TABLE `kriteria`
-  MODIFY `id_kriteria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_kriteria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `kriteria_nilai`
 --
 ALTER TABLE `kriteria_nilai`
-  MODIFY `id_kriteria_nilai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=631;
+  MODIFY `id_kriteria_nilai` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `login_attempts`
 --
@@ -664,12 +496,12 @@ ALTER TABLE `login_attempts`
 -- AUTO_INCREMENT for table `nilai_kategori`
 --
 ALTER TABLE `nilai_kategori`
-  MODIFY `id_nilai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_nilai` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `pembeli`
 --
 ALTER TABLE `pembeli`
-  MODIFY `id_pembeli` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_pembeli` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `pesan`
 --
@@ -679,17 +511,17 @@ ALTER TABLE `pesan`
 -- AUTO_INCREMENT for table `subkriteria`
 --
 ALTER TABLE `subkriteria`
-  MODIFY `id_subkriteria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
+  MODIFY `id_subkriteria` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `subkriteria_hasil`
 --
 ALTER TABLE `subkriteria_hasil`
-  MODIFY `id_subkriteria_hasil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
+  MODIFY `id_subkriteria_hasil` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `subkriteria_nilai`
 --
 ALTER TABLE `subkriteria_nilai`
-  MODIFY `id_subkriteria_nilai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=615;
+  MODIFY `id_subkriteria_nilai` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `users`
 --

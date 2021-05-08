@@ -28,5 +28,19 @@
 				<?php echo anchor(site_url('uploads/pembeli/'.$kk), '<i class="entypo-doc-text"></i><span> Preview Kartu Keluarga</span>', array('target'=>'_new','class'=>'btn btn-success btn-sm')); ?>
 			</td>
 		</tr>
+		<?php if(!empty($surat_nikah)) { ?>
+	    <tr><td>Surat Nikah</td>
+			<td>
+				<?php echo anchor(site_url('uploads/pembeli/'.$surat_nikah), '<i class="entypo-doc-text"></i><span> Preview Surat Nikah</span>', array('target'=>'_new','class'=>'btn btn-success btn-sm')); ?>
+			</td>
+		</tr>
+		<?php } ?>
+		<?php if(!empty($slip_gaji)) { ?>
+	    <tr><td>Surat Nikah</td>
+			<td>
+				<?php echo anchor(site_url('uploads/pembeli/'.$slip_gaji), '<i class="entypo-doc-text"></i><span> Preview Slip Gaji 3 Bulan Terakhir</span>', array('target'=>'_new','class'=>'btn btn-success btn-sm')); ?>
+			</td>
+		</tr>
+		<?php } ?>
 	    <tr><td><a href="<?php echo site_url('pembeli') ?>" class="btn btn-default">Kembali</a></td></tr>
 	</table>

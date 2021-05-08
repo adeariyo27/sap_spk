@@ -163,6 +163,32 @@
               <div class="form-text text-danger"><b><?= form_error('kk') ?></b></div> 
             <?php endif; ?>
           </div>
+        
+          <div class="form-group">
+            <label for="varchar">Upload Surat Nikah  <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
+            <br>
+            <medium><b>Isi Bila Status Pernikahan = Menikah</b></medium>
+            <br><br>
+            <?php echo anchor(site_url('uploads/pembeli/'.$surat_nikah), '<i class="entypo-doc-text"></i><span> Preview Surat Nikah</span>', array('target'=>'_new','class'=>'btn btn-success btn-sm')); ?>
+            <br>
+            <input type="file" class="form-control" name="surat_nikah" id="surat_nikah" value="" />
+            <?php if( form_error('surat_nikah') == true ) : ?>
+              <div class="form-text text-danger"><b><?= form_error('surat_nikah') ?></b></div> 
+            <?php endif; ?>
+          </div>
+         
+          <div class="form-group">
+            <label for="varchar">Upload Slip Gaji  <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
+            <br>
+            <medium><b>Isi Bila Status Pekerjaan = PNS/Karyawan Swasta</b></medium>
+            <br><br>
+            <?php echo anchor(site_url('uploads/pembeli/'.$slip_gaji), '<i class="entypo-doc-text"></i><span> Preview Slip Gaji 3 Bulan Terakhir</span>', array('target'=>'_new','class'=>'btn btn-success btn-sm')); ?>
+            <br>
+            <input type="file" class="form-control" name="slip_gaji" id="slip_gaji" value="" />
+            <?php if( form_error('slip_gaji') == true ) : ?>
+              <div class="form-text text-danger"><b><?= form_error('slip_gaji') ?></b></div> 
+            <?php endif; ?>
+          </div>
 
     	    <input type="hidden" name="id_pembeli" value="<?php echo $id_pembeli; ?>" /> 
     	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 

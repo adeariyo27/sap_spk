@@ -1,5 +1,5 @@
 
-        <h2 style="margin-top:0px">Daftar Calon Pembeli</h2>
+        <h2 style="margin-top:0px"><b>Daftar Calon Pembeli</b></h2>
         <br>
         <div class="row" style="margin-bottom: 2px">
             <div class="col-md-4">
@@ -37,20 +37,20 @@
                     }else if($this->session->flashdata('sukses')){
                         echo  "<div class='alert alert-info alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>".$this->session->flashdata('sukses')."</div>";
                     }
-                            
                     ?>
                 </div>
             </div>
         </div>
-        <table class="table table-bordered responsive" style="margin-bottom: 10px">
+        <table class="table table-responsive" style="margin-bottom: 10px">
             <thead>
                 <tr>
-                    <th width="3.5%">No</th>
-                    <th>Nama Calon Pembeli</th>
-                    <th width="24%">Pekerjaan</th>
-                    <th width="21%">Penghasilan</th>
-                    <th width="25%"><center>Aksi</center></th>
+                    <th width="3.5%"><b>No</b></th>
+                    <th><b>Nama Calon Pembeli</b></th>
+                    <th width="24%"><b>Pekerjaan</b></th>
+                    <th width="21%"><b>Penghasilan</b></th>
+                    <th width="25%"><center><b>Aksi</b></center></th>
                         </tr><?php
+                        if (!empty($pembeli_data)) {   
                         foreach ($pembeli_data as $pembeli)
                         {
                         ?>
@@ -78,8 +78,12 @@
                     </td>
                 </tr>
                 <?php
-                }
+                } } else {
                 ?>
+                <tr>
+                    <td colspan="5" align="center"><strong>Tidak ada data</strong></td>
+                </tr>
+                <?php } ?>
             </tbody>
         </table>
         <div class="row">

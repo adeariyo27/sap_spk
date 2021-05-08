@@ -70,7 +70,7 @@ class Kriteria extends CI_Controller
 	    );
 
             $this->Kriteria_model->insert($data);
-            $this->session->set_flashdata('message', 'Create Record Success');
+            $this->session->set_flashdata('sukses', 'Kriteria Berhasil Ditambahkan');
             redirect(site_url('kriteria'));
         }
     }
@@ -88,7 +88,7 @@ class Kriteria extends CI_Controller
 	                   );
             $this->template->load('template/backend/dashboard', 'kriteria/kriteria_form', $data);
         } else {
-            $this->session->set_flashdata('message', 'Record Not Found');
+            $this->session->set_flashdata('gagal', 'Kriteria Tidak Dapat Ditemukan');
             redirect(site_url('Kriteria'));
         }
     }
@@ -105,7 +105,7 @@ class Kriteria extends CI_Controller
 	    );
 
             $this->Kriteria_model->update($this->input->post('id_kriteria', TRUE), $data);
-            $this->session->set_flashdata('message', 'Update Record Success');
+            $this->session->set_flashdata('sukses', 'Kriteria Berhasil Diperbarui');
             redirect(site_url('kriteria'));
         }
     }
@@ -116,17 +116,17 @@ class Kriteria extends CI_Controller
 
         if ($row) {
             $this->Kriteria_model->delete($id);
-            $this->session->set_flashdata('message', 'Delete Record Success');
+            $this->session->set_flashdata('sukses', 'Kriteria Berhasil Dihapus');
             redirect(site_url('kriteria'));
         } else {
-            $this->session->set_flashdata('message', 'Record Not Found');
+            $this->session->set_flashdata('gagal', 'Kriteria Tidak Dapat Ditemukan');
             redirect(site_url('kriteria'));
         }
     }
 
     public function _rules() 
     {
-	$this->form_validation->set_rules('nama_kriteria', 'nama kriteria', 'trim|required');
+	$this->form_validation->set_rules('nama_kriteria', 'Nama Kriteria', 'trim|required');
 
 	$this->form_validation->set_rules('id_kriteria', 'id_kriteria', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');

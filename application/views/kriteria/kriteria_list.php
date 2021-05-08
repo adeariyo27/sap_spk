@@ -1,12 +1,11 @@
 
+        <h3 style="margin-top:0px"><b>Daftar Kriteria Kelayakan Pembeli</b></h3>
+        <br>
         <div class="row" style="margin-bottom: 10px">
             <div class="col-md-4">
                 <?php echo anchor(site_url('kriteria/create'),'<i class="entypo-plus"></i><span> Tambah Kriteria</span>', 'class="btn btn-primary"'); ?>
             </div>
             <div class="col-md-4 text-center">
-                <div style="margin-top: 8px" id="message">
-                    <?php echo $this->session->userdata('message') <> '' ? $this->session->userdata('message') : ''; ?>
-                </div>
             </div>
             <div class="col-md-1 text-right">
             </div>
@@ -28,18 +27,31 @@
                     </div>
                 </form>
             </div>
+            <br><br>
+            <div class="col-md-12 text-center"  style="margin-top: 12px">
+                <div id="message">
+                    <?php 
+                    if ($this->session->flashdata('gagal')) {
+                        echo  "<div class='alert alert-danger alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>".$this->session->flashdata('gagal')."</div>";
+                    }else if($this->session->flashdata('sukses')){
+                        echo  "<div class='alert alert-info alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>".$this->session->flashdata('sukses')."</div>";
+                    }
+                    ?>
+                </div>
+            </div>
         </div>
         <div class="table-responsive">        
-            <table class="table table-bordered" style="margin-bottom: 10px">
+            <table class="table" style="margin-bottom: 10px">
                 <thead>
                     <tr>
-                        <th>No</th>
-                        <th wi>Nama Kriteria</th>
-                        <th>Aksi</th>
+                        <th width="3.5%"><b>No</b></th>
+                        <th><b>Nama Kriteria</b></th>
+                        <th width="23%"><center><b>Aksi</b></center></th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
+                    if (!empty($kriteria_data)) {   
                     foreach ($kriteria_data as $kriteria)
                     {
                     ?>
@@ -48,7 +60,7 @@
                         <td><?php echo $kriteria->nama_kriteria ?></td>
                         <td style="text-align:center" width="23%">
                             <?php 
-                            echo anchor(site_url('Subkriteria/parameter?kriteria='.$kriteria->id_kriteria),'<i class="entypo-menu"></i>
+                            echo anchor(site_url('Subkriteria/parameter?kriteria='.$kriteria->id_kriteria),'<i class="entypo-list"></i>
                             <span>Parameter</span>', array('class'=>'btn btn-primary btn-sm')); 
                             echo ' | '; 
                             echo anchor(site_url('kriteria/update/'.$kriteria->id_kriteria),'<i class="entypo-pencil"></i>
@@ -58,6 +70,10 @@
                             <span>Hapus</span>',array('class'=>'btn btn-danger btn-sm', 'onclick'=>'javasciprt: return confirm(\'Yakin Menghapus User?\')'));; 
                             ?>
                         </td>
+                    </tr>
+                    <?php } } else { ?>
+                    <tr>
+                        <td colspan="4" align="center"><strong>Tidak ada data</strong></td>
                     </tr>
                     <?php } ?>
                 </tbody>

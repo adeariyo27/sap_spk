@@ -132,7 +132,7 @@
           </div>
           
           <div class="form-group">
-            <label for="surat_nikah">Surat Nikah  <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
+            <label for="surat_nikah">Upload File Surat Nikah  <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
             <br>
             <medium><b>Isi Bila Status Pernikahan = Menikah</b></medium>
             <input type="file" class="form-control" name="surat_nikah" id="surat_nikah" />
@@ -142,12 +142,104 @@
           </div>
           
           <div class="form-group">
-            <label for="slip_gaji">Slip gaji  <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
+            <label for="slip_gaji">Upload File Slip gaji 3 Bulan Terakhir <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
             <br>
             <medium><b>Isi Bila Status Pekerjaan = PNS/Karyawan Swasta</b></medium>
             <input type="file" class="form-control" name="slip_gaji" id="slip_gaji" />
             <?php if( form_error('slip_gaji') == true ) : ?>
               <div class="form-text text-danger"><b><?= form_error('slip_gaji') ?></b></div> 
+            <?php endif; ?>
+          </div>
+         
+          <div class="form-group">
+            <label for="sk_terakhir">Upload File SK Terakhir  <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
+            <br>
+            <medium><b>Isi Bila Status Pekerjaan = PNS</b></medium>
+            <input type="file" class="form-control" name="sk_terakhir" id="sk_terakhir" />
+            <?php if( form_error('sk_terakhir') == true ) : ?>
+              <div class="form-text text-danger"><b><?= form_error('sk_terakhir') ?></b></div> 
+            <?php endif; ?>
+          </div>
+         
+          <div class="form-group">
+            <label for="surat_ket_kerja">Upload File Surat Keterangan Kerja <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
+            <br>
+            <medium><b>Isi Bila Status Pekerjaan = Karyawan Swasta</b></medium>
+            <input type="file" class="form-control" name="surat_ket_kerja" id="surat_ket_kerja" />
+            <?php if( form_error('surat_ket_kerja') == true ) : ?>
+              <div class="form-text text-danger"><b><?= form_error('surat_ket_kerja') ?></b></div> 
+            <?php endif; ?>
+          </div>
+          
+          <div class="form-group">
+            <label for="siup">Upload File Surat Izin Perdagangan <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
+            <br>
+            <medium><b>Isi Bila Status Pekerjaan = Wiraswasta</b></medium>
+            <input type="file" class="form-control" name="siup" id="siup" />
+            <?php if( form_error('siup') == true ) : ?>
+              <div class="form-text text-danger"><b><?= form_error('siup') ?></b></div> 
+            <?php endif; ?>
+          </div>
+         
+          <div class="form-group">
+            <label for="daftar_perusahaan">Upload File Tanda Daftar Perusahaan <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
+            <br>
+            <medium><b>Isi Bila Status Pekerjaan = Wiraswasta</b></medium>
+            <input type="file" class="form-control" name="daftar_perusahaan" id="daftar_perusahaan" />
+            <?php if( form_error('daftar_perusahaan') == true ) : ?>
+              <div class="form-text text-danger"><b><?= form_error('daftar_perusahaan') ?></b></div> 
+            <?php endif; ?>
+          </div>
+          
+          <div class="form-group">
+            <label for="surat_ket_dom">Upload File Surat Keterangan Domisili <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
+            <br>
+            <medium><b>Isi Bila Status Pekerjaan = Wiraswasta</b></medium>
+            <input type="file" class="form-control" name="surat_ket_dom" id="surat_ket_dom" />
+            <?php if( form_error('surat_ket_dom') == true ) : ?>
+              <div class="form-text text-danger"><b><?= form_error('surat_ket_dom') ?></b></div> 
+            <?php endif; ?>
+          </div>
+         
+          <div class="form-group">
+            <label for="laporan_keuangan">Upload File Laporan Keuangan 3 Bulan Terakhir <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
+            <br>
+            <medium><b>Isi Bila Status Pekerjaan = Wiraswasta</b></medium>
+            <input type="file" class="form-control" name="laporan_keuangan" id="laporan_keuangan" />
+            <?php if( form_error('laporan_keuangan') == true ) : ?>
+              <div class="form-text text-danger"><b><?= form_error('laporan_keuangan') ?></b></div> 
+            <?php endif; ?>
+          </div>
+        
+          <div class="form-group">
+            <label for="npwp">Upload File NPWP <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
+            <input type="file" class="form-control" name="npwp" id="npwp" />
+            <?php if( form_error('npwp') == true ) : ?>
+              <div class="form-text text-danger"><b><?= form_error('npwp') ?></b></div> 
+            <?php endif; ?>
+          </div>
+          
+          <div class="form-group">
+            <label for="buku_tabungan">Upload File Buku Tabungan <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
+            <input type="file" class="form-control" name="buku_tabungan" id="buku_tabungan" />
+            <?php if( form_error('buku_tabungan') == true ) : ?>
+              <div class="form-text text-danger"><b><?= form_error('buku_tabungan') ?></b></div> 
+            <?php endif; ?>
+          </div>
+          
+          <div class="form-group">
+            <label for="rekening_koran">Upload File Rekening Koran 3 Bulan Terakhir <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
+            <input type="file" class="form-control" name="rekening_koran" id="rekening_koran" />
+            <?php if( form_error('rekening_koran') == true ) : ?>
+              <div class="form-text text-danger"><b><?= form_error('rekening_koran') ?></b></div> 
+            <?php endif; ?>
+          </div>
+          
+          <div class="form-group">
+            <label for="surat_pernyataan">Upload File Surat Pernyataan <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
+            <input type="file" class="form-control" name="surat_pernyataan" id="surat_pernyataan" />
+            <?php if( form_error('surat_pernyataan') == true ) : ?>
+              <div class="form-text text-danger"><b><?= form_error('surat_pernyataan') ?></b></div> 
             <?php endif; ?>
           </div>
 

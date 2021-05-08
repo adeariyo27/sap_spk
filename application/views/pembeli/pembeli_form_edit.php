@@ -132,7 +132,7 @@
             </div>
 
     	    <div class="form-group">
-            <label for="varchar">Upload Pas Foto 3x4  <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
+            <label for="varchar">Upload File Pas Foto 3x4  <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
               <br><br>
               <?php echo anchor(site_url('uploads/pembeli/'.$pas_foto), '<i class="entypo-doc-text"></i><span> Preview Pas Foto</span>', array('target'=>'_new','class'=>'btn btn-success btn-sm')); ?>
               <br>
@@ -143,7 +143,7 @@
           </div>
             
     	    <div class="form-group">
-            <label for="varchar">Upload KTP  <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
+            <label for="varchar">Upload File KTP  <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
             <br><br>
             <?php echo anchor(site_url('uploads/pembeli/'.$ktp), '<i class="entypo-doc-text"></i><span> Preview KTP</span>', array('target'=>'_new','class'=>'btn btn-success btn-sm')); ?>
             <br>
@@ -154,7 +154,7 @@
           </div>
 
           <div class="form-group">
-            <label for="varchar">Upload KK  <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
+            <label for="varchar">Upload File KK  <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
             <br><br>
             <?php echo anchor(site_url('uploads/pembeli/'.$kk), '<i class="entypo-doc-text"></i><span> Preview kk</span>', array('target'=>'_new','class'=>'btn btn-success btn-sm')); ?>
             <br>
@@ -165,11 +165,13 @@
           </div>
         
           <div class="form-group">
-            <label for="varchar">Upload Surat Nikah  <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
+            <label for="varchar">Upload File Surat Nikah  <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
             <br>
             <medium><b>Isi Bila Status Pernikahan = Menikah</b></medium>
+            <?php if(!empty($surat_nikah)) { ?>
             <br><br>
-            <?php echo anchor(site_url('uploads/pembeli/'.$surat_nikah), '<i class="entypo-doc-text"></i><span> Preview Surat Nikah</span>', array('target'=>'_new','class'=>'btn btn-success btn-sm')); ?>
+              <?php echo anchor(site_url('uploads/pembeli/'.$surat_nikah), '<i class="entypo-doc-text"></i><span> Preview Surat Nikah</span>', array('target'=>'_new','class'=>'btn btn-success btn-sm')); ?>
+            <?php } ?>
             <br>
             <input type="file" class="form-control" name="surat_nikah" id="surat_nikah" value="" />
             <?php if( form_error('surat_nikah') == true ) : ?>
@@ -178,15 +180,151 @@
           </div>
          
           <div class="form-group">
-            <label for="varchar">Upload Slip Gaji  <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
+            <label for="varchar">Upload File Slip Gaji 3 Bulan Terakhir <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
             <br>
             <medium><b>Isi Bila Status Pekerjaan = PNS/Karyawan Swasta</b></medium>
+            <?php if(!empty($slip_gaji)) { ?>
             <br><br>
-            <?php echo anchor(site_url('uploads/pembeli/'.$slip_gaji), '<i class="entypo-doc-text"></i><span> Preview Slip Gaji 3 Bulan Terakhir</span>', array('target'=>'_new','class'=>'btn btn-success btn-sm')); ?>
+              <?php echo anchor(site_url('uploads/pembeli/'.$slip_gaji), '<i class="entypo-doc-text"></i><span> Preview Slip Gaji 3 Bulan Terakhir</span>', array('target'=>'_new','class'=>'btn btn-success btn-sm')); ?>
+            <?php } ?>
             <br>
             <input type="file" class="form-control" name="slip_gaji" id="slip_gaji" value="" />
             <?php if( form_error('slip_gaji') == true ) : ?>
               <div class="form-text text-danger"><b><?= form_error('slip_gaji') ?></b></div> 
+            <?php endif; ?>
+          </div>
+          
+          <div class="form-group">
+            <label for="varchar">Upload File SK Terakhir  <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
+            <br>
+            <medium><b>Isi Bila Status Pekerjaan = PNS</b></medium>
+            <?php if(!empty($sk_terakhir)) { ?>
+            <br><br>
+              <?php echo anchor(site_url('uploads/pembeli/'.$sk_terakhir), '<i class="entypo-doc-text"></i><span> Preview SK Terakhir</span>', array('target'=>'_new','class'=>'btn btn-success btn-sm')); ?>
+            <?php } ?>
+            <br>
+            <input type="file" class="form-control" name="sk_terakhir" id="sk_terakhir" value="" />
+            <?php if( form_error('sk_terakhir') == true ) : ?>
+              <div class="form-text text-danger"><b><?= form_error('sk_terakhir') ?></b></div> 
+            <?php endif; ?>
+          </div>
+         
+          <div class="form-group">
+            <label for="varchar">Upload File Surat Keterangan Kerja  <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
+            <br>
+            <medium><b>Isi Bila Status Pekerjaan = Karyawan Swasta</b></medium>
+            <?php if(!empty($surat_ket_kerja)) { ?>
+            <br><br>
+              <?php echo anchor(site_url('uploads/pembeli/'.$surat_ket_kerja), '<i class="entypo-doc-text"></i><span> Preview Surat Keterangan Kerja</span>', array('target'=>'_new','class'=>'btn btn-success btn-sm')); ?>
+            <?php } ?>
+            <br>
+            <input type="file" class="form-control" name="surat_ket_kerja" id="surat_ket_kerja" value="" />
+            <?php if( form_error('surat_ket_kerja') == true ) : ?>
+              <div class="form-text text-danger"><b><?= form_error('surat_ket_kerja') ?></b></div> 
+            <?php endif; ?>
+          </div>
+          
+          <div class="form-group">
+            <label for="varchar">Upload File Surat Izin Usaha Perdagangan  <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
+            <br>
+            <medium><b>Isi Bila Status Pekerjaan = Wiraswasta</b></medium>
+            <?php if(!empty($siup)) { ?>
+            <br><br>
+              <?php echo anchor(site_url('uploads/pembeli/'.$siup), '<i class="entypo-doc-text"></i><span> Preview Surat Izin Usaha Perdagangan</span>', array('target'=>'_new','class'=>'btn btn-success btn-sm')); ?>
+            <?php } ?>
+            <br>
+            <input type="file" class="form-control" name="siup" id="siup" value="" />
+            <?php if( form_error('siup') == true ) : ?>
+              <div class="form-text text-danger"><b><?= form_error('siup') ?></b></div> 
+            <?php endif; ?>
+          </div>
+          
+          <div class="form-group">
+            <label for="varchar">Upload File Tanda Daftar Perusahaan  <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
+            <br>
+            <medium><b>Isi Bila Status Pekerjaan = Wiraswasta</b></medium>
+            <?php if(!empty($daftar_perusahaan)) { ?>
+            <br><br>
+              <?php echo anchor(site_url('uploads/pembeli/'.$daftar_perusahaan), '<i class="entypo-doc-text"></i><span> Preview Tanda Daftar Perusahaan</span>', array('target'=>'_new','class'=>'btn btn-success btn-sm')); ?>
+            <?php } ?>
+            <br>
+            <input type="file" class="form-control" name="daftar_perusahaan" id="daftar_perusahaan" value="" />
+            <?php if( form_error('daftar_perusahaan') == true ) : ?>
+              <div class="form-text text-danger"><b><?= form_error('daftar_perusahaan') ?></b></div> 
+            <?php endif; ?>
+          </div>
+          
+          <div class="form-group">
+            <label for="varchar">Upload File Surat Keterangan Domisili  <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
+            <br>
+            <medium><b>Isi Bila Status Pekerjaan = Wiraswasta</b></medium>
+            <?php if(!empty($surat_ket_dom)) { ?>
+            <br><br>
+              <?php echo anchor(site_url('uploads/pembeli/'.$surat_ket_dom), '<i class="entypo-doc-text"></i><span> Preview Surat Keterangan Domisili</span>', array('target'=>'_new','class'=>'btn btn-success btn-sm')); ?>
+            <?php } ?>
+            <br>
+            <input type="file" class="form-control" name="surat_ket_dom" id="surat_ket_dom" value="" />
+            <?php if( form_error('surat_ket_dom') == true ) : ?>
+              <div class="form-text text-danger"><b><?= form_error('surat_ket_dom') ?></b></div> 
+            <?php endif; ?>
+          </div>
+          
+          <div class="form-group">
+            <label for="varchar">Upload File Laporan Keuangan 3 Bulan Terakhir  <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
+            <br>
+            <medium><b>Isi Bila Status Pekerjaan = Wiraswasta</b></medium>
+            <?php if(!empty($laporan_keuangan)) { ?>
+            <br><br>
+              <?php echo anchor(site_url('uploads/pembeli/'.$laporan_keuangan), '<i class="entypo-doc-text"></i><span> Preview Laporan Keuangan 3 Bulan Terakhir</span>', array('target'=>'_new','class'=>'btn btn-success btn-sm')); ?>
+            <?php } ?>
+            <br>
+            <input type="file" class="form-control" name="laporan_keuangan" id="laporan_keuangan" value="" />
+            <?php if( form_error('laporan_keuangan') == true ) : ?>
+              <div class="form-text text-danger"><b><?= form_error('laporan_keuangan') ?></b></div> 
+            <?php endif; ?>
+          </div>
+
+          <div class="form-group">
+            <label for="varchar">Upload File NPWP  <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
+            <br><br>
+            <?php echo anchor(site_url('uploads/pembeli/'.$npwp), '<i class="entypo-doc-text"></i><span> Preview NPWP</span>', array('target'=>'_new','class'=>'btn btn-success btn-sm')); ?>
+            <br>
+            <input type="file" class="form-control" name="npwp" id="npwp" value="" />
+            <?php if( form_error('npwp') == true ) : ?>
+              <div class="form-text text-danger"><b><?= form_error('npwp') ?></b></div> 
+            <?php endif; ?>
+          </div>
+          
+          <div class="form-group">
+            <label for="varchar">Upload File Buku Tabungan  <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
+            <br><br>
+            <?php echo anchor(site_url('uploads/pembeli/'.$buku_tabungan), '<i class="entypo-doc-text"></i><span> Preview Buku Tabungan</span>', array('target'=>'_new','class'=>'btn btn-success btn-sm')); ?>
+            <br>
+            <input type="file" class="form-control" name="buku_tabungan" id="buku_tabungan" value="" />
+            <?php if( form_error('buku_tabungan') == true ) : ?>
+              <div class="form-text text-danger"><b><?= form_error('buku_tabungan') ?></b></div> 
+            <?php endif; ?>
+          </div>
+         
+          <div class="form-group">
+            <label for="varchar">Upload File Rekening Koran 3 Bulan Terakhir  <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
+            <br><br>
+            <?php echo anchor(site_url('uploads/pembeli/'.$rekening_koran), '<i class="entypo-doc-text"></i><span> Preview Rekening Koran 3 Bulan Terakhir</span>', array('target'=>'_new','class'=>'btn btn-success btn-sm')); ?>
+            <br>
+            <input type="file" class="form-control" name="rekening_koran" id="rekening_koran" value="" />
+            <?php if( form_error('rekening_koran') == true ) : ?>
+              <div class="form-text text-danger"><b><?= form_error('rekening_koran') ?></b></div> 
+            <?php endif; ?>
+          </div>
+          
+          <div class="form-group">
+            <label for="varchar">Upload File Surat Pernyataan  <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
+            <br><br>
+            <?php echo anchor(site_url('uploads/pembeli/'.$surat_pernyataan), '<i class="entypo-doc-text"></i><span> Preview Surat Pernyataan</span>', array('target'=>'_new','class'=>'btn btn-success btn-sm')); ?>
+            <br>
+            <input type="file" class="form-control" name="surat_pernyataan" id="surat_pernyataan" value="" />
+            <?php if( form_error('surat_pernyataan') == true ) : ?>
+              <div class="form-text text-danger"><b><?= form_error('surat_pernyataan') ?></b></div> 
             <?php endif; ?>
           </div>
 

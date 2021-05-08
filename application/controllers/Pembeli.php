@@ -71,6 +71,16 @@ class Pembeli extends CI_Controller
                 'kk' => $row->kk,
                 'surat_nikah' => $row->surat_nikah,
                 'slip_gaji' => $row->slip_gaji,
+                'sk_terakhir' => $row->sk_terakhir,
+                'surat_ket_kerja' => $row->surat_ket_kerja,
+                'siup' => $row->siup,
+                'daftar_perusahaan' => $row->daftar_perusahaan,
+                'surat_ket_dom' => $row->surat_ket_dom,
+                'laporan_keuangan' => $row->laporan_keuangan,
+                'npwp' => $row->npwp,
+                'buku_tabungan' => $row->buku_tabungan,
+                'rekening_koran' => $row->rekening_koran,
+                'surat_pernyataan' => $row->surat_pernyataan,
 	        );
 
             $this->template->load('template/backend/dashboard', 'pembeli/pembeli_read', $data);
@@ -91,7 +101,6 @@ class Pembeli extends CI_Controller
 
         $this->upload->initialize($config);
         if ( ! $this->upload->do_upload($attributeName)){
-           $this->session->set_flashdata('gagal', $this->upload->display_errors());
            return $this->isCreate == true ? $this->create() : $this->update($id);
         }
 
@@ -120,6 +129,16 @@ class Pembeli extends CI_Controller
                 'kk' => set_value('kk'),
                 'surat_nikah' => set_value('surat_nikah'),
                 'slip_gaji' => set_value('slip_gaji'),
+                'sk_terakhir' => set_value('sk_terakhir'),
+                'surat_ket_kerja' => set_value('surat_ket_kerja'),
+                'siup' => set_value('siup'),
+                'daftar_perusahaan' => set_value('daftar_perusahaan'),
+                'surat_ket_dom' => set_value('surat_ket_dom'),
+                'laporan_keuangan' => set_value('laporan_keuangan'),
+                'npwp' => set_value('npwp'),
+                'buku_tabungan' => set_value('buku_tabungan'),
+                'rekening_koran' => set_value('rekening_koran'),
+                'surat_pernyataan' => set_value('surat_pernyataan'),
             );
         $this->template->load('template/backend/dashboard', 'pembeli/pembeli_form', $data);
     }
@@ -147,6 +166,16 @@ class Pembeli extends CI_Controller
                 'kk' => $this->uploadFile($_FILES, 'kk'),
                 'surat_nikah' => $_FILES['surat_nikah']['name'] !== null ? $this->uploadFile($_FILES, 'surat_nikah') : null, ## unrequired handler
                 'slip_gaji' => $_FILES['slip_gaji']['name'] !== null ? $this->uploadFile($_FILES, 'slip_gaji') : null, ## unrequired handler
+                'sk_terakhir' => $_FILES['sk_terakhir']['name'] !== null ? $this->uploadFile($_FILES, 'sk_terakhir') : null, ## unrequired handler
+                'surat_ket_kerja' => $_FILES['surat_ket_kerja']['name'] !== null ? $this->uploadFile($_FILES, 'surat_ket_kerja') : null, ## unrequired handler
+                'siup' => $_FILES['siup']['name'] !== null ? $this->uploadFile($_FILES, 'siup') : null, ## unrequired handler
+                'daftar_perusahaan' => $_FILES['daftar_perusahaan']['name'] !== null ? $this->uploadFile($_FILES, 'daftar_perusahaan') : null, ## unrequired handler
+                'surat_ket_dom' => $_FILES['surat_ket_dom']['name'] !== null ? $this->uploadFile($_FILES, 'surat_ket_dom') : null, ## unrequired handler
+                'laporan_keuangan' => $_FILES['laporan_keuangan']['name'] !== null ? $this->uploadFile($_FILES, 'laporan_keuangan') : null, ## unrequired handler
+                'npwp' =>$this->uploadFile($_FILES, 'npwp'),
+                'buku_tabungan' => $this->uploadFile($_FILES, 'buku_tabungan'),
+                'rekening_koran' => $this->uploadFile($_FILES, 'rekening_koran'),
+                'surat_pernyataan' => $this->uploadFile($_FILES, 'surat_pernyataan'),
             );
 
             $this->Pembeli_model->insert($data);
@@ -185,6 +214,16 @@ class Pembeli extends CI_Controller
                 'kk' => set_value('kk', $row->kk),
                 'surat_nikah' => set_value('surat_nikah', $row->surat_nikah),
                 'slip_gaji' => set_value('slip_gaji', $row->slip_gaji),
+                'sk_terakhir' => set_value('sk_terakhir', $row->sk_terakhir),
+                'surat_ket_kerja' => set_value('surat_ket_kerja', $row->surat_ket_kerja),
+                'siup' => set_value('siup', $row->siup),
+                'daftar_perusahaan' => set_value('daftar_perusahaan', $row->daftar_perusahaan),
+                'surat_ket_dom' => set_value('surat_ket_dom', $row->surat_ket_dom),
+                'laporan_keuangan' => set_value('laporan_keuangan', $row->laporan_keuangan),
+                'npwp' => set_value('npwp', $row->npwp),
+                'buku_tabungan' => set_value('buku_tabungan', $row->buku_tabungan),
+                'rekening_koran' => set_value('rekening_koran', $row->rekening_koran),
+                'surat_pernyataan' => set_value('surat_pernyataan', $row->surat_pernyataan),
             );
             $this->template->load('template/backend/dashboard', 'pembeli/pembeli_form_edit', $data);
         } else {
@@ -240,7 +279,7 @@ class Pembeli extends CI_Controller
     {
         $row = $this->Pembeli_model->get_by_id($id);
         $lokasiktp = './uploads/pembeli/';
-        $filedelete = array($row->pas_foto, $row->ktp, $row->kk, $row->surat_nikah, $row->slip_gaji);
+        $filedelete = array($row->pas_foto, $row->ktp, $row->kk, $row->surat_nikah, $row->slip_gaji, $row->sk_terakhir, $row->surat_ket_kerja, $row->siup, $row->daftar_perusahaan, $row->surat_ket_dom, $row->laporan_keuangan, $row->npwp, $row->buku_tabungan, $row->rekening_koran, $row->surat_pernyataan);
 
         if ($row) {
             $this->Pembeli_model->delete($id);
@@ -274,8 +313,8 @@ class Pembeli extends CI_Controller
 	$this->form_validation->set_rules('agama', 'Agama', 'trim|required');
 	$this->form_validation->set_rules('no_telpon', 'No. Handphone', 'trim|required|numeric');
 	
-    $fileList = ['pas_foto', 'ktp', 'kk', 'surat_nikah', 'slip_gaji']; # please add new list for all field for file (same to field name on DB)
-    $fileListreq = ['pas_foto', 'kk', 'ktp'];
+    $fileList = ['pas_foto', 'ktp', 'kk', 'surat_nikah', 'slip_gaji', 'sk_terakhir', 'surat_ket_kerja', 'siup', 'daftar_perusahaan', 'surat_ket_dom', 'laporan_keuangan', 'npwp', 'buku_tabungan', 'rekening_koran', 'surat_pernyataan']; # please add new list for all field for file (same to field name on DB)
+    $fileListreq = ['pas_foto', 'kk', 'ktp', 'npwp', 'buku_tabungan', 'rekening_koran', 'surat_pernyataan'];
 
     // loop all file validation
     for ($i=0; $i < count($fileListreq) ; $i++) { 
@@ -333,7 +372,7 @@ class Pembeli extends CI_Controller
 	$this->form_validation->set_rules('agama', 'Agama', 'trim|required');
 	$this->form_validation->set_rules('no_telpon', 'No. Handphone', 'trim|required|numeric');
     
-    $fileList = ['pas_foto', 'ktp', 'kk', 'surat_nikah', 'slip_gaji']; # please add new list for all field for file (same to field name on DB)
+    $fileList = ['pas_foto', 'ktp', 'kk', 'surat_nikah', 'slip_gaji', 'sk_terakhir', 'surat_ket_kerja', 'siup', 'daftar_perusahaan', 'surat_ket_dom', 'laporan_keuangan', 'npwp', 'buku_tabungan', 'rekening_koran', 'surat_pernyataan']; # please add new list for all field for file (same to field name on DB)
 
     // loop all file validation
     for ($i=0; $i < count($fileList) ; $i++) { 

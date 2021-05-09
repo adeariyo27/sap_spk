@@ -35,7 +35,7 @@
             <table class="table" style="margin-bottom: 10px">
                 <tr>
                     <th width="3.5%"><b>No</b></th>
-                    <th><b>Nama Parameter</b></th>
+                    <th><b>Nama Sub-Kriteria</b></th>
                     <th><b>Nilai</b></th>
                     <th width="23%"><center><b>Aksi</b></center></th>
                 </tr>

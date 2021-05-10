@@ -108,7 +108,7 @@
             </div>
 
     	    <div class="form-group">
-              <label for="pas_foto">Upload File Pas Foto 3x4  <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
+              <label for="pas_foto">*Upload File Pas Foto 3x4  <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
               <input type="file" class="form-control" name="pas_foto" id="pas_foto"/>
               <?php if( form_error('pas_foto') == true ) : ?>
                 <div class="form-text text-danger"><b><?= form_error('pas_foto') ?></b></div> 
@@ -116,7 +116,7 @@
           </div>
             
     	    <div class="form-group">
-            <label for="ktp">Upload File KTP  <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
+            <label for="ktp">*Upload File KTP  <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
             <input type="file" class="form-control" name="ktp" id="ktp" />
             <?php if( form_error('ktp') == true ) : ?>
               <div class="form-text text-danger"><b><?= form_error('ktp') ?></b></div> 
@@ -124,7 +124,7 @@
           </div>
 
           <div class="form-group">
-            <label for="kk">Upload File Kartu Keluarga  <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
+            <label for="kk">*Upload File Kartu Keluarga  <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
             <input type="file" class="form-control" name="kk" id="kk" />
             <?php if( form_error('kk') == true ) : ?>
               <div class="form-text text-danger"><b><?= form_error('kk') ?></b></div> 
@@ -132,9 +132,9 @@
           </div>
           
           <div class="form-group">
-            <label for="surat_nikah">Upload File Surat Nikah  <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
+            <label for="surat_nikah">Upload File Surat Nikah/Surat Cerai <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
             <br>
-            <medium><b>Isi Bila Status Pernikahan = Menikah</b></medium>
+            <medium><b>Isi Bila Status Pernikahan = Menikah/Cerai</b></medium>
             <input type="file" class="form-control" name="surat_nikah" id="surat_nikah" />
             <?php if( form_error('surat_nikah') == true ) : ?>
               <div class="form-text text-danger"><b><?= form_error('surat_nikah') ?></b></div> 
@@ -212,7 +212,7 @@
           </div>
         
           <div class="form-group">
-            <label for="npwp">Upload File NPWP <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
+            <label for="npwp">*Upload File NPWP <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
             <input type="file" class="form-control" name="npwp" id="npwp" />
             <?php if( form_error('npwp') == true ) : ?>
               <div class="form-text text-danger"><b><?= form_error('npwp') ?></b></div> 
@@ -220,7 +220,7 @@
           </div>
           
           <div class="form-group">
-            <label for="buku_tabungan">Upload File Buku Tabungan <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
+            <label for="buku_tabungan">*Upload File Buku Tabungan <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
             <input type="file" class="form-control" name="buku_tabungan" id="buku_tabungan" />
             <?php if( form_error('buku_tabungan') == true ) : ?>
               <div class="form-text text-danger"><b><?= form_error('buku_tabungan') ?></b></div> 
@@ -228,7 +228,7 @@
           </div>
           
           <div class="form-group">
-            <label for="rekening_koran">Upload File Rekening Koran 3 Bulan Terakhir <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
+            <label for="rekening_koran">*Upload File Rekening Koran 3 Bulan Terakhir <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
             <input type="file" class="form-control" name="rekening_koran" id="rekening_koran" />
             <?php if( form_error('rekening_koran') == true ) : ?>
               <div class="form-text text-danger"><b><?= form_error('rekening_koran') ?></b></div> 
@@ -236,7 +236,7 @@
           </div>
           
           <div class="form-group">
-            <label for="surat_pernyataan">Upload File Surat Pernyataan <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
+            <label for="surat_pernyataan">*Upload File Surat Pernyataan <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
             <input type="file" class="form-control" name="surat_pernyataan" id="surat_pernyataan" />
             <?php if( form_error('surat_pernyataan') == true ) : ?>
               <div class="form-text text-danger"><b><?= form_error('surat_pernyataan') ?></b></div> 

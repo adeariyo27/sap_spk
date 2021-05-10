@@ -29,7 +29,7 @@
 			</td>
 		</tr>
 		<?php if(!empty($surat_nikah)) { ?>
-	    <tr><td>Surat Nikah</td>
+	    <tr><td>Surat Nikah/Surat Cerai</td>
 			<td>
 				<?php echo anchor(site_url('uploads/pembeli/'.$surat_nikah), '<i class="entypo-doc-text"></i><span> Preview Surat Nikah</span>', array('target'=>'_new','class'=>'btn btn-success btn-sm')); ?>
 			</td>
@@ -94,7 +94,7 @@
 				<?php echo anchor(site_url('uploads/pembeli/'.$buku_tabungan), '<i class="entypo-doc-text"></i><span> Preview Buku Tabungan</span>', array('target'=>'_new','class'=>'btn btn-success btn-sm')); ?>
 			</td>
 		</tr>
-		<tr><td>Rekeking Koran 3 Bulan Terakhir</td>
+		<tr><td>Rekening Koran 3 Bulan Terakhir</td>
 			<td>
 				<?php echo anchor(site_url('uploads/pembeli/'.$rekening_koran), '<i class="entypo-doc-text"></i><span> Preview Rekeking Koran 3 Bulan Terakhir</span>', array('target'=>'_new','class'=>'btn btn-success btn-sm')); ?>
 			</td>

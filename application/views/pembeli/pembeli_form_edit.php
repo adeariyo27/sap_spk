@@ -132,7 +132,7 @@
             </div>
 
     	    <div class="form-group">
-            <label for="varchar">Upload File Pas Foto 3x4  <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
+            <label for="varchar">*Upload File Pas Foto 3x4  <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
               <br><br>
               <?php echo anchor(site_url('uploads/pembeli/'.$pas_foto), '<i class="entypo-doc-text"></i><span> Preview Pas Foto</span>', array('target'=>'_new','class'=>'btn btn-success btn-sm')); ?>
               <br>
@@ -143,7 +143,7 @@
           </div>
             
     	    <div class="form-group">
-            <label for="varchar">Upload File KTP  <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
+            <label for="varchar">*Upload File KTP  <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
             <br><br>
             <?php echo anchor(site_url('uploads/pembeli/'.$ktp), '<i class="entypo-doc-text"></i><span> Preview KTP</span>', array('target'=>'_new','class'=>'btn btn-success btn-sm')); ?>
             <br>
@@ -154,7 +154,7 @@
           </div>
 
           <div class="form-group">
-            <label for="varchar">Upload File KK  <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
+            <label for="varchar">*Upload File KK  <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
             <br><br>
             <?php echo anchor(site_url('uploads/pembeli/'.$kk), '<i class="entypo-doc-text"></i><span> Preview kk</span>', array('target'=>'_new','class'=>'btn btn-success btn-sm')); ?>
             <br>
@@ -165,9 +165,9 @@
           </div>
         
           <div class="form-group">
-            <label for="varchar">Upload File Surat Nikah  <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
+            <label for="varchar">Upload File Surat Nikah/Surat Cerai  <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
             <br>
-            <medium><b>Isi Bila Status Pernikahan = Menikah</b></medium>
+            <medium><b>Isi Bila Status Pernikahan = Menikah/Cerai</b></medium>
             <?php if(!empty($surat_nikah)) { ?>
             <br><br>
               <?php echo anchor(site_url('uploads/pembeli/'.$surat_nikah), '<i class="entypo-doc-text"></i><span> Preview Surat Nikah</span>', array('target'=>'_new','class'=>'btn btn-success btn-sm')); ?>
@@ -285,7 +285,7 @@
           </div>
 
           <div class="form-group">
-            <label for="varchar">Upload File NPWP  <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
+            <label for="varchar">*Upload File NPWP  <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
             <br><br>
             <?php echo anchor(site_url('uploads/pembeli/'.$npwp), '<i class="entypo-doc-text"></i><span> Preview NPWP</span>', array('target'=>'_new','class'=>'btn btn-success btn-sm')); ?>
             <br>
@@ -296,7 +296,7 @@
           </div>
           
           <div class="form-group">
-            <label for="varchar">Upload File Buku Tabungan  <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
+            <label for="varchar">*Upload File Buku Tabungan  <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
             <br><br>
             <?php echo anchor(site_url('uploads/pembeli/'.$buku_tabungan), '<i class="entypo-doc-text"></i><span> Preview Buku Tabungan</span>', array('target'=>'_new','class'=>'btn btn-success btn-sm')); ?>
             <br>
@@ -307,7 +307,7 @@
           </div>
          
           <div class="form-group">
-            <label for="varchar">Upload File Rekening Koran 3 Bulan Terakhir  <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
+            <label for="varchar">*Upload File Rekening Koran 3 Bulan Terakhir  <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
             <br><br>
             <?php echo anchor(site_url('uploads/pembeli/'.$rekening_koran), '<i class="entypo-doc-text"></i><span> Preview Rekening Koran 3 Bulan Terakhir</span>', array('target'=>'_new','class'=>'btn btn-success btn-sm')); ?>
             <br>
@@ -318,7 +318,7 @@
           </div>
           
           <div class="form-group">
-            <label for="varchar">Upload File Surat Pernyataan  <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
+            <label for="varchar">*Upload File Surat Pernyataan  <small>(<i>File PDF | Max Size : 1MB</i>)</small></label>
             <br><br>
             <?php echo anchor(site_url('uploads/pembeli/'.$surat_pernyataan), '<i class="entypo-doc-text"></i><span> Preview Surat Pernyataan</span>', array('target'=>'_new','class'=>'btn btn-success btn-sm')); ?>
             <br>

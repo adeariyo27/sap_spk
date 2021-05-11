@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 08, 2021 at 06:08 AM
+-- Generation Time: May 11, 2021 at 03:59 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.1.1
 
@@ -203,6 +203,16 @@ CREATE TABLE `nilai_kategori` (
   `nama_nilai` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `nilai_kategori`
+--
+
+INSERT INTO `nilai_kategori` (`id_nilai`, `nama_nilai`) VALUES
+(1, 'Sangat Bagus'),
+(2, 'Bagus'),
+(3, 'Kurang Bagus'),
+(4, 'Buruk');
+
 -- --------------------------------------------------------
 
 --
@@ -211,7 +221,7 @@ CREATE TABLE `nilai_kategori` (
 
 CREATE TABLE `pembeli` (
   `id_pembeli` int(11) NOT NULL,
-  `nama_pembeli` varchar(40) NOT NULL,
+  `nama_pembeli` varchar(100) NOT NULL,
   `usia` int(11) NOT NULL,
   `status` varchar(10) NOT NULL,
   `alamat` text NOT NULL,
@@ -239,6 +249,17 @@ CREATE TABLE `pembeli` (
   `surat_pernyataan` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
+--
+-- Dumping data for table `pembeli`
+--
+
+INSERT INTO `pembeli` (`id_pembeli`, `nama_pembeli`, `usia`, `status`, `alamat`, `pekerjaan`, `penghasilan`, `riwayat_kredit`, `uang_muka`, `jangka_waktu`, `agama`, `no_telpon`, `pas_foto`, `ktp`, `kk`, `surat_nikah`, `slip_gaji`, `sk_terakhir`, `surat_ket_kerja`, `siup`, `daftar_perusahaan`, `surat_ket_dom`, `laporan_keuangan`, `npwp`, `buku_tabungan`, `rekening_koran`, `surat_pernyataan`) VALUES
+(3, 'Jonaidi Madri, S.H., M.H.', 52, 'Menikah', 'Jl. Walet', 'Pegawai Negeri Sipil', 7400000, 'Kolektibilitas - 1', 8500000, '15 Tahun', 'Islam', '12345', '609758fb75b4f-pas_foto3x4.pdf', '6097563bce570-2_ektp.pdf', '6097563bcfff8-3_kk.pdf', '6097563bd1f20-4_surat_nikah.pdf', '6097563bd3f98-5_slip_gaji.pdf', '6097563bd5b10-6_sk_terakhir.pdf', NULL, NULL, NULL, NULL, NULL, '6097563bde4bb-12_npwp.pdf', '6097563bdf6a5-13_buku_tabungan.pdf', '6097563be9f74-14_rekening_koran.pdf', '6097563bebe63-15_surat_pernyataan.pdf'),
+(4, 'Jar\'an Kadir, S.H.', 49, 'Cerai', 'Jl. Permata', 'Karyawan Swasta', 6700000, 'Kolektibilitas - 2', 7000000, '20 Tahun', 'Kristen Protestan', '12345', '609756fa9c0e7-1_pas_foto.pdf', '609756fa9df7f-2_ektp.pdf', '609756faa861f-3_kk.pdf', '609756faa9e23-4_surat_cerai.pdf', '609756faab955-5_slip_gaji.pdf', NULL, '609756fab02ef-7_surat_keterangan_kerja.pdf', NULL, NULL, NULL, NULL, '609756fabb012-12_npwp.pdf', '609756fabc3d3-13_buku_tabungan.pdf', '609756fabda9a-14_rekening_koran.pdf', '609756fabf141-15_surat_pernyataan.pdf'),
+(5, 'Riswan Laidi, S.H.', 28, 'Lajang', 'Jl. in aja dulu', 'Wiraswasta', 5900000, 'Kolektibilitas - 3', 10000000, '10 Tahun', 'Hindhu', '123', '6097576ab784f-1_pas_foto.pdf', '6097576ac1e83-2_ektp.pdf', '6097576ac2ade-3_kk.pdf', NULL, NULL, NULL, NULL, '6097576ac9bb6-8_siup.pdf', '6097576acb3e2-9_tanda_daftar_perusahaan.pdf', '6097576acd39f-10_surat_keterangan_domisili.pdf', '6097576acf348-11_laporan_keuangan.pdf', '6097576ad0ebe-12_npwp.pdf', '6097576ad2321-13_buku_tabungan.pdf', '6097576ad39f3-14_rekening_koran.pdf', '6097576ad4c9e-15_surat_pernyataan.pdf'),
+(6, 'Karnali, S.H.', 59, 'Menikah', 'Jl. Jalan aja', 'Pegawai Negeri Sipil', 6000000, 'Kolektibilitas - 1', 8500000, '20 Tahun', 'Buddha', '1234', '60975807e428f-1_pas_foto.pdf', '60975807e5665-2_ektp.pdf', '60975807f064f-3_kk.pdf', '60975807f2692-4_surat_nikah.pdf', '60975897583bc-5_slip_gaji.pdf', '609758975bb07-6_sk_terakhir.pdf', NULL, NULL, NULL, NULL, NULL, '609758081183c-12_npwp.pdf', '60975808134f7-13_buku_tabungan.pdf', '6097580815531-14_rekening_koran.pdf', '60975808175a9-15_surat_pernyataan.pdf'),
+(7, 'Proklamasi Putra Moses Prawinaranegara Hambuako, S.H.', 34, 'Menikah', 'Jl. Moh. Yamin', 'Pegawai Negeri Sipil', 7654000, 'Kolektibilitas - 1', 10000000, '10 Tahun', 'Konghuchu', '123', '60975bfaae769-1_pas_foto.pdf', '60975bfaaf2bb-2_ektp.pdf', '60975bfab0104-3_kk.pdf', '60975c6033a4f-4_surat_nikah.pdf', '60975c6034fcc-5_slip_gaji.pdf', '60975c60362bb-6_sk_terakhir.pdf', '60975c60379ca-7_surat_keterangan_kerja.pdf', '60975c6039092-8_siup.pdf', '60975c603a5bf-9_tanda_daftar_perusahaan.pdf', '60975c603c043-10_surat_keterangan_domisili.pdf', '60975c603d4de-11_laporan_keuangan.pdf', '60975bfab8730-12_npwp.pdf', '60975bfab9169-13_buku_tabungan.pdf', '60975bfab9b26-14_rekening_koran.pdf', '60975bfaba684-15_surat_pernyataan.pdf');
+
 -- --------------------------------------------------------
 
 --
@@ -265,12 +286,19 @@ CREATE TABLE `subkriteria` (
   `nama_subkriteria` varchar(50) NOT NULL,
   `id_kriteria` int(11) NOT NULL,
   `tipe` enum('teks','nilai') NOT NULL,
-  `nilai_minimum` double DEFAULT NULL,
-  `nilai_maksimum` double DEFAULT NULL,
-  `op_min` varchar(4) DEFAULT NULL,
-  `op_max` varchar(4) DEFAULT NULL,
+  `nilai_minimum` double NOT NULL,
+  `nilai_maksimum` double NOT NULL,
+  `op_min` varchar(4) NOT NULL,
+  `op_max` varchar(4) NOT NULL,
   `id_nilai` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `subkriteria`
+--
+
+INSERT INTO `subkriteria` (`id_subkriteria`, `nama_subkriteria`, `id_kriteria`, `tipe`, `nilai_minimum`, `nilai_maksimum`, `op_min`, `op_max`, `id_nilai`) VALUES
+(1, '=> 0 < 60', 1, 'nilai', 0, 60, '=>', '<', 2);
 
 -- --------------------------------------------------------
 
@@ -329,8 +357,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`) VALUES
-(2, '::1', 'adeharioyudanto@gmail.com', '$2y$08$lql0hvJRq4GxXKCbmJYYkuaENe7ueD19b5redhklCccv3oISDZ8Pq', NULL, 'adeharioyudanto@gmail.com', NULL, NULL, NULL, NULL, 1619100985, 1620444047, 1, 'Ade Ariyo', 'Yudanto', 'PT. Serasi Anugrah Pratama', '081370231033'),
-(3, '::1', 'gunanta.s@gmail.com', '$2y$08$IjJPCdE8gle4hYHoSa/kG.hoipD7PRXThSm/e.vLjLBUZGjGpjUaq', NULL, 'gunanta.s@gmail.com', NULL, NULL, NULL, NULL, 1619101074, 1619768294, 1, 'Gunanta', 'Sembiring', 'PT. Serasi Anugrah Pratama', '081375388797'),
+(2, '::1', 'adeharioyudanto@gmail.com', '$2y$08$lql0hvJRq4GxXKCbmJYYkuaENe7ueD19b5redhklCccv3oISDZ8Pq', NULL, 'adeharioyudanto@gmail.com', NULL, NULL, NULL, NULL, 1619100985, 1620696302, 1, 'Ade Ariyo', 'Yudanto', 'PT. Serasi Anugrah Pratama', '081370231033'),
+(3, '::1', 'gunanta.s@gmail.com', '$2y$08$IjJPCdE8gle4hYHoSa/kG.hoipD7PRXThSm/e.vLjLBUZGjGpjUaq', NULL, 'gunanta.s@gmail.com', NULL, NULL, NULL, NULL, 1619101074, 1620451059, 1, 'Gunanta', 'Sembiring', 'PT. Serasi Anugrah Pratama', '081375388797'),
 (4, '::1', 'ridhorinaldy@gmail.com', '$2y$08$tJhD3PuodvVTCGfjAejoK.ufBFSNr2QN19mbMVdho/fzonnQbz6sq', NULL, 'ridhorinaldy@gmail.com', NULL, NULL, NULL, NULL, 1619101760, 1619246712, 1, 'Ridho', 'Rinaldy', 'PT. Berkah Rizki Putra', '081345678899'),
 (5, '::1', 'jimmypelawi@gmail.com', '$2y$08$VemYZpi3IZBguTisFmVqFOTqLv5uDwxX6Dvz32LaL1iu.sXZXlvMK', NULL, 'jimmypelawi@gmail.com', NULL, NULL, NULL, NULL, 1619101861, 1619844720, 1, 'Jimmy', 'Pelawi', 'CV. Pelawinta Durian', '081323456789');
 
@@ -496,12 +524,12 @@ ALTER TABLE `login_attempts`
 -- AUTO_INCREMENT for table `nilai_kategori`
 --
 ALTER TABLE `nilai_kategori`
-  MODIFY `id_nilai` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_nilai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `pembeli`
 --
 ALTER TABLE `pembeli`
-  MODIFY `id_pembeli` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_pembeli` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `pesan`
 --
@@ -511,7 +539,7 @@ ALTER TABLE `pesan`
 -- AUTO_INCREMENT for table `subkriteria`
 --
 ALTER TABLE `subkriteria`
-  MODIFY `id_subkriteria` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_subkriteria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `subkriteria_hasil`
 --

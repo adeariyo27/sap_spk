@@ -83,7 +83,7 @@
                         <span>Edit</span>', array('class'=>'btn btn-default btn-sm'));  
                         echo ' | '; 
                         echo anchor(site_url('subkriteria/delete/'.$subkriteria->id_subkriteria),'<i class="entypo-trash"></i>
-                        <span>Hapus</span>',array('class'=>'btn btn-danger btn-sm', 'onclick'=>'javasciprt: return confirm(\'Yakin Menghapus User?\')'));
+                        <span>Hapus</span>',array('class'=>'btn btn-danger btn-sm', 'onclick'=>'javasciprt: return confirm(\'Yakin Menghapus Parameter Subkriteria?\')'));
                         ?>
                     </td>
                 </tr>

@@ -240,7 +240,7 @@ class Subkriteria extends CI_Controller
             $k=$this->km->kriteria_data();
             $kid=$k->id_kriteria;
             $this->session->set_flashdata('sukses', 'Sub-Kriteria Berhasil Dihapus');
-            redirect('subkriteria/parameter?kriteria='.$kid);
+            redirect('subkriteria/parameter?kriteria='.$id);
         } else {
             $this->session->set_flashdata('gagal', 'Sub-Kriteria Tidak Dapat Ditemukan');
             redirect(site_url('subkriteria'));

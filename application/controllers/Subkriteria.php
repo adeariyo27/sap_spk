@@ -234,13 +234,12 @@ class Subkriteria extends CI_Controller
     public function delete($id) 
     {
         $row = $this->Subkriteria_model->get_by_id($id);
-
         if ($row) {
             $this->Subkriteria_model->delete($id);
             $k=$this->km->kriteria_data();
             $kid=$k->id_kriteria;
             $this->session->set_flashdata('sukses', 'Sub-Kriteria Berhasil Dihapus');
-            redirect('subkriteria/parameter?kriteria='.$id);
+            redirect('subkriteria/parameter?kriteria='.$row->id_kriteria);
         } else {
             $this->session->set_flashdata('gagal', 'Sub-Kriteria Tidak Dapat Ditemukan');
             redirect(site_url('subkriteria'));

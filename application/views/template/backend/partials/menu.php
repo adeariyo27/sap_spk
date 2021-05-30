@@ -25,17 +25,8 @@
 			<li><a href=" <?php echo base_url() ?> " target="_blank"><i class="entypo-monitor"></i><span>Halaman Depan</span></a></li>
 			<li <?php if($page=="Dashboard") echo 'class="active opened active" '; ?> ><?= anchor('admin/Dashboard','<i class=entypo-home></i><span> Dashboard</span>'); ?></li>
 			
-			<li <?php if($pag =="Kriteria" || $pag =="kriteria" || $pag =="Subkriteria" || $pag =="subkriteria") echo 'class="active opened active multiple-expanded" '; ?>>
-				<a href="ui-panels.html">
-					<i class="entypo-layout"></i>
-					<span>Kriteria</span>
-				</a>
-				<ul>
-					<li <?php if($pag=="Kriteria" || $pag=="kriteria" ) echo 'class="active opened active multiple-expanded" '; ?>><?= anchor('Kriteria','<span class=entypo-layout> Kriteria</span>'); ?></li>
-					<li <?php if($pag=="Subkriteria" || $pag=="subkriteria") echo 'class="active opened active multiple-expanded" '; ?>><?= anchor('Subkriteria','<span class=entypo-menu> Subkriteria</span>'); ?></li>
-				</ul>
-			</li>
-			
+			<li <?php if($pag =="Kriteria" || $pag =="kriteria" || $pag =="Subkriteria" || $pag =="subkriteria") echo 'class="active opened active" '; ?>><?= anchor('Kriteria','<i class=entypo-layout></i><span> Kriteria</span>'); ?></li>
+
 			<li <?php if($pag=="pembeli" || $pag=="Pembeli") echo 'class="active opened active" '; ?>><?= anchor('Pembeli','<i class=entypo-clipboard></i><span> Calon Pembeli</span>'); ?></li>
 			
 			<li <?php if($pag=="Alternatif" || $pag=="alternatif" || $page=="Banding" || $page=="banding" || $page=="Hasil" || $page=="hasil") echo 'class="active opened active multiple-expanded" '; ?>>

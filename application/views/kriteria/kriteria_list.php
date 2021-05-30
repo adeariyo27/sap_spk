@@ -12,7 +12,7 @@
             <div class="col-md-3 text-right">
                 <form action="<?php echo site_url('kriteria/index'); ?>" class="form-inline" method="get">
                     <div class="input-group">
-                        <input type="text" class="form-control" name="q" value="<?php echo $q; ?>">
+                        <input type="text" class="form-control" autocomplete="off" name="q" value="<?php echo $q; ?>">
                         <span class="input-group-btn">
                             <?php 
                                 if ($q <> '')
@@ -56,9 +56,9 @@
                     {
                     ?>
                     <tr>
-                        <td width="3%"><?php echo ++$start ?></td>
+                        <td width="5%"><?php echo ++$start ?></td>
                         <td><?php echo $kriteria->nama_kriteria ?></td>
-                        <td style="text-align:center" width="23%">
+                        <td style="text-align:center" width="30%">
                             <?php 
                             echo anchor(site_url('Subkriteria/parameter?kriteria='.$kriteria->id_kriteria),'<i class="entypo-list"></i>
                             <span>Parameter</span>', array('class'=>'btn btn-primary btn-sm')); 
@@ -67,7 +67,7 @@
                             <span>Edit</span>', array('class'=>'btn btn-default btn-sm'));  
                             echo ' | '; 
                             echo anchor(site_url('kriteria/delete/'.$kriteria->id_kriteria),'<i class="entypo-trash"></i>
-                            <span>Hapus</span>',array('class'=>'btn btn-danger btn-sm', 'onclick'=>'javasciprt: return confirm(\'Yakin Menghapus User?\')'));; 
+                            <span>Hapus</span>',array('class'=>'btn btn-danger btn-sm', 'onclick'=>'javasciprt: return confirm(\'Yakin Menghapus User?\')'));
                             ?>
                         </td>
                     </tr>

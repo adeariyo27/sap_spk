@@ -75,11 +75,37 @@ class Subkriteria_model extends CI_Model
                     FROM
                     subkriteria 
                     INNER JOIN nilai_kategori ON nilai_kategori.id_nilai = subkriteria.id_nilai
-                    INNER JOIN kriteria ON '$id_kriteria' = subkriteria.id_kriteria  WHERE kriteria.id_kriteria = '$id_kriteria' ORDER BY nama_subkriteria ASC  ";
+                    INNER JOIN kriteria ON '$id_kriteria' = subkriteria.id_kriteria  WHERE kriteria.id_kriteria = '$id_kriteria' ORDER BY id_subkriteria ASC  ";
                     return $this->db->query($query);
+                }
+                
+                
+    function subkriteria_add($tipe=NULL,$id_kriteria,$op_max=NULL,$nilai_maksimum,$op_min=NULL,$nilai_minimum,$id_nilai)
+    {
+        $data=array();
+        if($tipe=="teks")
+        {
+            $data=array(
+            'nama_subkriteria'=>$nilai_maksimum,
+            'id_kriteria'=>$id_kriteria,
+            'tipe'=>$tipe,
+            'id_nilai'=>$id_nilai,
+            );
+        }else{
+            $data=array(
+            'nama_subkriteria'=>$nilai_maksimum,
+            'id_kriteria'=>$id_kriteria,
+            'tipe'=> $tipe,
+            'nilai_minimum'=>$nilai_minimum,
+            'nilai_maksimum'=>$nilai_maksimum,
+            'op_min'=>$op_min,
+            'op_max'=>$op_max,
+            'id_nilai'=>$id_nilai,
+            );
+        }
+        $this->db->insert($this->table, $data);
     }
-    
-
+               
     function subkriteria_edit($subkriteriaID,$tipe,$kriteria,$op_max=NULL,$nilai_maksimum,$op_min=NULL,$nilai_minimum,$nilai)
     {
         $s=array(
@@ -96,7 +122,7 @@ class Subkriteria_model extends CI_Model
             );
         }else{
             $d=array(
-            'nama_subkriteria'=>$op_min." ".$nilai_minimum." ".$op_max." ".$nilai_maksimum,
+            'nama_subkriteria'=>$nilai_maksimum,
             'id_kriteria'=>$kriteria,
             'tipe'=>$tipe,
             'nilai_minimum'=>$nilai_minimum,
@@ -152,31 +178,6 @@ class Subkriteria_model extends CI_Model
         $this->db->insert($this->table, $data);
     }
 
-    function subkriteria_add($tipe,$id_kriteria,$op_max=NULL,$nilai_maksimum,$op_min=NULL,$nilai_minimum,$id_nilai)
-    {
-        $data=array();
-        if($tipe=="teks")
-        {
-            $data=array(
-            'nama_subkriteria'=>$nilai_maksimum,
-            'id_kriteria'=>$id_kriteria,
-            'tipe'=>$tipe,
-            'id_nilai'=>$id_nilai,
-            );
-        }else{
-            $data=array(
-            'nama_subkriteria'=> $op_min." ".$nilai_minimum." ".$op_max." ".$nilai_maksimum,
-            'id_kriteria'=>$id_kriteria,
-            'tipe'=> $tipe,
-            'nilai_minimum'=>$nilai_minimum,
-            'nilai_maksimum'=>$nilai_maksimum,
-            'op_min'=>$op_min,
-            'op_max'=>$op_max,
-            'id_nilai'=>$id_nilai,
-            );
-        }
-        $this->db->insert($this->table, $data);
-    }
 
     // update data
     function update($id, $data)

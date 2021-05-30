@@ -4,7 +4,7 @@
         <form action="<?php echo $action; ?>" method="post">
 	    <div class="form-group">
             <label for="varchar">Nama Kriteria</label>
-            <input type="text" class="form-control" name="nama_kriteria" id="nama_kriteria" value="<?php echo $nama_kriteria; ?>" />
+            <input type="text" class="form-control" autocomplete="off" name="nama_kriteria" id="nama_kriteria" value="<?php echo $nama_kriteria; ?>" />
                 <?php if( form_error('nama_kriteria') == true ) : ?>
                     <div class="form-text text-danger"><b><?= form_error('nama_kriteria') ?></b></div> 
                 <?php endif; ?>

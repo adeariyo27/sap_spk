@@ -35,7 +35,7 @@
                 <th>No</th>
                 <th>Nama Subkriteria</th>
                 <th>Nilai</th>
-                <th>Action</th>
+                <th>Aksi</th>
             </tr><?php
             foreach ($record as $subkriteria)
             {
@@ -46,9 +46,11 @@
                     <td><?php echo $subkriteria->nama_nilai ?></td>
                     <td style="text-align:center" width="200px">
                         <?php 
-                        echo anchor(site_url('subkriteria/update/'.$subkriteria->id_subkriteria),'Edit', array('class'=>'btn btn-danger btn-sm')); 
+                        echo anchor(site_url('subkriteria/update/'.$subkriteria->id_subkriteria),'<i class="entypo-pencil"></i>
+                        <span>Edit</span>', array('class'=>'btn btn-default btn-sm'));  
                         echo ' | '; 
-                        echo anchor(site_url('subkriteria/delete/'.$subkriteria->id_subkriteria),'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"'); 
+                        echo anchor(site_url('subkriteria/delete/'.$subkriteria->id_subkriteria),'<i class="entypo-trash"></i>
+                        <span>Hapus</span>',array('class'=>'btn btn-danger btn-sm', 'onclick'=>'javasciprt: return confirm(\'Yakin Menghapus User?\')'));
                         ?>
                     </td>
             </tr>

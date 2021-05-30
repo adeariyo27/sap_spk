@@ -67,7 +67,7 @@ class Subkriteria extends CI_Controller
 	    );
             $this->load->view('subkriteria/subkriteria_read', $data);
         } else {
-            $this->session->set_flashdata('message', 'Record Not Found');
+            $this->session->set_flashdata('gagal', 'Sub-Kriteria Tidak Dapat Ditemukan');
             redirect(site_url('subkriteria'));
         }
     }
@@ -102,6 +102,7 @@ class Subkriteria extends CI_Controller
             'total_rows' => $config['total_rows'],
             'start' => $start,
         );
+        $data['utama']=$this->km->kriteria_data();
         $data['kriteriaa']=$id_kriteria?"?kriteria=".$id_kriteria:"";
         $data['kriteria'] = $this->input->get('kriteria');
         $this->template->load('template/backend/dashboard', 'subkriteria/subkriteria_paramater', $data);
@@ -123,6 +124,7 @@ class Subkriteria extends CI_Controller
             'id_nilai' => set_value('id_nilai'),
     	    'link' => 'parameter/'.$ref?"?kriteria=".$ref:"",
 	       ); 
+        $data['utama']=$this->km->kriteria_data();
         $data['kriteria'] = $this->input->get('kriteria');
         $data['nilai'] = $this->nm->get_all('nilai_kategori');
         $this->template->load('template/backend/dashboard', 'subkriteria/subkriteria_tambah', $data);
@@ -150,11 +152,15 @@ class Subkriteria extends CI_Controller
             if($tipe=="teks")
             {
                 $isi=$ket;
-            }elseif($tipe=="nilai"){
-                $isi=$nilai_maksimum;
+            }else {
+                $isi=$ket;
             }
-            $this->Subkriteria_model->subkriteria_add($tipe,$id_kriteria,$op_max,$isi,$op_min,$nilai_minimum,$id_nilai);
-            $this->session->set_flashdata('message', 'Create Record Success');
+            if($id_nilai==NULL){
+                $this->Subkriteria_model->subkriteria_add($tipe,$id_kriteria,$op_max,$isi,$op_min,$nilai_minimum,$id_nilai=4);
+            } else {
+                $this->Subkriteria_model->subkriteria_add($tipe,$id_kriteria,$op_max,$isi,$op_min,$nilai_minimum,$id_nilai);
+            }
+            $this->session->set_flashdata('sukses', 'Sub-Kriteria Berhasil Ditambahkan');
             redirect(site_url('subkriteria/parameter').$link);
         // }
     }
@@ -203,13 +209,15 @@ class Subkriteria extends CI_Controller
             if($tipe=="teks")
             {
                 $isi=$ket;
-            }elseif($tipe=="nilai"){
-                $isi=$nilai_maksimum;
+            }else {
+                $isi=$ket;
             }
             if($this->Subkriteria_model->subkriteria_edit($subID,$tipe,$id_kriteria,$op_max,$isi,$op_min,$nilai_minimum,$id_nilai)==TRUE)
             {
+                $this->session->set_flashdata('sukses', 'Sub-Kriteria Berhasil Diperbarui');
                 redirect('subkriteria/parameter'.$link);
             }else{
+                $this->session->set_flashdata('gagal', 'Sub-Kriteria Gagal Diperbarui');
                 redirect('subkriteria/update_action'.$link);
             }
         }else{
@@ -229,10 +237,12 @@ class Subkriteria extends CI_Controller
 
         if ($row) {
             $this->Subkriteria_model->delete($id);
-            $this->session->set_flashdata('message', 'Delete Record Success');
-            redirect(site_url('subkriteria'));
+            $k=$this->km->kriteria_data();
+            $kid=$k->id_kriteria;
+            $this->session->set_flashdata('sukses', 'Sub-Kriteria Berhasil Dihapus');
+            redirect('subkriteria/parameter?kriteria='.$kid);
         } else {
-            $this->session->set_flashdata('message', 'Record Not Found');
+            $this->session->set_flashdata('gagal', 'Sub-Kriteria Tidak Dapat Ditemukan');
             redirect(site_url('subkriteria'));
         }
     }

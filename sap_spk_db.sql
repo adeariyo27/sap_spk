@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 11, 2021 at 03:59 AM
+-- Generation Time: May 30, 2021 at 02:51 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.1.1
 
@@ -147,7 +147,8 @@ INSERT INTO `kriteria` (`id_kriteria`, `nama_kriteria`) VALUES
 (1, 'Pekerjaan'),
 (2, 'Riwayat Kredit'),
 (3, 'Usia'),
-(4, 'Jangka Waktu Pembayaran');
+(4, 'Uang Muka'),
+(5, 'Jangka Waktu');
 
 -- --------------------------------------------------------
 
@@ -200,7 +201,7 @@ INSERT INTO `migrations` (`version`) VALUES
 
 CREATE TABLE `nilai_kategori` (
   `id_nilai` int(11) NOT NULL,
-  `nama_nilai` varchar(30) NOT NULL
+  `nama_nilai` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -208,10 +209,10 @@ CREATE TABLE `nilai_kategori` (
 --
 
 INSERT INTO `nilai_kategori` (`id_nilai`, `nama_nilai`) VALUES
-(1, 'Sangat Bagus'),
-(2, 'Bagus'),
-(3, 'Kurang Bagus'),
-(4, 'Buruk');
+(1, 'Rp. 6.000.000 - Rp. 8.000.000 '),
+(2, 'Rp. 4.500.000 - Rp. 6.000.000'),
+(3, 'Rp. 2.800.000 - Rp. 4.500.000'),
+(4, '0');
 
 -- --------------------------------------------------------
 
@@ -285,12 +286,12 @@ CREATE TABLE `subkriteria` (
   `id_subkriteria` int(11) NOT NULL,
   `nama_subkriteria` varchar(50) NOT NULL,
   `id_kriteria` int(11) NOT NULL,
-  `tipe` enum('teks','nilai') NOT NULL,
-  `nilai_minimum` double NOT NULL,
-  `nilai_maksimum` double NOT NULL,
-  `op_min` varchar(4) NOT NULL,
-  `op_max` varchar(4) NOT NULL,
-  `id_nilai` int(11) NOT NULL
+  `tipe` enum('teks','nilai') DEFAULT NULL,
+  `nilai_minimum` double DEFAULT NULL,
+  `nilai_maksimum` double DEFAULT NULL,
+  `op_min` varchar(4) DEFAULT NULL,
+  `op_max` varchar(4) DEFAULT NULL,
+  `id_nilai` int(11) DEFAULT '4'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -298,7 +299,16 @@ CREATE TABLE `subkriteria` (
 --
 
 INSERT INTO `subkriteria` (`id_subkriteria`, `nama_subkriteria`, `id_kriteria`, `tipe`, `nilai_minimum`, `nilai_maksimum`, `op_min`, `op_max`, `id_nilai`) VALUES
-(1, '=> 0 < 60', 1, 'nilai', 0, 60, '=>', '<', 2);
+(1, 'Pegawai Negeri Sipil', 1, NULL, NULL, 0, NULL, NULL, 1),
+(2, 'Pegawai Negeri Sipil', 1, NULL, NULL, 0, NULL, NULL, 2),
+(10, 'Kol-1', 2, NULL, NULL, 0, NULL, NULL, 4),
+(11, 'Kol-2', 2, NULL, NULL, 0, NULL, NULL, 4),
+(12, 'Kol-3', 2, NULL, NULL, 0, NULL, NULL, 4),
+(13, 'Kol-4', 2, NULL, NULL, 0, NULL, NULL, 4),
+(14, 'Kol-5', 2, NULL, NULL, 0, NULL, NULL, 4),
+(15, '21 - 30', 3, NULL, NULL, 21, NULL, NULL, 4),
+(31, 'dsadasfdsdf', 1, NULL, NULL, 0, NULL, NULL, 4),
+(32, 'dfgdfgdfghjgjgj', 1, NULL, NULL, 0, NULL, NULL, 4);
 
 -- --------------------------------------------------------
 
@@ -357,7 +367,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`) VALUES
-(2, '::1', 'adeharioyudanto@gmail.com', '$2y$08$lql0hvJRq4GxXKCbmJYYkuaENe7ueD19b5redhklCccv3oISDZ8Pq', NULL, 'adeharioyudanto@gmail.com', NULL, NULL, NULL, NULL, 1619100985, 1620696302, 1, 'Ade Ariyo', 'Yudanto', 'PT. Serasi Anugrah Pratama', '081370231033'),
+(2, '::1', 'adeharioyudanto@gmail.com', '$2y$08$lql0hvJRq4GxXKCbmJYYkuaENe7ueD19b5redhklCccv3oISDZ8Pq', NULL, 'adeharioyudanto@gmail.com', NULL, NULL, NULL, NULL, 1619100985, 1622379037, 1, 'Ade Ariyo', 'Yudanto', 'PT. Serasi Anugrah Pratama', '081370231033'),
 (3, '::1', 'gunanta.s@gmail.com', '$2y$08$IjJPCdE8gle4hYHoSa/kG.hoipD7PRXThSm/e.vLjLBUZGjGpjUaq', NULL, 'gunanta.s@gmail.com', NULL, NULL, NULL, NULL, 1619101074, 1620451059, 1, 'Gunanta', 'Sembiring', 'PT. Serasi Anugrah Pratama', '081375388797'),
 (4, '::1', 'ridhorinaldy@gmail.com', '$2y$08$tJhD3PuodvVTCGfjAejoK.ufBFSNr2QN19mbMVdho/fzonnQbz6sq', NULL, 'ridhorinaldy@gmail.com', NULL, NULL, NULL, NULL, 1619101760, 1619246712, 1, 'Ridho', 'Rinaldy', 'PT. Berkah Rizki Putra', '081345678899'),
 (5, '::1', 'jimmypelawi@gmail.com', '$2y$08$VemYZpi3IZBguTisFmVqFOTqLv5uDwxX6Dvz32LaL1iu.sXZXlvMK', NULL, 'jimmypelawi@gmail.com', NULL, NULL, NULL, NULL, 1619101861, 1619844720, 1, 'Jimmy', 'Pelawi', 'CV. Pelawinta Durian', '081323456789');
@@ -509,7 +519,7 @@ ALTER TABLE `groups`
 -- AUTO_INCREMENT for table `kriteria`
 --
 ALTER TABLE `kriteria`
-  MODIFY `id_kriteria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_kriteria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `kriteria_nilai`
 --
@@ -539,7 +549,7 @@ ALTER TABLE `pesan`
 -- AUTO_INCREMENT for table `subkriteria`
 --
 ALTER TABLE `subkriteria`
-  MODIFY `id_subkriteria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_subkriteria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 --
 -- AUTO_INCREMENT for table `subkriteria_hasil`
 --

@@ -75,25 +75,24 @@ class Subkriteria_model extends CI_Model
                     FROM
                     subkriteria 
                     INNER JOIN nilai_kategori ON nilai_kategori.id_nilai = subkriteria.id_nilai
-                    INNER JOIN kriteria ON '$id_kriteria' = subkriteria.id_kriteria  WHERE kriteria.id_kriteria = '$id_kriteria' ORDER BY id_subkriteria ASC  ";
+                    INNER JOIN kriteria ON '$id_kriteria' = subkriteria.id_kriteria  WHERE kriteria.id_kriteria = '$id_kriteria' ORDER BY nama_subkriteria ASC  ";
                     return $this->db->query($query);
-                }
-                
-                
-    function subkriteria_add($tipe=NULL,$id_kriteria,$op_max=NULL,$nilai_maksimum,$op_min=NULL,$nilai_minimum,$id_nilai)
+    }
+    
+    function subkriteria_add($tipe,$id_kriteria,$nama_subkriteria,$nilai_minimum,$nilai_maksimum,$op_max,$op_min,$id_nilai)
     {
         $data=array();
         if($tipe=="teks")
         {
             $data=array(
-            'nama_subkriteria'=>$nilai_maksimum,
+            'nama_subkriteria'=>$nama_subkriteria,
             'id_kriteria'=>$id_kriteria,
             'tipe'=>$tipe,
             'id_nilai'=>$id_nilai,
             );
         }else{
             $data=array(
-            'nama_subkriteria'=>$nilai_maksimum,
+            'nama_subkriteria'=>$nilai_minimum." - ".$nilai_maksimum,
             'id_kriteria'=>$id_kriteria,
             'tipe'=> $tipe,
             'nilai_minimum'=>$nilai_minimum,
@@ -105,8 +104,8 @@ class Subkriteria_model extends CI_Model
         }
         $this->db->insert($this->table, $data);
     }
-               
-    function subkriteria_edit($subkriteriaID,$tipe,$kriteria,$op_max=NULL,$nilai_maksimum,$op_min=NULL,$nilai_minimum,$nilai)
+
+    function subkriteria_edit($subkriteriaID,$tipe,$kriteria,$nama_subkriteria,$nilai_minimum,$nilai_maksimum,$op_max,$op_min,$nilai)
     {
         $s=array(
         'id_subkriteria'=>$subkriteriaID,
@@ -115,14 +114,18 @@ class Subkriteria_model extends CI_Model
         if($tipe=="teks")
         {
             $d=array(
-            'nama_subkriteria'=>$nilai_maksimum,
+            'nama_subkriteria'=>$nama_subkriteria,
             'id_kriteria'=>$kriteria,
             'tipe'=>$tipe,
+            'nilai_minimum'=>NULL,
+            'nilai_maksimum'=>NULL,
+            'op_min'=>NULL,
+            'op_max'=>NULL,
             'id_nilai'=>$nilai,
             );
         }else{
             $d=array(
-            'nama_subkriteria'=>$nilai_maksimum,
+            'nama_subkriteria'=>$nilai_minimum." - ".$nilai_maksimum,
             'id_kriteria'=>$kriteria,
             'tipe'=>$tipe,
             'nilai_minimum'=>$nilai_minimum,
@@ -177,7 +180,6 @@ class Subkriteria_model extends CI_Model
     {
         $this->db->insert($this->table, $data);
     }
-
 
     // update data
     function update($id, $data)

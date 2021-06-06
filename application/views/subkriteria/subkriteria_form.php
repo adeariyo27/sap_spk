@@ -44,6 +44,15 @@ echo form_open('subkriteria/update_action'.$kriteria,array('class'=>'form-horizo
 <input type="hidden" name="subkriteria" value="<?=$row->id_subkriteria;?>"/>
 <input type="hidden" name="id_nilai" value="<?=$row->id_nilai;?>"/>
 <div class="form-group required">
+    <label class="col-sm-2 control-label" for="">Tipe</label>
+    <div class="col-md-6">
+        <?php
+        $tipe=array('teks','nilai');
+        echo com_choice('radio','tipe',$tipe,$row->tipe,array('class'=>'tipe'),TRUE,TRUE);
+        ?>
+    </div>
+</div>
+<div class="form-group required">
     <label class="col-sm-2 control-label" for="">Kriteria Utama</label>
     <div class="col-md-8">
         <select name="id_kriteria" class="form-control" required="">         
@@ -66,34 +75,86 @@ echo form_open('subkriteria/update_action'.$kriteria,array('class'=>'form-horizo
     </div>
 </div>
 <?php
-$max=$row->nama_subkriteria;
+$max='';
+if($row->tipe=="teks")
+{
+    $max=$row->nama_subkriteria;
+}elseif($row->tipe=="nilai"){
+    $max=$row->nama_subkriteria;
+}
 ?>
 <div id="div_teks" class="opsi">
     <div class="form-group required">
-        <label class="col-sm-2 control-label" for="">
-        <?php 
-           if(!empty($utama))
-           {               
-               foreach($utama as $rutama)
-               {
-                   if($rutama->id_kriteria==$row->id_kriteria)
-                   {
-                       echo $rutama->nama_kriteria;
-                   }
-               }
-           }
-        ?>
-        </label>
+        <label class="col-sm-2 control-label" for="">Keterangan</label>
         <div class="col-md-7">
             <input type="text" name="ket" id="" class="form-control " autocomplete="" placeholder="keterangan" required="" value="<?php echo set_value('ket',$max); ?>"/>
         </div>
     </div>  
 </div>
 
-<?php if($row->id_kriteria==1) { ?>
+<div id="div_nilai" class="opsi" style="display: none;">
+    <div class="form-group required">
+        <label class="col-sm-2 control-label" for="">Minimum</label>
+        <div class="col-md-10">
+            <div class="row">
+            <div class="col-sm-2" >
+                <select name="op_min" class="form-control" required="">
+                    <?php
+                    $mmin=array('<','<=','>','=>','=');
+                    foreach($mmin as $rmm)
+                    {
+                        $jmm='';
+                        if($rmm==$row->op_min)
+                        {
+                            $jmm='selected="selected"';
+                        }
+                        echo '<option value="'.$rmm.'" '.$jmm.'> '.$rmm.' </option>';
+                    }
+                    ?>
+                </select>
+            </div>
+            <div class="col-sm-8" >
+                <input type="number" name="nilai_minimum" id="" class="form-control " autocomplete="" placeholder="Nilai Minimum" required="" value="<?php echo set_value('nilai_minimum',$row->nilai_minimum); ?>"/>
+            </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group required">
+        <label class="col-sm-2 control-label" for="">Maksimum</label>
+        <div class="col-md-10">
+            <div class="row">
+            <div class="col-sm-2" >
+                <select name="op_max" class="form-control" required="">
+                <?php
+                    $mmaks=array('<','<=','>','=>','=');
+                    foreach($mmaks as $rmk)
+                    {
+                        $jmk='';
+                        if($rmk==$row->op_max)
+                        {
+                            $jmk='selected="selected"';
+                        }
+                        echo '<option value="'.$rmk.'" '.$jmk.'> '.$rmk.' </option>';
+                    }
+                ?>
+                </select>
+            </div>
+            <div class="col-sm-8" >
+                <input type="number" name="nilai_maksimum" id="" class="form-control " autocomplete="" placeholder="Nilai Maksimum" required="" value="<?php echo set_value('nilai_maksimum',$row->nilai_maksimum); ?>"/>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- PEKERJAAN -->
+<?php if (!empty($utama)) {  
+				foreach($utama as $rutama) {  
+					if($rutama->id_kriteria==$row->id_kriteria) {
+						if($rutama->nama_kriteria=='pekerjaan' || $rutama->nama_kriteria=='Pekerjaan') { ?>
 <div id="nilaikategori">
     <div class="form-group required">
-        <label class="col-sm-2 control-label" for="">Nilai</label>
+        <label class="col-sm-2 control-label" for="">Jumlah Gaji</label>
         <div class="col-md-6">
             <?php
             if(!empty($nilai))
@@ -121,7 +182,7 @@ $max=$row->nama_subkriteria;
         </div>
     </div>
 </div>
-<?php } ?>
+<?php }}}} ?>
 
 <div class="form-group">
     <label class="col-sm-2 control-label">&nbsp;</label>

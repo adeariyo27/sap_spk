@@ -139,7 +139,6 @@ class Subkriteria extends CI_Controller
         // } else {
             $ref=$this->input->get('kriteria');
             $link=$ref?"?kriteria=".$ref:"";
-    		$nama_subkriteria = $this->input->post('nama_subkriteria');
     		$id_kriteria = $this->input->post('id_kriteria');
     		$tipe = $this->input->post('tipe');
     		$nilai_minimum = $this->input->post('nilai_minimum');
@@ -148,17 +147,18 @@ class Subkriteria extends CI_Controller
     		$op_max = $this->input->post('op_max');
     		$id_nilai = $this->input->post('id_nilai');
             $ket=$this->input->post('ket');
-            $isi='';
+
+            $nama_subkriteria='';
             if($tipe=="teks")
             {
-                $isi=$ket;
+                $nama_subkriteria=$ket;
             }else {
-                $isi=$ket;
+                $nama_subkriteria=$nilai_maksimum;
             }
             if($id_nilai==NULL){
-                $this->Subkriteria_model->subkriteria_add($tipe,$id_kriteria,$op_max,$isi,$op_min,$nilai_minimum,$id_nilai=4);
+                $this->Subkriteria_model->subkriteria_add($tipe,$id_kriteria,$nama_subkriteria,$nilai_minimum,$nilai_maksimum,$op_max,$op_min,$id_nilai=4);
             } else {
-                $this->Subkriteria_model->subkriteria_add($tipe,$id_kriteria,$op_max,$isi,$op_min,$nilai_minimum,$id_nilai);
+                $this->Subkriteria_model->subkriteria_add($tipe,$id_kriteria,$nama_subkriteria,$nilai_minimum,$nilai_maksimum,$op_max,$op_min,$id_nilai);
             }
             $this->session->set_flashdata('sukses', 'Sub-Kriteria Berhasil Ditambahkan');
             redirect(site_url('subkriteria/parameter').$link);
@@ -205,14 +205,14 @@ class Subkriteria extends CI_Controller
             $op_min=$this->input->post('op_min');
             $ket=$this->input->post('ket');
             
-            $isi='';
+            $nama_subkriteria='';
             if($tipe=="teks")
             {
-                $isi=$ket;
+                $nama_subkriteria=$ket;
             }else {
-                $isi=$ket;
+                $nama_subkriteria=$nilai_maksimum;
             }
-            if($this->Subkriteria_model->subkriteria_edit($subID,$tipe,$id_kriteria,$op_max,$isi,$op_min,$nilai_minimum,$id_nilai)==TRUE)
+            if($this->Subkriteria_model->subkriteria_edit($subID,$tipe,$id_kriteria,$nama_subkriteria,$nilai_minimum,$nilai_maksimum,$op_max,$op_min,$id_nilai)==TRUE)
             {
                 $this->session->set_flashdata('sukses', 'Sub-Kriteria Berhasil Diperbarui');
                 redirect('subkriteria/parameter'.$link);
@@ -237,10 +237,8 @@ class Subkriteria extends CI_Controller
 
         if ($row) {
             $this->Subkriteria_model->delete($id);
-            $k=$this->km->kriteria_data();
-            $kid=$k->id_kriteria;
             $this->session->set_flashdata('sukses', 'Sub-Kriteria Berhasil Dihapus');
-            redirect('subkriteria/parameter?kriteria='.$kid);
+            redirect('subkriteria/parameter?kriteria='.$row->id_kriteria);
         } else {
             $this->session->set_flashdata('gagal', 'Sub-Kriteria Tidak Dapat Ditemukan');
             redirect(site_url('subkriteria'));

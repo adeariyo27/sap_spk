@@ -234,7 +234,6 @@ class Subkriteria extends CI_Controller
     public function delete($id) 
     {
         $row = $this->Subkriteria_model->get_by_id($id);
-
         if ($row) {
             $this->Subkriteria_model->delete($id);
             $this->session->set_flashdata('sukses', 'Sub-Kriteria Berhasil Dihapus');

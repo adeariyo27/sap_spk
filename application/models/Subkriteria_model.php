@@ -44,14 +44,10 @@ class Subkriteria_model extends CI_Model
                     subkriteria.nilai_maksimum,
                     subkriteria.op_min,
                     subkriteria.op_max,
-                    subkriteria.id_nilai,
                     kriteria.id_kriteria,
-                    kriteria.nama_kriteria,
-                    nilai_kategori.id_nilai,
-                    nilai_kategori.nama_nilai
+                    kriteria.nama_kriteria
                     FROM
                     subkriteria
-                    INNER JOIN nilai_kategori ON nilai_kategori.id_nilai = subkriteria.id_nilai
                     INNER JOIN kriteria ON kriteria.id_kriteria = subkriteria.id_kriteria";
                     return $this->db->query($query);
     }
@@ -67,19 +63,15 @@ class Subkriteria_model extends CI_Model
                     subkriteria.nilai_maksimum,
                     subkriteria.op_min,
                     subkriteria.op_max,
-                    subkriteria.id_nilai,
                     kriteria.id_kriteria,
-                    kriteria.nama_kriteria,
-                    nilai_kategori.id_nilai,
-                    nilai_kategori.nama_nilai
+                    kriteria.nama_kriteria
                     FROM
                     subkriteria 
-                    INNER JOIN nilai_kategori ON nilai_kategori.id_nilai = subkriteria.id_nilai
                     INNER JOIN kriteria ON '$id_kriteria' = subkriteria.id_kriteria  WHERE kriteria.id_kriteria = '$id_kriteria' ORDER BY nama_subkriteria ASC  ";
                     return $this->db->query($query);
     }
     
-    function subkriteria_add($tipe,$id_kriteria,$nama_subkriteria,$nilai_minimum,$nilai_maksimum,$op_max,$op_min,$id_nilai)
+    function subkriteria_add($tipe,$id_kriteria,$nama_subkriteria,$nilai_minimum,$nilai_maksimum,$op_max,$op_min)
     {
         $data=array();
         if($tipe=="teks")
@@ -88,7 +80,6 @@ class Subkriteria_model extends CI_Model
             'nama_subkriteria'=>$nama_subkriteria,
             'id_kriteria'=>$id_kriteria,
             'tipe'=>$tipe,
-            'id_nilai'=>$id_nilai,
             );
         }else{
             $data=array(
@@ -99,13 +90,12 @@ class Subkriteria_model extends CI_Model
             'nilai_maksimum'=>$nilai_maksimum,
             'op_min'=>$op_min,
             'op_max'=>$op_max,
-            'id_nilai'=>$id_nilai,
             );
         }
         $this->db->insert($this->table, $data);
     }
 
-    function subkriteria_edit($subkriteriaID,$tipe,$kriteria,$nama_subkriteria,$nilai_minimum,$nilai_maksimum,$op_max,$op_min,$nilai)
+    function subkriteria_edit($subkriteriaID,$tipe,$kriteria,$nama_subkriteria,$nilai_minimum,$nilai_maksimum,$op_max,$op_min)
     {
         $s=array(
         'id_subkriteria'=>$subkriteriaID,
@@ -121,7 +111,6 @@ class Subkriteria_model extends CI_Model
             'nilai_maksimum'=>NULL,
             'op_min'=>NULL,
             'op_max'=>NULL,
-            'id_nilai'=>$nilai,
             );
         }else{
             $d=array(
@@ -132,7 +121,6 @@ class Subkriteria_model extends CI_Model
             'nilai_maksimum'=>$nilai_maksimum,
             'op_min'=>$op_min,
             'op_max'=>$op_max,
-            'id_nilai'=>$nilai,
             );
         }
         
@@ -154,7 +142,6 @@ class Subkriteria_model extends CI_Model
     	$this->db->or_like('nilai_maksimum', $q);
     	$this->db->or_like('op_min', $q);
     	$this->db->or_like('op_max', $q);
-    	$this->db->or_like('id_nilai', $q);
     	$this->db->from($this->table);
         return $this->db->count_all_results();
     }
@@ -170,7 +157,6 @@ class Subkriteria_model extends CI_Model
 	$this->db->or_like('nilai_maksimum', $q);
 	$this->db->or_like('op_min', $q);
 	$this->db->or_like('op_max', $q);
-	$this->db->or_like('id_nilai', $q);
 	$this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();
     }
@@ -192,6 +178,12 @@ class Subkriteria_model extends CI_Model
     function delete($id)
     {
         $this->db->where($this->id, $id);
+        $this->db->delete($this->table);
+    }
+    
+    function delete_by_kriteria($id_kriteria)
+    {
+        $this->db->where($this->id_kriteria, $id_kriteria);
         $this->db->delete($this->table);
     }
 

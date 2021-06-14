@@ -9,6 +9,7 @@ class Kriteria extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Kriteria_model');
+        $this->load->model('Subkriteria_model');
         $this->load->library('Form_validation');
         $this->load->library('M_db');
         $this->load->library('Ion_auth');
@@ -116,6 +117,7 @@ class Kriteria extends CI_Controller
 
         if ($row) {
             $this->Kriteria_model->delete($id);
+            $this->Subkriteria_model->delete_by_kriteria($id);
             $this->session->set_flashdata('sukses', 'Kriteria Berhasil Dihapus');
             redirect(site_url('kriteria'));
         } else {

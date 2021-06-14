@@ -63,7 +63,6 @@ class Subkriteria extends CI_Controller
 		'nilai_maksimum' => $row->nilai_maksimum,
 		'op_min' => $row->op_min,
 		'op_max' => $row->op_max,
-		'id_nilai' => $row->id_nilai,
 	    );
             $this->load->view('subkriteria/subkriteria_read', $data);
         } else {
@@ -121,12 +120,10 @@ class Subkriteria extends CI_Controller
     	    'nilai_maksimum' => set_value('nilai_maksimum'),
     	    'op_min' => set_value('op_min'),
     	    'op_max' => set_value('op_max'),
-            'id_nilai' => set_value('id_nilai'),
     	    'link' => 'parameter/'.$ref?"?kriteria=".$ref:"",
 	       ); 
         $data['utama']=$this->km->kriteria_data();
         $data['kriteria'] = $this->input->get('kriteria');
-        $data['nilai'] = $this->nm->get_all('nilai_kategori');
         $this->template->load('template/backend/dashboard', 'subkriteria/subkriteria_tambah', $data);
 
     }
@@ -145,7 +142,6 @@ class Subkriteria extends CI_Controller
     		$nilai_maksimum = $this->input->post('nilai_maksimum');
     		$op_min = $this->input->post('op_min');
     		$op_max = $this->input->post('op_max');
-    		$id_nilai = $this->input->post('id_nilai');
             $ket=$this->input->post('ket');
 
             $nama_subkriteria='';
@@ -155,11 +151,7 @@ class Subkriteria extends CI_Controller
             }else {
                 $nama_subkriteria=$nilai_maksimum;
             }
-            if($id_nilai==NULL){
-                $this->Subkriteria_model->subkriteria_add($tipe,$id_kriteria,$nama_subkriteria,$nilai_minimum,$nilai_maksimum,$op_max,$op_min,$id_nilai=4);
-            } else {
-                $this->Subkriteria_model->subkriteria_add($tipe,$id_kriteria,$nama_subkriteria,$nilai_minimum,$nilai_maksimum,$op_max,$op_min,$id_nilai);
-            }
+            $this->Subkriteria_model->subkriteria_add($tipe,$id_kriteria,$nama_subkriteria,$nilai_minimum,$nilai_maksimum,$op_max,$op_min);
             $this->session->set_flashdata('sukses', 'Sub-Kriteria Berhasil Ditambahkan');
             redirect(site_url('subkriteria/parameter').$link);
         // }
@@ -178,11 +170,9 @@ class Subkriteria extends CI_Controller
     //         'nilai_maksimum' => set_value('nilai_maksimum'),
     //         'op_min' => set_value('op_min'),
     //         'op_max' => set_value('op_max'),
-    //         'id_nilai' => set_value('id_nilai'),
     //         'link' => $link,
     //        ); 
     //     $data['kriteria'] = $this->input->get('kriteria');
-    //     $data['nilai'] = $this->nm->get_all('nilai_kategori');
     //     $this->template->load('template/backend/dashboard', 'subkriteria/subkriteria_form', $data);
     // }
     
@@ -190,14 +180,13 @@ class Subkriteria extends CI_Controller
     {
         $this->form_validation->set_rules('subkriteria','Parameter Id','required');
         $this->form_validation->set_rules('id_kriteria','Kriteria Utama','required');
-        $this->form_validation->set_rules('id_nilai','Tipe','required');
+        $this->form_validation->set_rules('Tipe','required');
         if($this->form_validation->run()==TRUE)
         {           
             $ref=$this->input->get('kriteria');
             $link=$ref?"?kriteria=".$ref:"";
             $subID=$this->input->post('subkriteria');
             $id_kriteria=$this->input->post('id_kriteria');
-            $id_nilai=$this->input->post('id_nilai');
             $tipe=$this->input->post('tipe');           
             $nilai_maksimum=$this->input->post('nilai_maksimum');
             $op_max=$this->input->post('op_max');
@@ -212,7 +201,7 @@ class Subkriteria extends CI_Controller
             }else {
                 $nama_subkriteria=$nilai_maksimum;
             }
-            if($this->Subkriteria_model->subkriteria_edit($subID,$tipe,$id_kriteria,$nama_subkriteria,$nilai_minimum,$nilai_maksimum,$op_max,$op_min,$id_nilai)==TRUE)
+            if($this->Subkriteria_model->subkriteria_edit($subID,$tipe,$id_kriteria,$nama_subkriteria,$nilai_minimum,$nilai_maksimum,$op_max,$op_min)==TRUE)
             {
                 $this->session->set_flashdata('sukses', 'Sub-Kriteria Berhasil Diperbarui');
                 redirect('subkriteria/parameter'.$link);
@@ -224,7 +213,6 @@ class Subkriteria extends CI_Controller
             $id=$this->input->get('id');
             $kriteria=$this->input->get('kriteria');
             $d['utama']=$this->km->kriteria_data();
-            $d['nilai']=$this->m_db->get_data('nilai_kategori');
             $d['kriteria']=$kriteria?"?kriteria=".$kriteria:"";
             $d['data']=$this->km->subkriteria_data(array('id_subkriteria'=>$id));
             $this->template->load('template/backend/dashboard','subkriteria/subkriteria_form',$d);
@@ -253,7 +241,6 @@ class Subkriteria extends CI_Controller
 	$this->form_validation->set_rules('nilai_maksimum', 'nilai maksimum', 'trim|required|numeric');
 	$this->form_validation->set_rules('op_min', 'op min', 'trim|required');
 	$this->form_validation->set_rules('op_max', 'op max', 'trim|required');
-	$this->form_validation->set_rules('id_nilai', 'id nilai', 'trim|required');
 
 	$this->form_validation->set_rules('id_subkriteria', 'id_subkriteria', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');

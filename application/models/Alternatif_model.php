@@ -9,16 +9,21 @@ class Alternatif_model extends CI_Model
          $this->load->library('M_db');
     }
     
-
-	
-	function alternatif_add($id_sekolah,$kriteriaData=array(), $sub=array())
+	function total_rows($q = NULL) 
 	{
-        if($this->m_db->is_bof('sekolah')==FALSE)
+        $this->db->like('id_alternatif', $q);
+		$this->db->from($this->tb_alternatif);
+        return $this->db->count_all_results();
+    }
+	
+	function alternatif_add($id_pembeli,$kriteriaData=array(), $sub=array())
+	{
+        if($this->m_db->is_bof('pembeli')==FALSE)
         {
         	if(!empty($kriteriaData))
         	{
 				$d=array(
-				'id_sekolah'=>$id_sekolah,
+				'id_pembeli'=>$id_pembeli,
 				);
 				if($this->m_db->add_row('alternatif',$d)==TRUE)
 				{
@@ -33,6 +38,7 @@ class Alternatif_model extends CI_Model
 						);
 						$this->m_db->add_row('alternatif_nilai',$d2);
 					}
+					$this->session->set_flashdata('sukses', 'Alternatif Berhasil Ditambahkan');
 					redirect('Alternatif','refresh');
 				}else{
 					//echo "GAGAL TAMBAH PESERTA";

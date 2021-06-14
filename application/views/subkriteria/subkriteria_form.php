@@ -42,7 +42,6 @@ echo form_open('subkriteria/update_action'.$kriteria,array('class'=>'form-horizo
     ?>
 </div>
 <input type="hidden" name="subkriteria" value="<?=$row->id_subkriteria;?>"/>
-<input type="hidden" name="id_nilai" value="<?=$row->id_nilai;?>"/>
 <div class="form-group required">
     <label class="col-sm-2 control-label" for="">Tipe</label>
     <div class="col-md-6">
@@ -146,43 +145,6 @@ if($row->tipe=="teks")
         </div>
     </div>
 </div>
-
-<!-- PEKERJAAN -->
-<?php if (!empty($utama)) {  
-				foreach($utama as $rutama) {  
-					if($rutama->id_kriteria==$row->id_kriteria) {
-						if($rutama->nama_kriteria=='pekerjaan' || $rutama->nama_kriteria=='Pekerjaan') { ?>
-<div id="nilaikategori">
-    <div class="form-group required">
-        <label class="col-sm-2 control-label" for="">Jumlah Gaji</label>
-        <div class="col-md-6">
-            <?php
-            if(!empty($nilai))
-            {
-                foreach($nilai as $rnilai)
-                {
-                    if($rnilai->id_nilai==4) {
-                        continue;
-                    }
-                        $ch='';
-                        if($rnilai->id_nilai==$row->id_nilai)
-                        {
-                            $ch='checked="checked"';
-                        }
-                ?>
-                <div class="radio">
-                    <label>
-                        <input type="radio" name="id_nilai" value="<?=$rnilai->id_nilai;?>" <?=$ch;?>/><?=$rnilai->nama_nilai;?>
-                    </label>
-                </div>
-                <?php
-                }
-            }
-            ?>
-        </div>
-    </div>
-</div>
-<?php }}}} ?>
 
 <div class="form-group">
     <label class="col-sm-2 control-label">&nbsp;</label>

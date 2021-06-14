@@ -5,30 +5,30 @@
 	});
 	</script>
 <div class="row">
-	<?= form_open('Alternatif/create'); ?>
+	<?= form_open('alternatif/create'); ?>
 	<div class="form-group required">
-		<label class="col-sm-2 control-label" for="">Nama Sekolah</label>
+		<label class="col-sm-2 control-label" for="">Nama Pembeli</label>
 		<div class="col-md-10">
-			<select name="id_sekolah" class="form-control">
+			<select name="id_pembeli" class="form-control">
 				<?php 
-				if (!empty($sekolah)) {
-					foreach ($sekolah as $s) {
+				if (!empty($pembeli)) {
+					foreach ($pembeli as $s) {
 			 	?>
-			 	<option value='<?php echo $s->id_sekolah ?>'><?php echo $s->nama_sekolah ?></option>
+			 	<option value='<?php echo $s->id_pembeli ?>'><?php echo $s->nama_pembeli ?></option>
 			 	<?php }}else{ ?>
-				<option class="form-control"> Semua Sekolah sudah terdaftar</option>
+				<option class="form-control"> Semua Pembeli sudah terdaftar</option>
 			 	<?php } ?>
 			</select>
 		</div>
 	</div>
-	<br><br><br><br>
+	<br><br><br>
 	<div class="form-group">
 		<label class="col-sm-2 control-label" for="">Penilaian</label>
 		<div class="col-md-10">
 			<table class="table table-bordered">
 				<thead>
 					<th>Kriteria</th>
-					<th>Nilai</th>
+					<th>Sub-Kriteria</th>
 				</thead>
 				<tbody>
 				<?php
@@ -49,8 +49,11 @@
 							{
 								$o='';
 								if($rSub->tipe=="teks")
-								{
+								{ if($rk->nama_kriteria=='Pekerjaan' || $rk->nama_kriteria=='pekerjaan') {
+									$o=$rSub->nama_subkriteria.' '.$nama_nilai;
+								  } else {
 									$o=$rSub->nama_subkriteria;
+								  }
 								}elseif($rSub->tipe=="nilai"){
 									$op_min=$rSub->op_min;
 									$op_max=$rSub->op_max;
@@ -81,7 +84,7 @@
 		<label class="col-sm-2 control-label">&nbsp;</label>
 		<div class="col-md-6">
 		<?php 
-		if (!empty($sekolah)) {
+		if (!empty($pembeli)) {
 		 ?>
 			<button type="submit" name="submit" class="btn btn-primary btn-flat">Tambah</button>
 			<a href="javascript:history.back(-1);" class="btn btn-default btn-flat">Batal</a>

@@ -66,7 +66,6 @@
                 <tr>
                     <th width="5%"><b>No</b></th>
                     <th><b>Nama Sub-Kriteria</b></th>
-                    <th><b>Jumlah Gaji</b></th>
                     <th width="23%"><center><b>Aksi</b></center></th>
                 </tr>
             </thead>
@@ -80,7 +79,6 @@
                 <tr>
                     <td width="80px"><?php echo ++$start; ?></td>
                     <td><?php echo $subkriteria->nama_subkriteria; ?></td>
-                    <td>Rp. <?php echo $subkriteria->nama_nilai; ?></td>
                     <td style="text-align:center" width="200px">
                         <?php 
                         echo anchor(site_url('subkriteria/update_action'.'?id='.$subkriteria->id_subkriteria.$link),'<i class="entypo-pencil"></i>
@@ -101,6 +99,46 @@
             </tbody>
             </table>
         
+        <!-- PENGHASILAN -->
+        <?php } elseif($rutama->nama_kriteria=='penghasilan' || $rutama->nama_kriteria=='Penghasilan') { ?>
+            <table class="table" style="margin-bottom: 10px">
+            <thead>
+                <tr>
+                    <th width="5%"><b>No</b></th>
+                    <th><b>Nama Sub-Kriteria</b></th>
+                    <th width="40%"><center><b>Aksi</b></center></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                if (!empty($record)) {   
+                foreach ($record as $subkriteria)
+                {
+                $link=str_replace("?","&",$kriteriaa);
+                ?>
+                    <tr>
+                        <td width="80px"><?php echo ++$start; ?></td>
+                        <td>Rp. <?php echo $subkriteria->nilai_minimum; ?> - Rp. <?php echo $subkriteria->nilai_maksimum; ?></td>
+                        <td style="text-align:center" width="200px">
+                            <?php 
+                            echo anchor(site_url('subkriteria/update_action'.'?id='.$subkriteria->id_subkriteria.$link),'<i class="entypo-pencil"></i>
+                            <span>Edit</span>', array('class'=>'btn btn-default btn-sm'));  
+                            echo ' | '; 
+                            echo anchor(site_url('subkriteria/delete/'.$subkriteria->id_subkriteria),'<i class="entypo-trash"></i>
+                            <span>Hapus</span>',array('class'=>'btn btn-danger btn-sm', 'onclick'=>'javasciprt: return confirm(\'Yakin Menghapus User?\')'));
+                            ?>
+                        </td>
+                    </tr>
+                <?php
+                } } else{
+                ?>
+                <tr>
+                    <td colspan="4" align="center"><strong>Tidak ada data</strong></td>
+                </tr>
+                <?php } ?>
+            </tbody>
+            </table>
+
         <!-- USIA -->
         <?php } elseif($rutama->nama_kriteria=='usia' || $rutama->nama_kriteria=='Usia') { ?>
             <table class="table" style="margin-bottom: 10px">
@@ -221,7 +259,7 @@
             </tbody>
             </table>
 
-            <!-- JANGKA WAKTU -->
+            <!-- Else -->
         <?php } else { ?>
             <table class="table" style="margin-bottom: 10px">
             <thead>

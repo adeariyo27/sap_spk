@@ -56,7 +56,7 @@
                     {
                     ?>
                     <tr>
-                        <td width="5%"><?php echo ++$start ?></td>
+                        <td width="3.5%"><?php echo ++$start ?></td>
                         <td><?php echo $kriteria->nama_kriteria ?></td>
                         <td style="text-align:center" width="30%">
                             <?php 
@@ -81,7 +81,7 @@
         </div>
         <div class="row">
             <div class="col-md-6">
-                <a href="#" class="btn btn-primary">Jumlah Kriteria: <?php echo $total_rows ?></a>
+                <a href="#" class="btn btn-primary">Jumlah Kriteria : <?php echo $total_rows ?></a>
              </div>
             <div class="col-md-6 text-right">
             <?= $this->pagination->create_links(); ?>

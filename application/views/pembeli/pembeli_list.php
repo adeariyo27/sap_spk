@@ -88,7 +88,7 @@
         </table>
         <div class="row">
             <div class="col-md-6">
-                <a href="#" class="btn btn-primary">Jumlah Calon Pembeli: <?php echo $total_rows ?></a>
+                <a href="#" class="btn btn-primary">Jumlah Calon Pembeli : <?php echo $total_rows ?></a>
 		<?php echo anchor(site_url('pembeli/excel'), 'Download Excel', 'class="btn btn-success"'); ?>
 	    </div>
             <div class="col-md-6 text-right">

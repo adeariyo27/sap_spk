@@ -8,7 +8,7 @@
 	    <tr><td>Pekerjaan</td><td><?php echo $pekerjaan; ?></td></tr>
 	    <tr><td>Penghasilan</td><td>Rp. <?php echo $penghasilan; ?></td></tr>
 	    <tr><td>Riwayat Kredit</td><td><?php echo $riwayat_kredit; ?></td></tr>
-	    <tr><td>Uang Muka</td><td><?php echo $uang_muka; ?></td></tr>
+	    <tr><td>Uang Muka</td><td>Rp. <?php echo $uang_muka; ?></td></tr>
 	    <tr><td>Jangka Waktu</td><td><?php echo $jangka_waktu; ?></td></tr>
 	    <tr><td>Agama</td><td><?php echo $agama; ?></td></tr>
 	    <tr><td>No Telpon</td><td><?php echo $no_telpon; ?></td></tr>
@@ -105,5 +105,5 @@
 			</td>
 		</tr>
 
-	    <tr><td><a href="<?php echo site_url('pembeli') ?>" class="btn btn-default">Kembali</a></td></tr>
+	    <tr><td><a href="javascript:history.back(-1);" class="btn btn-default">Kembali</a></td></tr>
 	</table>

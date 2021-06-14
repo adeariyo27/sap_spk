@@ -95,31 +95,6 @@ $(document).ready(function () {
 				</div>
 			</div>
 		</div>					
-		<div id="nilaikategori">
-			<div class="form-group required">
-				<label class="col-sm-2 control-label">Jumlah Gaji</label>
-				<div class="col-md-6">
-					<?php
-					if(!empty($nilai))
-					{
-						foreach($nilai as $rnilai)
-						{
-							if($rnilai->id_nilai==4) {
-								continue;
-							}
-						?>
-						<div class="radio radio-replace">
-							<label>
-								<input type="radio" name="id_nilai" value="<?=$rnilai->id_nilai;?>"/> <?=$rnilai->nama_nilai;?>
-							</label>
-						</div>
-						<?php
-						}
-					}
-					?>
-				</div>
-			</div>
-		</div>
 
 		<?php } else { ?>
 

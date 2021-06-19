@@ -7,6 +7,7 @@ class Proses_model extends CI_Model
     	parent::__construct(); 
         $this->load->library('m_db');
         $this->load->model('Kriteria_model','mod_kriteria');
+        $this->load->model('Subkriteria_model','mod_subkriteria');
     }
     
 	
@@ -32,7 +33,7 @@ class Proses_model extends CI_Model
 							$nilaiID=field_value('subkriteria','id_subkriteria',$subkriteria,'id_nilai');
 							$nilai=field_value('subkriteria','id_subkriteria',$nilaiID,'nama_subkriteria');
 							$prioritas=ambil_prioritas($subkriteria);
-							$total+=$prioritas;							
+							$total=$prioritas;							
 						}						
 					}
 					

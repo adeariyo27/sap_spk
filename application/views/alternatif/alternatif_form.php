@@ -9,18 +9,16 @@
 	<div class="form-group required">
 		<label class="col-sm-2 control-label" for="">Nama Pembeli</label>
 		<div class="col-md-10">
+			<select name="id_pembeli" class="form-control">
 				<?php 
 				if (!empty($pembeli)) {
 					foreach ($pembeli as $s) {
-						?>
-			<select name="id_pembeli" class="form-control">
+			 	?>
 			 	<option value='<?php echo $s->id_pembeli ?>'><?php echo $s->nama_pembeli ?></option>
-			</select>
 			 	<?php }}else{ ?>
-			<select name="id_pembeli" class="form-control" disabled>
 				<option class="form-control"> Semua Pembeli sudah terdaftar</option>
-			</select>
 			 	<?php } ?>
+			</select>
 		</div>
 	</div>
 	<br><br><br>

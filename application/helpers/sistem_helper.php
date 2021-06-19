@@ -148,6 +148,14 @@ if(!function_exists('alternatif_nilai'))
 	}
 }
 
+if(!function_exists(('ambil_prioritas_kriteria'))){
+	function ambil_prioritas_kriteria($idkriteria){
+		$CI=& get_instance();
+		$item = $CI->db->query("SELECT * FROM kriteria_hasil where id_kriteria = '$idkriteria'")->row_array();
+		return $item['prioritas'];
+	}
+}
+
 if(!function_exists('ambil_prioritas'))
 {
 	function ambil_prioritas($subkriteriaID)

@@ -3,8 +3,8 @@
 	<div class="container">
 		<div class="w3-agileits-about-grids">
 			<div class="col-md-6 agile-about-left">
-				<h2 class="agileits-title">Selamat Datang di Situs Ranking Sekolah</h2>
-				<h5>Situs Ranking Sekolah Unggulan di Kota Makassar</h5>
+				<h2 class="agileits-title">Selamat Datang di Website PT. Serasi Anugrah Pratama</h2>
+				<h5>Analisis Kelayakan Calon Pembeli KPR Bersubsidi</h5>
 				<p>Ranking Sekolah Unggulan adalah sebuah website yang menampilkan ranking serta perbandingan sekolah (SMA Sederajat) di Kota Makassar. <span>Website ini diharapkan dapat membantu kalangan masyarakat untuk melihat perbandingan sekolah unggulan di kota Makassar agar  para orangtua dan calon siswa dapat melihat sekolah sekolah unggulan yang ada di kota Makassar</span> Dengan adanya situs ini juga bisa menjadi acuan bagi sekolah yang ada di Makassar untuk berlomba dalam memperbaiki Mutu Pendidikan yang ada di Kota Makassar.</p>
 			</div>
 			<div class="col-md-6 agile-about-right"></div>
@@ -20,7 +20,7 @@
 		<figure class="col-md-3 effect-kira">
 			<img src="<?php echo base_url() ?>frontend/web/images/front/t1.jpg" alt="t1" class="img-responsive"/>
 			<figcaption>
-				<h4>Akbar <span>Abustang</span></h4>
+				<h4>Ade <span>Ariyo</span></h4>
 				<h5>Backend Developer</h5>
 				<p>
 					<a href="https://www.facebook.com/abustangakbar/" target="_blank" class="fa fa-facebook icon-border facebook"></a>

@@ -25,9 +25,9 @@ class Frontend extends CI_Controller
     }
 
     public function detail(){
-    	$id_sekolah = $this->input->get('sekolah');
-        $data['sekolah'] = $this->fm->tampilkan_detail($id_sekolah)->row_array();
-    	$data['kriteria'] = $this->fm->detail_kriteria($id_sekolah)->result();
+    	$id_pembeli = $this->input->get('pembeli');
+        $data['pembeli'] = $this->fm->tampilkan_detail($id_pembeli)->row_array();
+    	$data['kriteria'] = $this->fm->detail_kriteria($id_pembeli)->result();
     	$this->template->load('template/frontend/home', 'frontend/detail', $data);
     }
 

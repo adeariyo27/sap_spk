@@ -37,7 +37,8 @@ if($c < 1)
 }else{	
 ?>
 
-<br><br>
+<h3 style="margin-top:0px"><b>Daftar Kriteria Kelayakan Pembeli</b></h3>
+<br>
 <div class="table-responsive">
 	
 <table class="table table-bordered ">
@@ -62,7 +63,7 @@ if($c < 1)
 	$dAlternatif=$this->m_db->get_data('alternatif');
 	if(!empty($dAlternatif))
 	{
-		
+		$totalarray = array();
 		foreach($dAlternatif as $rAlternatif)
 		{
 			$alternatifID=$rAlternatif->id_alternatif;
@@ -76,27 +77,42 @@ if($c < 1)
 				$total=0;
 				if(!empty($dKriteria))
 				{
+				
 					foreach($dKriteria as $rKriteria)
 					{						
 						$kriteriaid=$rKriteria->id_kriteria;
 						$subkriteria=alternatif_nilai($alternatifID,$kriteriaid);
-						$nilaiID=field_value('subkriteria','id_subkriteria',$subkriteria,'id_subkriteria');
-						$nilai=field_value('subkriteria','id_subkriteria',$nilaiID,'nama_subkriteria');
-						$prioritas=ambil_prioritas($subkriteria);
-						$total=$prioritas;
+						// $nilaiID=field_value('kriteria','id_kriteria',$subkriteria,'id_kriteria');
+						// $nilai=field_value('kriteria','id_kriteria',$nilaiID,'nama_kriteria');
+						$prioritaskriteria = ambil_prioritas_kriteria($kriteriaid);
+						$prioritassubkriteria=ambil_prioritas($subkriteria);
+
+						$prioritas=$prioritassubkriteria*$prioritaskriteria;
+
+						$total+=$prioritas;
+						array_push($totalarray , $total);
 					    echo '<td>'.number_format((float)$prioritas,2).'</td>';
 					}
 				}
+
+			
 				?>
 				<td><?=number_format($total,2);?></td>
 				<!-- <td><?=ucwords($rAlternatif->status);?></td> -->
 				<td>
 					<?php 
-					if ($total >= 0.8) {
-						echo "Pembeli unggulan";
-					}else{
-						echo "belum unggulan";
+						$maxs = max($totalarray);
+						if($total === $maxs){
+							echo "Pembeli unggulan";
+						}else{
+							echo "belum unggulan";
 						}
+						// var_dump($totalarray);
+						// if ($total >= 0.8) {
+						// 	echo "Pembeli unggulan";
+						// }else{
+						// 	echo "belum unggulan";
+						// 	}
 					 ?>
 				</td>
 			</tr>			
@@ -113,4 +129,4 @@ if($c < 1)
 
 </table>
 </div>
-<a href="javascript:;" onclick="proseshitung();" class="btn btn-primary btn-md"> Hitung</a>
+<!-- <a href="javascript:;" onclick="proseshitung();" class="btn btn-primary btn-md"> Hitung</a> -->

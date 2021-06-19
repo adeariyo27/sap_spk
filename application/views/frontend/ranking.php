@@ -1,12 +1,12 @@
 <div class="jarallax w3ls-services agile-section" id="services">
 	<div class="container">
-		<h3 class="hdg agileits-title" style="color: orange; text-align: center;" id="h3.-bootstrap-heading">Status Ranking Sekolah Unggulan</h3>
+		<h3 class="hdg agileits-title" style="color: orange; text-align: center;" id="h3.-bootstrap-heading">Status Ranking Pembeli Unggulan</h3>
 		<div class="w3-agileits-service-grids">
 			<div class="table-responsive">
 				<table class="table table-bordered">
 					<thead>
 						<th width="20">Peringkat</th>
-						<th>Nama Sekolah</th>
+						<th>Nama Pembeli</th>
 						<th>Alamat</th>
 						<th>Status</th>
 					</thead>
@@ -17,9 +17,9 @@
 					 ?>
 					 <tr>
 					 	<td><?php echo $no++ ?></td>
-					 	<td><?php echo $d->nama_sekolah ?> <?php echo anchor('Frontend/detail?sekolah='.$d->id_sekolah, '<span>Detail</span>', array('class'=>'label label-success')); ?></td>
-					 	<td><?php echo $d->alamat_sekolah ?></td>
-					 	<td><?php echo $d->status ?></td>
+					 	<td><?php echo $d->nama_pembeli ?> <?php echo anchor('Frontend/detail?pembeli='.$d->id_pembeli, '<span>Detail</span>', array('class'=>'label label-success')); ?></td>
+					 	<td><?php echo $d->pekerjaan ?></td>
+					 	<td><?php echo $d->penghasilan ?></td>
 					 </tr>
 					 <?php } ?>
 					</tbody>

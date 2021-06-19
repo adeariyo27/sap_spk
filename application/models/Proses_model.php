@@ -20,8 +20,8 @@ class Proses_model extends CI_Model
 				foreach($dAlternatif as $rAlternatif)
 				{
 					$alternatifID=$rAlternatif->id_alternatif;
-					$sekolahID=$rAlternatif->id_sekolah;
-					$nama_sekolah=field_value('sekolah','id_sekolah',$sekolahID,'nama_sekolah');			
+					$pembeliID=$rAlternatif->id_pembeli;
+					$nama_pembeli=field_value('pembeli','id_pembeli',$pembeliID,'nama_pembeli');			
 					if(!empty($dKriteria))
 					{
 						$total=0;
@@ -30,7 +30,7 @@ class Proses_model extends CI_Model
 							$kriteriaid=$rKriteria->id_kriteria;
 							$subkriteria=alternatif_nilai($alternatifID,$kriteriaid);
 							$nilaiID=field_value('subkriteria','id_subkriteria',$subkriteria,'id_nilai');
-							$nilai=field_value('nilai_kategori','id_nilai',$nilaiID,'nama_nilai');
+							$nilai=field_value('subkriteria','id_subkriteria',$nilaiID,'nama_subkriteria');
 							$prioritas=ambil_prioritas($subkriteria);
 							$total+=$prioritas;							
 						}						

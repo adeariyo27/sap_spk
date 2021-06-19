@@ -1,5 +1,5 @@
 <?php
-echo '<h2>'.$namakriteria.'</h2>';
+
 $irdata=array(
 1=>0.00,
 2=>0.00,
@@ -18,11 +18,6 @@ $irdata=array(
 15=>1.59,
 );
 
-if(!empty($arr))
-{
-	
-
-
 $jumlah=count($arr);
 
 $ir=0.00;
@@ -35,8 +30,6 @@ foreach($irdata as $irk=>$irv)
 }
 ?>
 <script type="text/javascript">
-
-var maksprio;
 $(document).ready(function () {
 		
 <?php
@@ -53,7 +46,7 @@ $("#formentri").submit(function(e){
 	$.ajax({
 		type:'post',
 		dataType:'json',
-		url:"<?=base_url();?>Perbandingan/updatesub",
+		url:"<?=base_url();?>Perbandingan/updateutama",
 		data:$(this).serialize(),
 		error:function(){
 			shownotice('danger','Gagal menyimpan data');
@@ -63,7 +56,7 @@ $("#formentri").submit(function(e){
 		beforeSend:function(){
 			$("#formentri select").attr('disabled','disabled');
 			$("#formentri button").attr('disabled','disabled');
-			shownotice('info','Tunggu sebentar,lagi menyimpan data');
+			shownotice('info','Tunggu sebentar,sedang menyimpan data');
 		},
 		success:function(x){
 			if(x.status=="ok")
@@ -79,13 +72,12 @@ $("#formentri").submit(function(e){
 	});
 });
 
-
 $("#prioform").submit(function(e){
 	e.preventDefault();
 	$.ajax({
 		type:'post',
 		dataType:'json',
-		url:"<?=base_url();?>Perbandingan/updatesubprioritas",
+		url:"<?=base_url();?>Perbandingan/updateutamaprioritas",
 		data:$(this).serialize(),
 		error:function(){
 			
@@ -148,11 +140,13 @@ function hitung()
 			total();			
 			mnk();
 			mptb();
-			rk();
+			// rk();
 			//alert(dkolom);
 	//	});
 	});	
 }
+
+rk();
 
 function showmatrix()
 {
@@ -173,8 +167,7 @@ function total()
 }
 
 function mnk()
-{
-	var mm=[];
+{	
 	for(i=1;i<=<?=$jumlah;?>;i++)
 	{
 		var jml=0;
@@ -192,35 +185,10 @@ function mnk()
 		var prio=parseFloat(jml)/parseFloat(<?=$jumlah;?>);
 		var totprio=prio;
 		$("#jml-b"+i).val(jumlahmnk);
-		$("#pri-b"+i).val(totprio);
-		mm.push(totprio);
-	}
-	maksprio=arrayMax(mm);
-	mnk2();
-}
-
-function arrayMax(arr) {
-  var len = arr.length, max = -Infinity;
-  while (len--) {
-    if (arr[len] > max) {
-      max = arr[len];
-    }
-  }
-  return max;
-};
-
-function mnk2()
-{
-	var i=[];
-	for(i=1;i<=<?=$jumlah;?>;i++)
-	{
-		var prio=$("#pri-b"+i).val();
-		var rumus=parseFloat(prio)/parseFloat(maksprio);
-		$("#prisub-b"+i).val(rumus);
-		$("#prisub-bhasil"+i).val(rumus);
+		$("#pri-b"+i).val(totprio);		
+		
 	}
 }
-
 
 function mptb()
 {	
@@ -229,7 +197,7 @@ function mptb()
 		var jml=0;
 		for(x=1;x<=<?=$jumlah;?>;x++)
 		{			
-			var prio=$("#pri-b"+x).val();
+			var prio=$("#pri-k"+i).val();
 			var nilai=$("#k"+i+"b"+x).val();
 			var rumus=parseFloat(nilai)*parseFloat(prio);
 			var fx=rumus;
@@ -244,6 +212,9 @@ function mptb()
 
 function rk()
 {
+
+	
+
 	// var total=0;	
 	// for(i=1;i<=<?=$jumlah;?>;i++)
 	// {
@@ -260,6 +231,7 @@ function rk()
 	// $("#totalrk").val(fx2);
 	// $("#sumrk").val(fx2);
 
+	
 	// ===== MAKS
 	var maksa =0;
 	for(lk =1; lk<= <?=$jumlah?> ; lk++){
@@ -280,30 +252,44 @@ function rk()
 	var ci_r_2=parseFloat(<?=$jumlah;?>)-parseFloat(<?=1;?>);
 	var ci=parseFloat(ci_r_1)/parseFloat(ci_r_2);
 	var fx_ci=ci;
-
 	$("#sumci").val(fx_ci);
 	var cr=parseFloat(ci)/parseFloat(<?=$ir;?>);
 	var fx_cr=cr;
-
 	$("#sumcr").val(fx_cr);
 	$("#crvalue").val(fx_cr);
 }
 
+function showsubkriteria()
+{
+	$.ajax({
+			type:'get',
+			dataType:'html',
+			url:"<?=base_url('Perbandingan/getsubcontainer');?>",
+			data:"",
+			error:function(){
+				$("#matrik").html('Gagal mengambil data matrik sub kriteria');
+			},
+			beforeSend:function(){
+				$("#matrik").html('Mengambil data matrik sub kriteria. Tunggu sebentar');
+			},
+			success:function(x){
+				$("#matrik").html(x);
+			},
+		});
+}
 </script>
 
 <div id="respon"></div>
 
 <div id="entri" class="col-md-12">
 <?php
-echo validation_errors();
 echo form_open('#',array('class'=>'form-horizontal','id'=>'formentri'));
 ?>
 <input type="hidden" name="crvalue" id="crvalue"/>
-<input type="hidden" name="kriteriaid" value="<?=$kriteriaid;?>"/>
 <div class="table-responsive">
 <table class="table table-bordered">
 <thead>
-	<th colspan="<?=$jumlah+3;?>" class="text-center">Matrik Perbandingan Berpasangan</th>
+	<th colspan="<?=$jumlah+1;?>" class="text-center">Matriks Perbandingan Berpasangan</th>
 </thead>
 <thead>
 	<th>Kriteria</th>
@@ -346,7 +332,7 @@ echo form_open('#',array('class'=>'form-horizontal','id'=>'formentri'));
 					echo '<select name="'.$newname.'" id="k'.$noUtama.'b'.$noSub.'" data-target="k'.$noSub.'b'.$noUtama.'" data-kolom="'.$noSub.'" class="form-control inputnumber kolom'.$noSub.'" title="kolom'.$noSub.'">';
 					for($x=1;$x<=9;$x++)
 					{
-						$nilai=ambil_nilai_subkriteria($kriteriaid,$k2,$xxx);
+						$nilai=ambil_nilai_kriteria($k2,$xxx);
 						$sl='';
 						if($nilai==$x)
 						{
@@ -381,23 +367,21 @@ echo form_open('#',array('class'=>'form-horizontal','id'=>'formentri'));
 <div class="pull-left">
 	<!-- <a href="javascript:;" onclick="hitung();" class="btn btn-primary">Hitung</a>  -->
 	<a href="javascript:;" onclick="showmatrix();" class="btn btn-info">Lihat Matriks</a>	
-	<button type="submit" class="btn btn-success">Simpan Kriteria</button>
+	<a href="javascript:;" onclick="showsubkriteria();" class="btn btn-info">Lihat Sub Kriteria</a>
+	<button type="submit" name="submit" class="btn btn-success">Simpan Kriteria</button>	
 </div>
-
 <?php
 echo form_close();
 ?>
 </div>
-
 <br><br><br>
 <div id="matrikdiv" class="col-md-12" style="display: none">
 
 <div class="table-responsive">
 <?php echo form_open('#',array('id'=>'prioform'));?>
-<input type="hidden" name="kriteriaid" value="<?=$kriteriaid;?>"/>
 <table class="table table-bordered">
 <thead>
-	<th colspan="<?=$jumlah+5;?>" class="text-center">Matrik Nilai Kriteria</th>
+	<th colspan="<?=$jumlah+3;?>" class="text-center">Matriks Nilai Kriteria</th>
 </thead>
 <thead>
 	<th>Kriteria</th>
@@ -411,8 +395,6 @@ echo form_close();
 	?>
 	<th>Jumlah</th>
 	<th>Prioritas</th>
-	<!-- <th>Prioritas <br> Subkriteria</th>
-	<th>Jumlah</th> -->
 </thead>
 <tbody>
 	<?php
@@ -429,11 +411,9 @@ echo form_close();
 			echo '<td><input type="text" id="mn-k'.$noUtama2.'b'.$noSub2.'" class="form-control" value="0" readonly=""/></td>';
 		}
 		echo '<td><input type="text" class="form-control" id="jml-b'.$noUtama2.'" value="0" readonly=""/></td>';
-		echo '<td><input type="text" name="prioo['.$k2.']" class="form-control" id="pri-b'.$noUtama2.'" value="0" readonly=""/></td>';
-		// echo '<td><input type="text" class="form-control" id="prisub-b'.$noUtama2.'" value="0" readonly=""/></td>';
-		// echo '<td><input type="text" class="form-control" id="prisub-bhasil'.$noUtama2.'" value="" readonly=""/></td>';		
+		echo '<td><input type="text" name="prio['.$k2.']" class="form-control" id="pri-b'.$noUtama2.'" value="0" readonly=""/></td>';
 		echo '</tr>';
-	}	
+	}
 	?>	
 </tbody>
 </table>
@@ -479,9 +459,9 @@ echo form_close();
 	?>	
 </tbody>
 </table>
-</div>
+</div> -->
 
-<div class="table-responsive">
+<!-- <div class="table-responsive">
 <table class="table table-bordered">
 <thead>
 	<th colspan="<?=$jumlah+1;?>" class="text-center">Rasio Konsistensi</th>
@@ -535,13 +515,13 @@ echo form_close();
 		</td>
 	</tr>
 	<tr>
-		<td>Maks(Jumlah/n)</td>
+	<td>Maks λ(Prioritas/Jumlah Nilai Kriteria)</td>
 		<td>
 			<input type="text" class="form-control" id="summaks" value="0"  readonly=""/>
 		</td>
 	</tr>
 	<tr>
-		<td>CI((Maks-n)/n)</td>
+		<td>CI((Maks-n)/n-1)</td>
 		<td>
 			<input type="text" class="form-control" id="sumci" value="0"  readonly=""/>
 		</td>
@@ -557,11 +537,3 @@ echo form_close();
 </div>
 
 </div>
-
-<?php
-}else{
-?>
-<div class="alert alert-danger">Parameter belum dibuat. Silahkan buat terlebih dahulu <a href="<?=base_url(akses().'/master/kriteria/subkriteria?kriteria='.$kriteriaid);?>">Di sini</a> </div>
-<?php
-}
-?>

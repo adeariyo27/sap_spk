@@ -10,7 +10,6 @@ class Kriteria_model extends CI_Model
     public $id = 'id_kriteria';
     public $order = 'ASC';
     private $tb_kriteria='kriteria';        
-    private $tb_kriteria_nilai='kriteria_nilai';
     private $tb_subkriteria='subkriteria';
 
     function __construct()

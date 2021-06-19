@@ -41,13 +41,13 @@ class Perbandingan extends CI_Controller
 	{		
 		$id=$this->input->get('kriteria');
     	$namaKriteria=$this->mod_kriteria->kriteria_info($id,'nama_kriteria');
-    	$dSub=$this->mod_kriteria->subkriteria_child($id,'id_nilai ASC');
+    	$dSub=$this->mod_kriteria->subkriteria_child($id,'id_subkriteria ASC');
     	$output=array();
     	if(!empty($dSub))
     	{					
 		foreach($dSub as $rK)
 		{
-			$nama=field_value('nilai_kategori','id_nilai',$rK->id_nilai,'nama_nilai');
+			$nama=field_value('subkriteria','id_subkriteria',$rK->id_subkriteria,'nama_subkriteria');
 			$output[$rK->id_subkriteria]=$nama;
 		}
 		}
@@ -67,9 +67,9 @@ class Perbandingan extends CI_Controller
     	$this->m_db->delete_row('kriteria_nilai',$s);
     	    	
     	$cr=$this->input->post('crvalue');
-    	if($cr > 0.01)
+    	if($cr > 0.1)
     	{
-    		$msg="Gagal diupdate karena nilai CR kurang dari 0.01";
+    		$msg="Gagal diupdate karena nilai CR kurang dari 0.1";
 			$error=TRUE;
 		}else{
 			foreach($_POST as $k=>$v)
@@ -101,6 +101,37 @@ class Perbandingan extends CI_Controller
 		
 	}
 
+	function updateutamaprioritas()
+	{
+    	$kriteriaid=$this->input->post('kriteriaid');
+    	$prio=$this->input->post('prio');
+    	if(!empty($prio))
+    	{
+			foreach($prio as $rk=>$rv)
+			{
+				$s=array(
+				'id_kriteria'=>$rk,
+				);
+				if($this->m_db->is_bof('kriteria_hasil',$s)==TRUE)
+				{
+					$d=array(
+					'id_kriteria'=>$rk,
+					'prioritas'=>$rv,
+					);
+					$this->m_db->add_row('kriteria_hasil',$d);
+				}else{
+					$d=array(					
+					'prioritas'=>$rv,
+					);
+					$this->m_db->edit_row('kriteria_hasil',$d,$s);
+				}
+			}
+			echo json_encode('ok');
+		}else{
+			echo json_encode('no');
+		}
+	}
+
 	function updatesub()
     {
     	$error=FALSE;
@@ -114,9 +145,9 @@ class Perbandingan extends CI_Controller
     	$this->m_db->delete_row('subkriteria_nilai',$s);
     	    	
     	$cr=$this->input->post('crvalue');
-    	if($cr > 0.01)
+    	if($cr > 0.1)
     	{
-    		$msg="Gagal diupdate karena nilai CR kurang dari 0.01";
+    		$msg="Gagal diupdate karena nilai CR kurang dari 0.1";
 			$error=TRUE;
 		}else{
 			foreach($_POST as $k=>$v)
@@ -154,13 +185,13 @@ class Perbandingan extends CI_Controller
 		
 	}
 
-		function updatesubprioritas()
+	function updatesubprioritas()
 	{
     	$kriteriaid=$this->input->post('kriteriaid');
-    	$prio=$this->input->post('prio');
-    	if(!empty($prio))
+    	$prioo=$this->input->post('prioo');
+    	if(!empty($prioo))
     	{
-			foreach($prio as $rk=>$rv)
+			foreach($prioo as $rk=>$rv)
 			{
 				$s=array(
 				'id_subkriteria'=>$rk,

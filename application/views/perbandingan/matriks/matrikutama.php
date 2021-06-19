@@ -61,12 +61,32 @@ $("#formentri").submit(function(e){
 		success:function(x){
 			if(x.status=="ok")
 			{
+				$("#prioform").trigger('submit');
 				shownotice('success',x.msg);
 			}else{
 				shownotice('danger',x.msg);
 			}
 			$("#formentri select").removeAttr("disabled");
 			$("#formentri button").removeAttr("disabled");
+		},
+	});
+});
+
+$("#prioform").submit(function(e){
+	e.preventDefault();
+	$.ajax({
+		type:'post',
+		dataType:'json',
+		url:"<?=base_url();?>Perbandingan/updateutamaprioritas",
+		data:$(this).serialize(),
+		error:function(){
+			
+		},
+		beforeSend:function(){
+			
+		},
+		success:function(x){
+			
 		},
 	});
 });
@@ -190,22 +210,33 @@ function mptb()
 
 function rk()
 {
-	var total=0;	
-	for(i=1;i<=<?=$jumlah;?>;i++)
-	{
-		var prio=$("#pri-b"+i).val();
-		var jml=$("#jmlmptb-b"+i).val();
-		var hasil=parseFloat(prio)+parseFloat(jml);
-		var fx=hasil;
-		total+=hasil;
-		$("#jmlrk-b"+i).val(jml);
-		$("#priork-b"+i).val(prio);
-		$("#hasilrk-b"+i).val(fx);
+	// var total=0;	
+	// for(i=1;i<=<?=$jumlah;?>;i++)
+	// {
+	// 	var prio=$("#pri-b"+i).val();
+	// 	var jml=$("#jmlmptb-b"+i).val();
+	// 	var hasil=parseFloat(prio)+parseFloat(jml);
+	// 	var fx=hasil;
+	// 	total+=hasil;
+	// 	$("#jmlrk-b"+i).val(jml);
+	// 	$("#priork-b"+i).val(prio);
+	// 	$("#hasilrk-b"+i).val(fx);
+	// }
+	// var fx2=total;
+	// $("#totalrk").val(fx2);
+	// $("#sumrk").val(fx2);
+	
+	var maksa =0;
+	for(lk =1; lk<= <?=$jumlah?> ; lk++){
+		let total = $(`#total${lk}`).val();
+		let prioritas =$(`#pri-b${lk}`).val();
+
+		var rumus=parseFloat(total)*parseFloat(prioritas);
+		var fx=rumus;
+		maksa+=parseFloat(rumus);
+		// console.log(`${total} * ${prioritas} = ${total * prioritas}`);
 	}
-	var fx2=total;
-	$("#totalrk").val(fx2);
-	$("#sumrk").val(fx2);
-	var summaks=parseFloat(total)/parseFloat(<?=$jumlah;?>);
+	var summaks=maksa;
 	var fx_summaks=summaks;
 	$("#summaks").val(fx_summaks);
 	
@@ -213,9 +244,11 @@ function rk()
 	var ci=parseFloat(ci_r_1)/parseFloat(<?=$jumlah;?>);
 	var fx_ci=ci;
 	$("#sumci").val(fx_ci);
+
 	var cr=parseFloat(ci)/parseFloat(<?=$ir;?>);
 	var fx_cr=cr;
 	$("#sumcr").val(fx_cr);
+
 	$("#crvalue").val(fx_cr);
 }
 
@@ -338,6 +371,7 @@ echo form_close();
 <div id="matrikdiv" class="col-md-12" style="display: none">
 
 <div class="table-responsive">
+<?php echo form_open('#',array('id'=>'prioform'));?>
 <table class="table table-bordered">
 <thead>
 	<th colspan="<?=$jumlah+3;?>" class="text-center">Matrik Nilai Kriteria</th>
@@ -370,15 +404,18 @@ echo form_close();
 			echo '<td><input type="text" id="mn-k'.$noUtama2.'b'.$noSub2.'" class="form-control" value="0" readonly=""/></td>';
 		}
 		echo '<td><input type="text" class="form-control" id="jml-b'.$noUtama2.'" value="0" readonly=""/></td>';
-		echo '<td><input type="text" class="form-control" id="pri-b'.$noUtama2.'" value="0" readonly=""/></td>';
+		echo '<td><input type="text" name="prio['.$k2.']"  class="form-control" id="pri-b'.$noUtama2.'" value="0" readonly=""/></td>';
 		echo '</tr>';
 	}
 	?>	
 </tbody>
 </table>
+<?php echo '<button type="submit" class="btn btn-success" style="display:none;">Simpan Prioritas</button>';
+echo form_close();
+?>
 </div>
 
-<div class="table-responsive">
+<!-- <div class="table-responsive">
 <table class="table table-bordered">
 <thead>
 	<th colspan="<?=$jumlah+1;?>" class="text-center">Matrik Penjumlahan Tiap Baris</th>
@@ -415,9 +452,9 @@ echo form_close();
 	?>	
 </tbody>
 </table>
-</div>
+</div> -->
 
-<div class="table-responsive">
+<!-- <div class="table-responsive">
 <table class="table table-bordered">
 <thead>
 	<th colspan="<?=$jumlah+1;?>" class="text-center">Rasio Konsistensi</th>
@@ -452,7 +489,7 @@ echo form_close();
 	</tr>
 </tfoot>
 </table>
-</div>
+</div> -->
 
 <div class="table-responsive">
 <table class="table table-bordered">
@@ -465,25 +502,19 @@ echo form_close();
 </thead>
 <tbody>
 	<tr>
-		<td>Jumlah</td>
-		<td>
-			<input type="text" class="form-control" id="sumrk" value="0" readonly=""/>
-		</td>
-	</tr>
-	<tr>
 		<td>n(Jumlah Kriteria)</td>
 		<td>
 			<input type="text" class="form-control" id="sumkriteria" value="<?=$jumlah;?>"  readonly=""/>
 		</td>
 	</tr>
 	<tr>
-		<td>Maks(Jumlah/n)</td>
+		<td>Maks λ(Prioritas/Jumlah Nilai Kriteria)</td>
 		<td>
 			<input type="text" class="form-control" id="summaks" value="0"  readonly=""/>
 		</td>
 	</tr>
 	<tr>
-		<td>CI((Maks-n)/n)</td>
+		<td>CI((Maks-n)/n-1)</td>
 		<td>
 			<input type="text" class="form-control" id="sumci" value="0"  readonly=""/>
 		</td>

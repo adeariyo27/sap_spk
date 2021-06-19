@@ -1,5 +1,5 @@
 <?php
-echo '<h2>'.$namakriteria.'</h2>';
+echo '<h3><b>&nbsp;&nbsp;'.$namakriteria.'</b></h3><br>';
 $irdata=array(
 1=>0.00,
 2=>0.00,
@@ -148,7 +148,7 @@ function hitung()
 			total();			
 			mnk();
 			mptb();
-			rk();
+			// rk();
 			//alert(dkolom);
 	//	});
 	});	
@@ -193,33 +193,36 @@ function mnk()
 		var totprio=prio;
 		$("#jml-b"+i).val(jumlahmnk);
 		$("#pri-b"+i).val(totprio);
+		$("#prisub-b"+i).val(totprio);
+		$("#prisub-bhasil"+i).val(totprio);
 		mm.push(totprio);
 	}
-	maksprio=arrayMax(mm);
-	mnk2();
+	// maksprio=arrayMax(mm);
+	// mnk2();
 }
 
-function arrayMax(arr) {
-  var len = arr.length, max = -Infinity;
-  while (len--) {
-    if (arr[len] > max) {
-      max = arr[len];
-    }
-  }
-  return max;
-};
+// function arrayMax(arr) {
+//   var len = arr.length, max = -Infinity;
+//   while (len--) {
+//     if (arr[len] > max) {
+//       max = arr[len];
+//     }
+//   }
+//   return max;
+// };
 
-function mnk2()
-{
-	var i=[];
-	for(i=1;i<=<?=$jumlah;?>;i++)
-	{
-		var prio=$("#pri-b"+i).val();
-		var rumus=parseFloat(prio)/parseFloat(maksprio);
-		$("#prisub-b"+i).val(rumus);
-		$("#prisub-bhasil"+i).val(rumus);
-	}
-}
+// function mnk2()
+// {
+// 	var i=[];
+// 	for(i=1;i<=<?=$jumlah;?>;i++)
+// 	{
+// 		var prio=$("#pri-b"+i).val();
+// 		var rumus=parseFloat(prio)/parseFloat(maksprio);
+// 		console.log(prio);
+// 		$("#prisub-b"+i).val(rumus);
+// 		$("#prisub-bhasil"+i).val(rumus);
+// 	}
+// }
 
 
 function mptb()
@@ -259,6 +262,9 @@ function rk()
 	// var fx2=total;
 	// $("#totalrk").val(fx2);
 	// $("#sumrk").val(fx2);
+	// var summaks=parseFloat(total)/parseFloat(<?=$jumlah;?>);
+	// var fx_summaks=summaks;
+	// $("#summaks").val(fx_summaks);
 
 	// ===== MAKS
 	var maksa =0;
@@ -429,9 +435,9 @@ echo form_close();
 			echo '<td><input type="text" id="mn-k'.$noUtama2.'b'.$noSub2.'" class="form-control" value="0" readonly=""/></td>';
 		}
 		echo '<td><input type="text" class="form-control" id="jml-b'.$noUtama2.'" value="0" readonly=""/></td>';
-		echo '<td><input type="text" name="prioo['.$k2.']" class="form-control" id="pri-b'.$noUtama2.'" value="0" readonly=""/></td>';
+		echo '<td><input type="text" name="prio['.$k2.']" class="form-control" id="pri-b'.$noUtama2.'" value="0" readonly=""/></td>';
 		// echo '<td><input type="text" class="form-control" id="prisub-b'.$noUtama2.'" value="0" readonly=""/></td>';
-		// echo '<td><input type="text" class="form-control" id="prisub-bhasil'.$noUtama2.'" value="" readonly=""/></td>';		
+		// echo '<td><input type="text" name="prio['.$k2.']" class="form-control" id="prisub-bhasil'.$noUtama2.'" value="" readonly=""/></td>';		
 		echo '</tr>';
 	}	
 	?>	
@@ -479,9 +485,9 @@ echo form_close();
 	?>	
 </tbody>
 </table>
-</div>
+</div> -->
 
-<div class="table-responsive">
+<!-- <div class="table-responsive">
 <table class="table table-bordered">
 <thead>
 	<th colspan="<?=$jumlah+1;?>" class="text-center">Rasio Konsistensi</th>
@@ -535,13 +541,13 @@ echo form_close();
 		</td>
 	</tr>
 	<tr>
-		<td>Maks(Jumlah/n)</td>
+	<td>Maks λ(Prioritas/Jumlah Nilai Kriteria)</td>
 		<td>
 			<input type="text" class="form-control" id="summaks" value="0"  readonly=""/>
 		</td>
 	</tr>
 	<tr>
-		<td>CI((Maks-n)/n)</td>
+		<td>CI((Maks-n)/n-1)</td>
 		<td>
 			<input type="text" class="form-control" id="sumci" value="0"  readonly=""/>
 		</td>

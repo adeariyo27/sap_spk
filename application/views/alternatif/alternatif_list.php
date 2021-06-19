@@ -51,7 +51,6 @@
                     <th><b>Penghasilan</b></th>
                     <th><b>Riwayat Kredit</b></th>
                     <th><b>Usia</b></th>
-                    <th><b>Status</b></th>
                     <th width="23%"><center><b>Aksi</b></center></th>
                 </tr>
             </thead>
@@ -69,7 +68,6 @@
                     <td>Rp. <?php echo $alternatif->penghasilan ?></td>
                     <td><?php echo $alternatif->riwayat_kredit ?></td>
                     <td><?php echo $alternatif->usia ?> Tahun</td>
-                    <td><?php echo $alternatif->status ?></td>
                     <td style="text-align:center" width="200px">
                         <?php 
                         echo anchor(site_url('pembeli/read/'.$alternatif->id_pembeli),'<i class="entypo-eye"></i>
@@ -85,7 +83,7 @@
                 </tr>
                 <?php }}else{ ?>
                 <tr>
-                    <td colspan="5" align="center"><strong>Tidak Ada Data</strong></td>
+                    <td colspan="8" align="center"><strong>Tidak Ada Data</strong></td>
                 </tr>
                 <?php } ?>
             </tbody>

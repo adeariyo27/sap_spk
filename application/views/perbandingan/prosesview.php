@@ -6,7 +6,7 @@ function proseshitung()
 		dataType:'json',
 		url:"<?=base_url('Perbandingan/proseshitung');?>",
 		error:function(){
-			$("#respon").html('Proses hitung seleksi sekolah gagal');
+			$("#respon").html('Proses hitung seleksi pembeli gagal');
 			$("#error").show();
 		},
 		beforeSend:function(){
@@ -29,7 +29,7 @@ function proseshitung()
 
 <div id="respon" class="hidden-print"></div>
 <?php
-$sql="Select COUNT(*) as m FROM alternatif WHERE status IN ('unggulan','belum unggulan')";
+$sql="Select COUNT(*) as m FROM alternatif";
 $c=$this->m_db->get_query_row($sql,'m');
 if($c < 1)
 {
@@ -42,7 +42,7 @@ if($c < 1)
 	
 <table class="table table-bordered ">
 <thead>
-	<th>Nama Sekolah</th>
+	<th>Nama Pembeli</th>
 	<?php
 	$dKriteria=$this->mod_kriteria->kriteria_data();
 	if(!empty($dKriteria))
@@ -66,12 +66,12 @@ if($c < 1)
 		foreach($dAlternatif as $rAlternatif)
 		{
 			$alternatifID=$rAlternatif->id_alternatif;
-			$sekolahID=$rAlternatif->id_sekolah;
-			$nama_sekolah=field_value('sekolah','id_sekolah',$sekolahID,'nama_sekolah');
+			$pembeliID=$rAlternatif->id_pembeli;
+			$nama_pembeli=field_value('pembeli','id_pembeli',$pembeliID,'nama_pembeli');
 			
 			?>
 			<tr>
-				<td><?=$nama_sekolah;?></td>
+				<td><?=$nama_pembeli;?></td>
 				<?php
 				$total=0;
 				if(!empty($dKriteria))
@@ -80,10 +80,10 @@ if($c < 1)
 					{						
 						$kriteriaid=$rKriteria->id_kriteria;
 						$subkriteria=alternatif_nilai($alternatifID,$kriteriaid);
-						$nilaiID=field_value('subkriteria','id_subkriteria',$subkriteria,'id_nilai');
-						$nilai=field_value('nilai_kategori','id_nilai',$nilaiID,'nama_nilai');
+						$nilaiID=field_value('subkriteria','id_subkriteria',$subkriteria,'id_subkriteria');
+						$nilai=field_value('subkriteria','id_subkriteria',$nilaiID,'nama_subkriteria');
 						$prioritas=ambil_prioritas($subkriteria);
-						$total+=$prioritas;
+						$total=$prioritas;
 					    echo '<td>'.number_format((float)$prioritas,2).'</td>';
 					}
 				}
@@ -93,7 +93,7 @@ if($c < 1)
 				<td>
 					<?php 
 					if ($total >= 0.8) {
-						echo "Sekolah unggulan";
+						echo "Pembeli unggulan";
 					}else{
 						echo "belum unggulan";
 						}

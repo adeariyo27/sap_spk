@@ -37,7 +37,7 @@ if($c < 1)
 }else{	
 ?>
 
-<h3 style="margin-top:0px"><b>Daftar Kriteria Kelayakan Pembeli</b></h3>
+<h3 style="margin-top:0px"><b>Daftar Penilaian Kelayakan Calon Pembeli</b></h3>
 <br>
 <div class="table-responsive">
 	

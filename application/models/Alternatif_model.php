@@ -4,6 +4,7 @@ class Alternatif_model extends CI_Model
 {	
 
 	private $tb_alternatif='alternatif';
+	private $tb_alternatif_nilai='alternatif_nilai';
     function __construct()
     {
          $this->load->library('M_db');
@@ -60,6 +61,7 @@ class Alternatif_model extends CI_Model
 		'id_alternatif'=>$id_alternatif,
 		);
 		if($this->m_db->delete_row($this->tb_alternatif,$s)==TRUE)
+		if($this->m_db->delete_row($this->tb_alternatif_nilai,$s)==TRUE)
 		{
 			return true;
 		}else{

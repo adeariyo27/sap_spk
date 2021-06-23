@@ -56,6 +56,7 @@ if($c < 1)
 	?>
 	<th>Total</th>
 	<th>Status</th>
+	<th>Ranking</th>
 </thead>
 <?php
 
@@ -64,6 +65,7 @@ if($c < 1)
 	if(!empty($dAlternatif))
 	{
 		$totalarray = array();
+		$ranking = 1;
 		foreach($dAlternatif as $rAlternatif)
 		{
 			$alternatifID=$rAlternatif->id_alternatif;
@@ -115,9 +117,12 @@ if($c < 1)
 						// 	}
 					 ?>
 				</td>
+				<td>
+					<?php echo $ranking ?>
+				</td>
 			</tr>			
 			<?php
-			
+			$ranking++;
 		}
 		
 	}else{

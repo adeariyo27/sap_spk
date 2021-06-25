@@ -110,7 +110,7 @@ class Pembeli extends CI_Controller
     public function create() 
     {
         $data = array(
-            'button' => 'Tambah Data',
+            'button' => 'Tambah',
                 'action' => site_url('pembeli/create_action'),
                 'id_pembeli' => set_value('id_pembeli'),
                 'nama_pembeli' => set_value('nama_pembeli'),

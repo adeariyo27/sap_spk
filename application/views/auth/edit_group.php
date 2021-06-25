@@ -46,7 +46,7 @@
               </div>
 
                 <div class="col-sm-offset-3 col-sm-5">
-                  <button type="submit" name="submit" class="btn btn-default">Edit User Level</button>
+                  <button type="submit" name="submit" class="btn btn-default">Edit</button>
                   <?= anchor('admin/auth/read_group', 'Batal', array('class'=>'btn btn-danger')) ?>
                 </div>
           </div>

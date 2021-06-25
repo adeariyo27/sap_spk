@@ -61,7 +61,7 @@
                         <td style="text-align:center" width="30%">
                             <?php 
                             echo anchor(site_url('Subkriteria/parameter?kriteria='.$kriteria->id_kriteria),'<i class="entypo-list"></i>
-                            <span>Parameter</span>', array('class'=>'btn btn-primary btn-sm')); 
+                            <span>Sub-Kriteria</span>', array('class'=>'btn btn-primary btn-sm')); 
                             echo ' | '; 
                             echo anchor(site_url('kriteria/update/'.$kriteria->id_kriteria),'<i class="entypo-pencil"></i>
                             <span>Edit</span>', array('class'=>'btn btn-default btn-sm'));  

@@ -3,7 +3,7 @@
         <br>
         <div class="row" style="margin-bottom: 2px">
             <div class="col-md-4">
-                <?php echo anchor(site_url('pembeli/create'),'<i class="entypo-user-add"></i><span> Tambah Data Calon Pembeli</span>', 'class="btn btn-primary"'); ?>
+                <?php echo anchor(site_url('pembeli/create'),'<i class="entypo-user-add"></i><span> Tambah Calon Pembeli</span>', 'class="btn btn-primary"'); ?>
                 <br>
             </div>
             <div class="col-md-4 text-center">

@@ -43,7 +43,7 @@
                     <?php endif; ?>
                 </div>
                   <div class="col-sm-offset-3 col-sm-5">
-                      <button type="submit" name="submit" class="btn btn-default">Buat User Level</button>
+                      <button type="submit" name="submit" class="btn btn-default">Tambah</button>
                       <?= anchor('admin/auth/read_group', 'Batal', array('class'=>'btn btn-danger')) ?>
                   </div>
             </div>

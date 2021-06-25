@@ -226,17 +226,17 @@ function rk()
 	// $("#totalrk").val(fx2);
 	// $("#sumrk").val(fx2);
 	
-	var maksa =0;
+	var makslambda =0;
 	for(lk =1; lk<= <?=$jumlah?> ; lk++){
 		let total = $(`#total${lk}`).val();
 		let prioritas =$(`#pri-b${lk}`).val();
 
 		var rumus=parseFloat(total)*parseFloat(prioritas);
 		var fx=rumus;
-		maksa+=parseFloat(rumus);
+		makslambda+=parseFloat(rumus);
 		// console.log(`${total} * ${prioritas} = ${total * prioritas}`);
 	}
-	var summaks=maksa;
+	var summaks=makslambda;
 	var fx_summaks=summaks;
 	$("#summaks").val(fx_summaks);
 	
@@ -282,7 +282,7 @@ echo form_open('#',array('class'=>'form-horizontal','id'=>'formentri'));
 <div class="table-responsive">
 <table class="table table-bordered">
 <thead>
-	<th colspan="<?=$jumlah+1;?>" class="text-center">Matrik Perbandingan Berpasangan</th>
+	<th colspan="<?=$jumlah+1;?>" class="text-center">Matrik Perbandingan Berpasangan Kriteria</th>
 </thead>
 <thead>
 	<th>Kriteria</th>
@@ -508,13 +508,13 @@ echo form_close();
 		</td>
 	</tr>
 	<tr>
-		<td>Maks λ(Prioritas/Jumlah Nilai Kriteria)</td>
+		<td>Maks λ((Prioritas-n*Total-n)++)</td>
 		<td>
 			<input type="text" class="form-control" id="summaks" value="0"  readonly=""/>
 		</td>
 	</tr>
 	<tr>
-		<td>CI((Maks-n)/n-1)</td>
+		<td>CI((Maks λ-n)/n-1)</td>
 		<td>
 			<input type="text" class="form-control" id="sumci" value="0"  readonly=""/>
 		</td>

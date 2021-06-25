@@ -109,7 +109,7 @@
 
             <div class="col-sm-offset-3 col-sm-5">
               <br>
-              <button type="submit" name="submit" class="btn btn-default">Buat User</button>
+              <button type="submit" name="submit" class="btn btn-default">Tambah</button>
               <?= anchor('admin/Auth', 'Batal', array('class'=>'btn btn-danger')) ?>
             </div>
        

@@ -66,15 +66,13 @@
 			<div class="modal-content">
 
 				<div class="modal-header">
-					<h4 class="modal-title">Tentang Website</h4>
+					<h4 class="modal-title">Tentang Aplikasi</h4>
 				</div>
 
 				<div class="modal-body">
-					<strong>Tentang Website</strong><br>
-		            <i class="glyphicon glyphicon-ok"></i> Bismillah<br>
-		            <i class="glyphicon glyphicon-ok"></i> Skripsi<br>
-		            <i class="glyphicon glyphicon-ok"></i> Selesai dengan cepat<br>
-		            <i class="glyphicon glyphicon-ok"></i> CP Programmer : 082394315392 (Akbar Abustang)<br><br>
+					<strong>Aplikasi SPK Calon Pembeli KPR Bersubsidi</strong><br><br>
+		            <i class="glyphicon glyphicon-cog"></i> &nbsp;SPK PT. Serasi Anugrah Pratama v.1.0<br>
+		            <i class="glyphicon glyphicon-fire"></i> &nbsp;Designed & Created By: Ade Ariyo Yudanto<br>
 				</div>
 
 				<div class="modal-footer">

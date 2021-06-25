@@ -261,17 +261,17 @@ function rk()
 	// $("#sumrk").val(fx2);
 
 	// ===== MAKS
-	var maksa =0;
+	var makslambda =0;
 	for(lk =1; lk<= <?=$jumlah?> ; lk++){
 		let total = $(`#total${lk}`).val();
 		let prioritas =$(`#pri-b${lk}`).val();
 
-		var rumus=parseFloat(total)*parseFloat(prioritas);
+		var rumus=parseFloat(prioritas)*parseFloat(total);
 		var fx=rumus;
-		maksa+=parseFloat(rumus);
+		makslambda+=parseFloat(rumus);
 		// console.log(`${total} * ${prioritas} = ${total * prioritas}`);
 	}
-	var summaks=maksa;
+	var summaks=makslambda;
 	var fx_summaks=summaks;
 	$("#summaks").val(fx_summaks);
 	// ==== MAKS
@@ -280,12 +280,17 @@ function rk()
 	var ci_r_2=parseFloat(<?=$jumlah;?>)-parseFloat(<?=1;?>);
 	var ci=parseFloat(ci_r_1)/parseFloat(ci_r_2);
 	var fx_ci=ci;
-
 	$("#sumci").val(fx_ci);
+	
+	// var ci_r_1=parseFloat(summaks)-parseFloat(<?=$jumlah;?>);
+	// var ci=parseFloat(ci_r_1)/parseFloat(<?=$jumlah;?>);
+	// var fx_ci=ci;
+	// $("#sumci").val(fx_ci);
+
 	var cr=parseFloat(ci)/parseFloat(<?=$ir;?>);
 	var fx_cr=cr;
-
 	$("#sumcr").val(fx_cr);
+	
 	$("#crvalue").val(fx_cr);
 }
 
@@ -303,7 +308,7 @@ echo form_open('#',array('class'=>'form-horizontal','id'=>'formentri'));
 <div class="table-responsive">
 <table class="table table-bordered">
 <thead>
-	<th colspan="<?=$jumlah+3;?>" class="text-center">Matrik Perbandingan Berpasangan</th>
+	<th colspan="<?=$jumlah+3;?>" class="text-center">Matrik Perbandingan Berpasangan Sub-Kriteria</th>
 </thead>
 <thead>
 	<th>Kriteria</th>
@@ -397,7 +402,7 @@ echo form_close();
 <input type="hidden" name="kriteriaid" value="<?=$kriteriaid;?>"/>
 <table class="table table-bordered">
 <thead>
-	<th colspan="<?=$jumlah+5;?>" class="text-center">Matrik Nilai Kriteria</th>
+	<th colspan="<?=$jumlah+5;?>" class="text-center">Matrik Nilai Sub-Kriteria</th>
 </thead>
 <thead>
 	<th>Kriteria</th>
@@ -535,13 +540,13 @@ echo form_close();
 		</td>
 	</tr>
 	<tr>
-		<td>Maks(Jumlah/n)</td>
+		<td>Maks λ((Prioritas-n*Total-n)++)</td>
 		<td>
 			<input type="text" class="form-control" id="summaks" value="0"  readonly=""/>
 		</td>
 	</tr>
 	<tr>
-		<td>CI((Maks-n)/n)</td>
+		<td>CI((Maks λ-n)/n-1)</td>
 		<td>
 			<input type="text" class="form-control" id="sumci" value="0"  readonly=""/>
 		</td>

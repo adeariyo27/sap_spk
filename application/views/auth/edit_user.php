@@ -118,7 +118,7 @@
                     </div>
                   <br>
                 <div class="form-group">
-                    <button type="submit" name="submit" class="btn btn-default">Edit User</button>
+                    <button type="submit" name="submit" class="btn btn-default">Edit</button>
                     <?= anchor('admin/Auth', 'Batal', array('class'=>'btn btn-danger')) ?>
                  
                 </div>

@@ -27,7 +27,7 @@ foreach($data as $row){
 echo validation_errors();
 echo form_open('subkriteria/update_action'.$kriteria,array('class'=>'form-horizontal'));
 ?>
-<div style="padding-left:85px">
+<div style="padding-left:87px">
     <?php  
      if(!empty($utama))
      {               
@@ -51,6 +51,7 @@ echo form_open('subkriteria/update_action'.$kriteria,array('class'=>'form-horizo
         ?>
     </div>
 </div>
+<br>
 <div class="form-group required">
     <label class="col-sm-2 control-label" for="">Kriteria Utama</label>
     <div class="col-md-8">

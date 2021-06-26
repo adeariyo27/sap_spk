@@ -46,12 +46,14 @@
             <thead>
                 <tr>
                     <th width="3.5%"><b>No</b></th>
-                    <th><b>Nama Pembeli</b></th>
-                    <th><b>Pekerjaan</b></th>
-                    <th><b>Penghasilan</b></th>
-                    <th><b>Riwayat Kredit</b></th>
-                    <th><b>Usia</b></th>
-                    <th width="23%"><center><b>Aksi</b></center></th>
+                    <th width="18%"><b>Nama Pembeli</b></th>
+                    <th width="15.5%"><b>Pekerjaan</b></th>
+                    <th width="10%"><b>Penghasilan</b></th>
+                    <th width="10%"><b>Riwayat Kredit</b></th>
+                    <th width="8%"><b>Usia</b></th>
+                    <th width="10%"><b>Uang Muka</b></th>
+                    <th width="10%"><b>Jangka Waktu</b></th>
+                    <th width="15%"><center><b>Aksi</b></center></th>
                 </tr>
             </thead>
             <tbody>
@@ -68,6 +70,8 @@
                     <td>Rp. <?php echo $alternatif->penghasilan ?></td>
                     <td><?php echo $alternatif->riwayat_kredit ?></td>
                     <td><?php echo $alternatif->usia ?> Tahun</td>
+                    <td><?php echo $alternatif->uang_muka ?></td>
+                    <td><?php echo $alternatif->jangka_waktu ?></td>
                     <td style="text-align:center" width="200px">
                         <?php 
                         echo anchor(site_url('pembeli/read/'.$alternatif->id_pembeli),'<i class="entypo-eye"></i>

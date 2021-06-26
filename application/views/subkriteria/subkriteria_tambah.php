@@ -15,7 +15,7 @@ $(document).ready(function () {
 	
 });
 </script>
-	<div class="col-md-12">
+	<div style="padding-left:100px">
 		<?php
 			if (!empty($utama)) {  
 				foreach($utama as $rutama) {  

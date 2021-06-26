@@ -65,7 +65,6 @@
 							
 							<p>
 							<strong>PT. Serasi Anugrah Pratama</strong> adalah suatu badan usaha berbentuk perseroan terbatas yang bergerak dibidang properti dan telah berdiri sejak 21 April 2016. Saat ini, PT. Serasi Anugrah Pratama berfokus pada pengembangan perumahan KPR bersubsidi. Telah dibangun satu komplek perumahan dengan total 139 unit rumah bernama <strong>Taman Serasi Residence</strong> yang terletak di Jl. Tengku Amir Hamzah, Dsn. IV, Sambirejo, Kab. Langkat, Sumatera Utara. PT. Serasi Anugrah Pratama melalui Taman Serasi Residence juga menawarkan rumah komersil <i>by requested</i> bagi calon pembeli yang membeli tanah kosong yang tersedia. Saat ini, Taman Serasi Residence berencana melakukan pembangunan tahap III dengan total 40 unit rumah.</p>
-							<p><br></p>
 							
 						</div>
 						
@@ -88,7 +87,7 @@
 						
 						<!-- panel body -->
 						<div class="panel-body" style="text-align: justify;">
-							<p>Kebutuhan rumah di Indonesia yang semakin tinggi tiap tahunnya, dan hal tersebut tidak didukung oleh kemampuan beli yang sesuai dengan sebagian besar masyarakat. Oleh karena itu, Pemerintah Indonesia melalui Kementerian Pekerjaan Umum dan Perumahan Rakyat Republik Indonesia yang ditujukan bagi masyarakat berpenghasilan rendah (MBR) uang muka dan cicilan yang terjangkau serta suku bunga rendah. <strong>Rumah subsidi</strong> atau yang lebih dikenal dengan <strong>KPR bersubsidi</strong> adalah kredit/pembiayaan pemilikan rumah yang mendapat bantuan dan/atau kemudahan perolehan rumah dari pemerintah berupa dana murah jangka panjang dan subsidi perolehan rumah yang diterbitkan oleh Bank Pelaksana baik secara konvensional maupun dengan prinsip syariah. Uang muka KPR ini rata-rata hanya sekitar 1 persen saja dengan suku bunga 5 persen per tahun dan jangka waktu angsuran mencapai 20 tahun.</p>
+							<p>Kebutuhan rumah di Indonesia yang semakin tinggi tiap tahunnya, tidak didukung oleh kemampuan beli yang sesuai dengan sebagian besar masyarakat. Oleh karena itu, Pemerintah Indonesia melalui Kementerian Pekerjaan Umum dan Perumahan Rakyat Republik Indonesia yang ditujukan bagi masyarakat berpenghasilan rendah (MBR) uang muka dan cicilan yang terjangkau serta suku bunga rendah. <strong>Rumah subsidi</strong> atau yang lebih dikenal dengan <strong>KPR bersubsidi</strong> adalah kredit/pembiayaan pemilikan rumah yang mendapat bantuan dan/atau kemudahan perolehan rumah dari pemerintah berupa dana murah jangka panjang dan subsidi perolehan rumah yang diterbitkan oleh Bank Pelaksana baik secara konvensional maupun dengan prinsip syariah. Uang muka KPR ini rata-rata hanya sekitar 1 persen saja dengan suku bunga 5 persen per tahun dan jangka waktu angsuran mencapai 20 tahun.</p>
 							
 						</div>
 						

@@ -37,7 +37,7 @@
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$lang['form_validation_required']		= "{field} tidak boleh kosong";
+$lang['form_validation_required']		= "<div class='alert alert-danger'>{field} tidak boleh kosong</div>";
 $lang['form_validation_isset']			= 'File {field} gagal di upload karena ukuran file lebih besar dari 1 MB atau format file salah';
 $lang['form_validation_valid_email']		= "Format {field} salah.";
 $lang['form_validation_valid_emails']		= 'The {field} field must contain all valid email addresses.';

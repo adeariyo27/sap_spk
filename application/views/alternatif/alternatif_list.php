@@ -87,7 +87,7 @@
                 </tr>
                 <?php }}else{ ?>
                 <tr>
-                    <td colspan="8" align="center"><strong>Tidak Ada Data</strong></td>
+                    <td colspan="9" align="center"><strong>Tidak Ada Data</strong></td>
                 </tr>
                 <?php } ?>
             </tbody>

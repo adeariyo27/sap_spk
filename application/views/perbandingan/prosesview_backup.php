@@ -30,7 +30,7 @@
 $sql = "Select COUNT(*) as m FROM alternatif";
 $c = $this->m_db->get_query_row($sql, 'm');
 if ($c < 1) {
-	echo '<div class="alert alert-warning hidden-print" id="error">Seleksi perhitungan belum bisa diproses. Tambahkan data alternatif terlebih dahulu</div>';
+	echo '<div class="alert alert-warning hidden-print" id="error">Seleksi belum diproses. Klik <a href="javascript:;" onclick="proseshitung();">di sini</a> untuk proses</div>';
 } else {
 ?>
 
@@ -40,19 +40,22 @@ if ($c < 1) {
 
 		<table class="table table-bordered ">
 			<thead>
-				<th width="20%">Nama Pembeli</th>
+				<th>Nama Pembeli</th>
 				<?php
 				$dKriteria = $this->mod_kriteria->kriteria_data();
 				if (!empty($dKriteria)) {
 					foreach ($dKriteria as $rKriteria) {
-						echo '<th width="10%">' . $rKriteria->nama_kriteria . '</th>';
+						echo '<th>' . $rKriteria->nama_kriteria . '</th>';
 					}
 				}
 				?>
-				<th width="10%">Total</th>
-				<th width="5%">Ranking</th>
+				<th>Total</th>
+				<th>Status</th>
+				<th>Ranking</th>
 			</thead>
 			<?php
+
+
 			$dAlternatif = $this->m_db->get_data('alternatif');
 			if (!empty($dAlternatif)) {
 				$totalarray = array();
@@ -86,14 +89,30 @@ if ($c < 1) {
 					array_push($totalarray2, $total_);
 					array_push($namapembeliarray , $nama_pembeli);
 					array_push($alternatifid2 , $alternatifID2);
+
+				
+
 				}
+
 				arsort($totalarray2);
 				arsort($namapembeliarray);
 				arsort($alternatifid2);
-				?>
+				// foreach ($dAlternatif as $rAlternatif) {
+				// 	$alternatifID = $rAlternatif->id_alternatif;
+				// 	$pembeliID = $rAlternatif->id_pembeli;
+				// 	$nama_pembeli = field_value('pembeli', 'id_pembeli', $pembeliID, 'nama_pembeli');
+
+
+
+			?>
+				
+
 					<?php 
 						$no = 1;
 						foreach($totalarray2 as $key => $value){
+
+						
+					
 					?>
 						<tr>
 							
@@ -116,12 +135,75 @@ if ($c < 1) {
 									echo '<td>' . number_format((float)$prioritas, 2) . '</td>';
 								}
 							}
+
+
 							?>
-								<td><b><?= number_format($total, 2); ?></b></td>
-								<td><b><?=$no?></b></td>
+								<td><?= number_format($total, 2); ?></td>
+								<td>
+								<?php
+									$maxs = max($totalarray);
+									if ($total === $maxs) {
+										echo "Pembeli unggulan";
+									} else {
+										echo "belum unggulan";
+									}
+							
+								?>
+								</td>
+
+								<td><?=$no?></td>
+					
 						</tr>
+
 					<?php $no++;} ?>
-		<?php
+						
+
+<!-- 
+					<tr>
+						<td><?= $nama_pembeli; ?> </td>
+						<?php
+						$total = 0;
+						if (!empty($dKriteria)) {
+
+							foreach ($dKriteria as $rKriteria) {
+								$kriteriaid = $rKriteria->id_kriteria;
+								$subkriteria = alternatif_nilai($alternatifID, $kriteriaid);
+								// $nilaiID=field_value('kriteria','id_kriteria',$subkriteria,'id_kriteria');
+								// $nilai=field_value('kriteria','id_kriteria',$nilaiID,'nama_kriteria');
+								$prioritaskriteria = ambil_prioritas_kriteria($kriteriaid);
+								$prioritassubkriteria = ambil_prioritas($subkriteria);
+
+								$prioritas = $prioritassubkriteria * $prioritaskriteria;
+
+								$total += $prioritas;
+								array_push($totalarray, $total);
+								echo '<td>' . number_format((float)$prioritas, 2) . '</td>';
+							}
+						}
+
+
+						?>
+						<td><?= number_format($total, 2); ?></td>
+					
+						<td>
+							<?php
+							$maxs = max($totalarray);
+							if ($total === $maxs) {
+								echo "Pembeli unggulan";
+							} else {
+								echo "belum unggulan";
+							}
+						
+							?>
+						</td>
+						<td>
+							<?php echo $ranking ?>
+						</td>
+					</tr> -->
+				<?php
+				// 	$ranking++;
+				// 	$arr++;
+				// }
 			} else {
 				return false;
 			}
@@ -129,6 +211,5 @@ if ($c < 1) {
 		?>
 
 		</table>
-		<!-- <p>Dari hasil perhitungan diatas, maka calon pembeli yang diprioritaskan adalah <b><?=$namapembeliarray[$key]?></b></p> -->
-	
 	</div>
+	<a href="javascript:;" onclick="proseshitung();" class="btn btn-primary btn-md"> Hitung</a>

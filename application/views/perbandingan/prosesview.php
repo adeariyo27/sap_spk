@@ -113,11 +113,11 @@ if ($c < 1) {
 
 									$total += $prioritas;
 									array_push($totalarray, $total);
-									echo '<td>' . number_format((float)$prioritas, 2) . '</td>';
+									echo '<td>' . number_format((float)$prioritas, 6) . '</td>';
 								}
 							}
 							?>
-								<td><b><?= number_format($total, 2); ?></b></td>
+								<td><b><?= number_format($total, 6); ?></b></td>
 								<td><b><?=$no?></b></td>
 						</tr>
 					<?php $no++;} ?>
@@ -129,6 +129,8 @@ if ($c < 1) {
 		?>
 
 		</table>
-		<!-- <p>Dari hasil perhitungan diatas, maka calon pembeli yang diprioritaskan adalah <b><?=$namapembeliarray[$key]?></b></p> -->
-	
+		<?php 
+		$maxtotalarray2 = max($namapembeliarray);
+		?>
+			<!-- <p>Dari hasil perhitungan diatas, maka calon pembeli yang diprioritaskan adalah <b><?=$maxtotalarray2?></b></p> -->
 	</div>

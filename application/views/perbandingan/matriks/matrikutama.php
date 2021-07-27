@@ -241,10 +241,11 @@ function rk()
 	$("#summaks").val(fx_summaks);
 	
 	var ci_r_1=parseFloat(summaks)-parseFloat(<?=$jumlah;?>);
-	var ci=parseFloat(ci_r_1)/parseFloat(<?=$jumlah;?>);
+	var ci_r_2=parseFloat(<?=$jumlah;?>)-parseFloat(<?=1;?>);
+	var ci=parseFloat(ci_r_1)/parseFloat(ci_r_2);
 	var fx_ci=ci;
 	$("#sumci").val(fx_ci);
-
+	
 	var cr=parseFloat(ci)/parseFloat(<?=$ir;?>);
 	var fx_cr=cr;
 	$("#sumcr").val(fx_cr);

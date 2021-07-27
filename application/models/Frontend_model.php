@@ -12,38 +12,36 @@ class Frontend_model extends CI_Model
     	// $sql = " SELECT
 					// alternatif.status,
 					// alternatif.total,
-					// sekolah.nama_sekolah,
-					// sekolah.alamat_sekolah,
-					// sekolah.id_sekolah,
-					// alternatif.id_sekolah,
+					// pembeli.nama_pembeli,
+					// pembeli.alamat_pembeli,
+					// pembeli.id_pembeli,
+					// alternatif.id_pembeli,
 					// alternatif.id_alternatif
 					// FROM
 					// alternatif
-					// INNER JOIN sekolah ON sekolah.id_sekolah = alternatif.id_sekolah ORDER BY total DESC ";
+					// INNER JOIN pembeli ON pembeli.id_pembeli = alternatif.id_pembeli ORDER BY total DESC ";
     	$sql = " SELECT
-					alternatif.status,
-					alternatif.total,
-					sekolah.nama_sekolah,
-					sekolah.alamat_sekolah,
-					sekolah.id_sekolah,
-					alternatif.id_sekolah,
+					pembeli.nama_pembeli,
+					pembeli.alamat,
+					pembeli.id_pembeli,
+					alternatif.id_pembeli,
 					alternatif.id_alternatif
 					FROM
 					alternatif
-					INNER JOIN sekolah ON sekolah.id_sekolah = alternatif.id_sekolah ORDER BY total DESC ";
+					INNER JOIN pembeli ON pembeli.id_pembeli = alternatif.id_pembeli";
     	return $this->db->query($sql);
     }
 
-    function tampilkan_detail($id_sekolah){
-  		// $param = array('id_sekolah' =>$id_sekolah);
-		// return $this->db->get_where('sekolah', $param);
+    function tampilkan_detail($id_pembeli){
+  		// $param = array('id_pembeli' =>$id_pembeli);
+		// return $this->db->get_where('pembeli', $param);
 		$sql = " SELECT
 					alternatif_nilai.id_alternatif_nilai,
 					alternatif_nilai.id_alternatif,
 					alternatif_nilai.id_kriteria,
 					alternatif_nilai.id_subkriteria,
 					alternatif.id_alternatif,
-					alternatif.id_sekolah,
+					alternatif.id_pembeli,
 					alternatif.status,
 					alternatif.total,
 					kriteria.id_kriteria,
@@ -51,26 +49,26 @@ class Frontend_model extends CI_Model
 					subkriteria.id_subkriteria,
 					subkriteria.nama_subkriteria,
 					subkriteria.id_kriteria,
-					sekolah.id_sekolah,
-					sekolah.nama_sekolah,
-					sekolah.nama_kepsek,
-					sekolah.alamat_sekolah,
-					sekolah.visi,
-					sekolah.misi,
-					sekolah.no_telpon
+					pembeli.id_pembeli,
+					pembeli.nama_pembeli,
+					pembeli.nama_kepsek,
+					pembeli.alamat_pembeli,
+					pembeli.visi,
+					pembeli.misi,
+					pembeli.no_telpon
 					FROM
 					alternatif_nilai
 					INNER JOIN alternatif ON alternatif_nilai.id_alternatif = alternatif.id_alternatif
 					INNER JOIN kriteria ON alternatif_nilai.id_kriteria = kriteria.id_kriteria
 					INNER JOIN subkriteria ON kriteria.id_kriteria = subkriteria.id_kriteria AND alternatif_nilai.id_subkriteria = subkriteria.id_subkriteria
-					INNER JOIN sekolah ON alternatif.id_sekolah = sekolah.id_sekolah
-					WHERE sekolah.id_sekolah = '$id_sekolah'
+					INNER JOIN pembeli ON alternatif.id_pembeli = pembeli.id_pembeli
+					WHERE pembeli.id_pembeli = '$id_pembeli'
 				 ";
 				 return $this->db->query($sql);
 
     }
 
-    function detail_kriteria($id_sekolah)
+    function detail_kriteria($id_pembeli)
     {
     	$sql = " SELECT
 					alternatif_nilai.id_alternatif_nilai,
@@ -78,7 +76,7 @@ class Frontend_model extends CI_Model
 					alternatif_nilai.id_kriteria,
 					alternatif_nilai.id_subkriteria,
 					alternatif.id_alternatif,
-					alternatif.id_sekolah,
+					alternatif.id_pembeli,
 					alternatif.status,
 					alternatif.total,
 					kriteria.id_kriteria,
@@ -86,20 +84,20 @@ class Frontend_model extends CI_Model
 					subkriteria.id_subkriteria,
 					subkriteria.nama_subkriteria,
 					subkriteria.id_kriteria,
-					sekolah.id_sekolah,
-					sekolah.nama_sekolah,
-					sekolah.nama_kepsek,
-					sekolah.alamat_sekolah,
-					sekolah.visi,
-					sekolah.misi,
-					sekolah.no_telpon
+					pembeli.id_pembeli,
+					pembeli.nama_pembeli,
+					pembeli.nama_kepsek,
+					pembeli.alamat_pembeli,
+					pembeli.visi,
+					pembeli.misi,
+					pembeli.no_telpon
 					FROM
 					alternatif_nilai
 					INNER JOIN alternatif ON alternatif_nilai.id_alternatif = alternatif.id_alternatif
 					INNER JOIN kriteria ON alternatif_nilai.id_kriteria = kriteria.id_kriteria
 					INNER JOIN subkriteria ON kriteria.id_kriteria = subkriteria.id_kriteria AND alternatif_nilai.id_subkriteria = subkriteria.id_subkriteria
-					INNER JOIN sekolah ON alternatif.id_sekolah = sekolah.id_sekolah
-					WHERE sekolah.id_sekolah = '$id_sekolah'
+					INNER JOIN pembeli ON alternatif.id_pembeli = pembeli.id_pembeli
+					WHERE pembeli.id_pembeli = '$id_pembeli'
 				 ";
 				 return $this->db->query($sql);
     }

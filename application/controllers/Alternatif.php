@@ -22,7 +22,7 @@ class Alternatif extends CI_Controller
 
 		$config['total_rows'] = $this->mod_alternatif->total_rows($q);
 
-     	$sql="SELECT alternatif.id_alternatif,pembeli.id_pembeli,pembeli.nama_pembeli,pembeli.pekerjaan,pembeli.penghasilan,pembeli.riwayat_kredit,pembeli.usia,pembeli.uang_muka,pembeli.jangka_waktu FROM alternatif LEFT JOIN pembeli ON alternatif.id_pembeli = pembeli.id_pembeli ";
+     	$sql="SELECT alternatif.id_alternatif,pembeli.id_pembeli,pembeli.nama_pembeli,pembeli.pekerjaan,pembeli.penghasilan,pembeli.riwayat_kredit,pembeli.usia,pembeli.uang_muka,pembeli.jangka_waktu FROM alternatif LEFT JOIN pembeli ON alternatif.id_pembeli = pembeli.id_pembeli";
         
 		$data = array(
             'q' => $q,

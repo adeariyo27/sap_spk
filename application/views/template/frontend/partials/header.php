@@ -42,10 +42,9 @@ $aktif = $this->uri->segment(2);
 				<div id="navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav navbar-right">
 						<li <?php if($aktif=="" ) echo 'class="active"';?> ><a href="<?php echo base_url() ?>"><span data-hover="Beranda">Beranda</span></a></li>
-						<li <?php if($aktif=="tentang" ) echo 'class="active"';?> ><a href="about.html"><span data-hover="Tentang">Tentang</span></a><span class="line1">|</span></li>
 						<li <?php if($aktif=="ranking" || $aktif=="detail" ) echo 'class="active"';?> ><a href="<?php echo base_url() ?>Frontend/ranking"><span data-hover="Ranking">Ranking</span></a><span class="line1">|</span></li>
 						<li <?php if($aktif=="galeri" ) echo 'class="active"';?> ><a href="<?php echo base_url() ?>Frontend/galeri"><span data-hover="Galeri">Galeri</span></a><span class="line1">|</span></li>
-						<li <?php if($aktif=="kontak" ) echo 'class="active"';?> ><a href="<?php echo base_url() ?>admin/Auth/login"><span data-hover="Kontak"><b>Login</b></span></a><span class="line1">|</span></li>
+						<li <?php if($aktif=="kontak" ) echo 'class="active"';?> ><a href="<?php echo base_url() ?>admin/Auth/login"><span data-hover="Login"><b>Login</b></span></a><span class="line1">|</span></li>
 					</ul>
 				</div>
 			</div>
